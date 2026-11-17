@@ -1,0 +1,103 @@
+# -*- coding: utf-8 -*-
+"""Przygotowanie publicznej wersji makiety A „Biblioteka” do repozytorium GitHub (GitHub Pages).
+
+Kopiuje z koncepcja-portalu do folderu repozytorium tylko to, co potrzebne makiecie A:
+  a-biblioteka/, karta/, assets/ (dane, ikony, fonty, zdjęcia, rysunki, znaki, karty PDF), _narzedzia/ (bez tego skryptu nie zmienia się nic)
+Pomija: opracowanie (index.html, PDF), koncepcje B i C, zrzuty ekranów.
+W a-biblioteka/index.html włącza tryb SPP_SOLO (pasek prezentera bez linków do opracowania i koncepcji B/C).
+
+Użycie:  python 9_publikacja_github.py  [folder_repo]
+Domyślny folder repo: "18. Leroy Merlin - Portal\\github-portal-lm". Potem: git add -A, commit, push.
+"""
+import os, sys, io, shutil
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.dirname(HERE)
+DST = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(SRC), "github-portal-lm")
+
+DIRS = ["a-biblioteka", "karta", "assets/fonts", "assets/img", "assets/znaki", "assets/karty", "_narzedzia"]
+FILES = ["assets/data.js", "assets/lm.js", "assets/rysunki.js", "assets/icons.js", "assets/proto.js",
+         "assets/logo.svg", "assets/logo-white.svg", "assets/img-manifest.json"]
+SKIP = ("__pycache__", ".tmp", "Thumbs.db")
+
+INDEX = """<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="refresh" content="0; url=a-biblioteka/index.html">
+<title>Strefa projektanta Schedpol — makieta</title>
+</head>
+<body><p><a href="a-biblioteka/index.html">Przejdź do makiety Strefy projektanta Schedpol</a></p></body>
+</html>
+"""
+
+README = """# Strefa projektanta Schedpol × Leroy Merlin — makieta
+
+Klikalna makieta portalu dla projektantów sieci Leroy Merlin (koncepcja A „Biblioteka”):
+wyszukiwarka po numerze referencyjnym LM, katalog z filtrami, karta produktu z plikami do pobrania,
+Centrum plików z paczkami serii, teczka plików oraz karty produktów PDF (A4) dla 371 indeksów.
+
+**Podgląd:** https://bartek-schedpol.github.io/portal-lm-projektanci/
+
+> Makieta poglądowa — nie jest działającym serwisem. Pobieranie plików innych niż karty PDF jest symulowane.
+> Ceny i dostępność produktów: w systemie sklepu Leroy Merlin. Zdjęcia aranżacyjne są wizualizacjami poglądowymi.
+
+## Struktura
+
+| Folder | Zawartość |
+|---|---|
+| `a-biblioteka/` | makieta portalu (HTML/CSS/JS bez frameworków, router na hashach) |
+| `karta/` | szablon karty produktu A4 — podgląd: `karta/index.html?ref=<nr ref. LM>` |
+| `assets/data.js` | 371 indeksów i 23 serie (generowane z materiałów Schedpol) |
+| `assets/lm.js` | gama, EAN i kod dostawcy z eksportu referencji LM (26.03.2026) |
+| `assets/rysunki.js`, `assets/img/rys/` | rysunki techniczne do kart |
+| `assets/karty/` | wygenerowane karty produktów PDF — **wersja robocza, do przebudowy** |
+| `assets/fonts/` | Roboto i Roboto Condensed (licencja Apache 2.0) |
+| `_narzedzia/` | skrypty Pythona do odświeżenia danych, zasobów i kart (wymagają materiałów źródłowych spoza repozytorium) |
+
+## Uruchomienie lokalne
+
+```
+python -m http.server 8766
+```
+i otwórz http://localhost:8766/ (makieta działa też po otwarciu `a-biblioteka/index.html` z dysku).
+
+Skrót klawiszowy `H` chowa pasek prezentera, strzałki ← → przełączają ekrany.
+
+© SCHEDPOL Sp. z o.o. Materiały produktowe (zdjęcia, rysunki, opisy) są własnością Schedpol i nie podlegają licencji open source.
+Znaki Sensea i Leroy Merlin należą do ich właścicieli.
+"""
+
+
+def ign(d, names):
+    return [n for n in names if n in SKIP or n.endswith(SKIP)]
+
+
+def main():
+    os.makedirs(DST, exist_ok=True)
+    for d in DIRS + ["assets"]:                          # wyczyść tylko to, czym zarządza skrypt (zostaje .git)
+        p = os.path.join(DST, d)
+        if d != "assets" and os.path.isdir(p):
+            shutil.rmtree(p)
+    for d in DIRS:
+        shutil.copytree(os.path.join(SRC, d), os.path.join(DST, d), ignore=ign)
+    for f in FILES:
+        os.makedirs(os.path.dirname(os.path.join(DST, f)), exist_ok=True)
+        shutil.copy2(os.path.join(SRC, f), os.path.join(DST, f))
+    a = os.path.join(DST, "a-biblioteka", "index.html")
+    s = io.open(a, encoding="utf-8").read()
+    if "SPP_SOLO" not in s:
+        s = s.replace('<script src="../assets/proto.js"></script>', '<script>window.SPP_SOLO = 1;</script>\n<script src="../assets/proto.js"></script>')
+    io.open(a, "w", encoding="utf-8", newline="").write(s)
+    io.open(os.path.join(DST, "index.html"), "w", encoding="utf-8", newline="\n").write(INDEX)
+    io.open(os.path.join(DST, "README.md"), "w", encoding="utf-8", newline="\n").write(README)
+    io.open(os.path.join(DST, ".nojekyll"), "w").write("")
+    io.open(os.path.join(DST, ".gitignore"), "w", encoding="utf-8").write("__pycache__/\n*.tmp\nThumbs.db\n")
+    size = sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(DST) if ".git" not in r for f in fs)
+    print("Gotowe: %s  (%.1f MB)" % (DST, size / 1e6))
+
+
+if __name__ == "__main__":
+    main()

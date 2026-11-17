@@ -1,0 +1,11 @@
+Narzędzia do odświeżenia danych makiet (Python 3.12, biblioteki: openpyxl, PyMuPDF, Pillow).
+Kolejność (TMP = dowolny pusty folder roboczy):
+  1_arkusz_do_json.py   "<...>\Tytuły Produktów_ Leroy Merlin.xlsx" TMP\products.json
+  2_normalizacja_produktow.py TMP        -> TMP\data_products.json (atrybuty + gama z PDF przeglądu oferty)
+  3_zdjecia.py TMP\kontrola.jpg          -> assets\img\* + assets\img-manifest.json
+  4_generuj_data_js.py TMP               -> assets\data.js
+  5_logo_z_pdf.py TMP\logo.svg           -> logo wektorowe z PDF przeglądu oferty
+  6_zrzuty_i_pdf.py zrzuty|pdf           -> zrzuty ekranów makiet i PDF opracowania (wymaga podglądu na porcie 8766)
+  7_karty_pdf.py                         -> assets\karty\Karta-produktu_LM<nr>.pdf dla wszystkich indeksów
+                                            (szablon: karta\index.html?ref=<nr>; po zmianie data.js uruchomić ponownie)
+Ścieżki do materiałów są wpisane na stałe w skryptach (folder "18. Leroy Merlin - Portal\materiały").

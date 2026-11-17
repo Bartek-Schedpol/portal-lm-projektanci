@@ -1,0 +1,1528 @@
+{
+ "wc-po": {
+  "file": "wc-po.jpg",
+  "w": 1920,
+  "h": 1358,
+  "kind": "hero",
+  "alpha": false,
+  "src": "ŚCIANKA\\surowy materiał - nie do użytku na stronie\\język korzyści ścianki Wall Comfort\\aranżacje\\PO Wall comfort + brodzik .png",
+  "base": "p",
+  "orig": [
+   4960,
+   3507
+  ],
+  "tb": false
+ },
+ "wc-przed": {
+  "file": "wc-przed.jpg",
+  "w": 1920,
+  "h": 1358,
+  "kind": "hero",
+  "alpha": false,
+  "src": "ŚCIANKA\\surowy materiał - nie do użytku na stronie\\język korzyści ścianki Wall Comfort\\aranżacje\\PRZED wanna.png",
+  "base": "p",
+  "orig": [
+   4960,
+   3507
+  ],
+  "tb": false
+ },
+ "odplyw-scena": {
+  "file": "odplyw-scena.jpg",
+  "w": 1920,
+  "h": 1920,
+  "kind": "hero",
+  "alpha": false,
+  "src": "ODPŁYWY LINIOWE\\ARANŻACJE\\MPd - schedpol - projekt 69 - aranzacja 6901.2 - u01.png",
+  "base": "p",
+  "orig": [
+   4960,
+   4960
+  ],
+  "tb": false
+ },
+ "odplyw-detal": {
+  "file": "odplyw-detal.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "ODPŁYWY LINIOWE\\ARANŻACJE\\MPd - schedpol - projekt 69 - aranzacja 6901.2 - u02.0.png",
+  "base": "p",
+  "orig": [
+   4960,
+   4960
+  ],
+  "tb": false
+ },
+ "odplyw-black": {
+  "file": "odplyw-black.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "ODPŁYWY LINIOWE\\HARMONY BLACK\\1. Aranżacja\\Aranżacja_Harmony_Black_wersja_1_2500x2500px_300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "odplyw-prime": {
+  "file": "odplyw-prime.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "ODPŁYWY LINIOWE\\HARMONY PRIME\\1. Aranżacja\\Aranżacja_Harmony_Prime_wersja_1_2500x2500px-300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-ws-a": {
+  "file": "balans-ws-a.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ KWADRAT\\3. ARANŻACJA\\ARANŻACJA 2 - BALANS BSTR 2021 kwadrat (3).jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-ws-b": {
+  "file": "balans-ws-b.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ KWADRAT\\3. ARANŻACJA\\Aranżacja Balans WS 2500x2500px 300dpi kwadrat.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-bs-a": {
+  "file": "balans-bs-a.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS CZARNY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px i 300dpi\\BALANS CZARNY KAMIEŃ KWADRAT\\3. ARANŻACJA\\balans 300 dpi czarny struktura kamienista kwadrat 2500x2500px.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-bs-b": {
+  "file": "balans-bs-b.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS CZARNY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px i 300dpi\\BALANS CZARNY KAMIEŃ KWADRAT\\3. ARANŻACJA\\Aranżacja Balans BS 2500x2500px 300dpi kwadrat.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-cas": {
+  "file": "balans-cas.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS KASZMIROWY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px i 300dpi\\BALANS KASZMIROWY KAMIEŃ KWADRAT\\3. ARANŻACJA\\Aranżacja Balans CaS 2500x2500px 300dpi kwadrat.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-gs": {
+  "file": "balans-gs.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS SZARY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px 300dpi\\BALANS SZARY KAMIEŃ KWADRAT\\3. ARANŻACJA\\Aranżacja Balans GS 2500x2500px 300dpi kwadrat.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "consist": {
+  "file": "consist.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "CONSIST\\Kwadrat\\1. Aranżacja\\consist_aranżacja_kwadrat.jpg",
+  "base": "p",
+  "orig": [
+   2048,
+   2048
+  ],
+  "tb": false
+ },
+ "consist-rect": {
+  "file": "consist-rect.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "CONSIST\\Prosotkąt\\1. Aranżacja\\CONSIS BIAŁY PROSTOKĄT.jpg",
+  "base": "p",
+  "orig": [
+   1500,
+   1500
+  ],
+  "tb": false
+ },
+ "integral-bs": {
+  "file": "integral-bs.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "INTEGRAL\\Black Stone\\1. Kwadrat\\1. Aranżacja\\Aranżacja_Integral_Black-Stone_2500x2500px_300dpi_kwadrat_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "integral-ws": {
+  "file": "integral-ws.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "INTEGRAL\\White Stone\\1. Kwdrat\\1. Aranżacja\\Aranżacja_Integral_White_Stone_2500x2500px_300dpi_kwadrat_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "ipsilon-sw": {
+  "file": "ipsilon-sw.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "IPSILON\\IPSILON BIAŁY GŁADKI\\GOTOWE PACZKI - min. 2500x2500 300dpi\\IPSILON BIAŁY GŁADKI KWADRAT\\3. ARANŻACJE\\Aranżacja Ipsilon SW 2500x2500px 300dpi kwadrat JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "ipsilon-bs": {
+  "file": "ipsilon-bs.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "IPSILON\\IPSILON CZARNY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px 300dpi\\IPSILON CZARNY KAMIEŃ KWADRAT\\3. ARANŻACJE\\Aranżacja Ipsilon BS 2500x2500px 300dpi kwadrat. jpg.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "frigo-sw": {
+  "file": "frigo-sw.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "FRIGO - sensea\\FRIGO BIAŁY GŁADKI\\GOTOWE PACZKI - PLIKI 300 DPI\\FRIGO BIAŁY GŁADKI KWADRAT\\2. ARANŻACJA\\LM FRIGO SMOOTH WHITE KWADRAT 1.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "frigo-bs": {
+  "file": "frigo-bs.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "FRIGO - sensea\\FRIGO CZARNY KAMIEŃ\\GOTOWE PACZKI - PLIKI 300 DPI\\1. KWADRAT\\1. aranżacja\\LM FRIGO BLACK STONE KWADRAT.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "tebe": {
+  "file": "tebe.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "TEBE\\Czarny Mat\\1. Kwadrat\\1. Aranżacja\\Tebe_aranżacja_2500x2500.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "torres-w": {
+  "file": "torres-w.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "TORRES\\TORRES BIAŁY MAT\\1. Aranżacja\\Wanna_Torres_aranzacja_biala.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "torres-b": {
+  "file": "torres-b.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "TORRES\\TORRES CZARNY MAT\\1. Aranżacja\\torres_czarny mat_aranzacja.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "obudowa-led": {
+  "file": "obudowa-led.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "ZABUDOWA WANNY\\1. OBUDOWA UNIWERSALNE DO WANIEN prostokątnych\\1. Z podcięciem na stopyled\\1. aRANŻACJA\\Aranżacja_obudowa_uniwersalna_do_wanien_prostokątnych_z_podcięciem_na_stopy_led_2500x2500px-300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "obudowa-pol": {
+  "file": "obudowa-pol.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "ZABUDOWA WANNY\\2. OBUDOWY UNIWERSALNE DO WANIEN półokragłych\\1. Z podcięciem na stopyled\\1. Aranżacja\\Aranżacja_obudowa_uniwersalna_do_wanien_półokragłych_z_podcięciem_na_stopy_led_2500x2500px_300dpi-JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "nosnik": {
+  "file": "nosnik.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "NOŚNIK DO WANNY\\1.2 Nośnik do PROSTOKĄTNYCH wanien z podcięciem na stopy_led\\1. aRANŻACJA\\Aranżacja_Nośnik_do_wanien_prostokątnych_z_podcięciem_na_stopoy_led_2500x2500px_300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "najazd-a": {
+  "file": "najazd-a.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "NAJAZD DO BRODZIKÓW\\Najazd do brodzików - Smooth White\\1. Aranżacja\\Aranżacja_Najazd_Podjazd_Smooth_White_2500x2500px_300dpi_JPG #2.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "najazd-b": {
+  "file": "najazd-b.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "NAJAZD DO BRODZIKÓW\\Najazd do brodzików - Smooth White\\1. Aranżacja\\Aranżacja_Najazd_Podjazd_Smooth_White_2500x2500px_300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "comfo": {
+  "file": "comfo.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "COMFO\\1. Kwadrat\\1. Aranżacja\\comfo_kwadrat_aranzacja.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "dante": {
+  "file": "dante.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "DANTE\\2. Półokrągły\\1. Aranżacja\\Aranżacja_Dante_2500x2500px-300dpi_półokrągły_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "grawello": {
+  "file": "grawello.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "GRAWELLO\\2. Półokrągły\\1. Aranżacja\\Aranżacja_Grawello_2500x2500px_300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "gobaby": {
+  "file": "gobaby.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "GO BABY\\Półokragły\\1. Aranżacja\\Aranżacja_Go-Baby_2500x2500px-300dpi_półokragły_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "dafne": {
+  "file": "dafne.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "DAFNE\\Półokrągły\\1. Aranżacja\\Aranżacja_Dafne_2500x2500px_300dpi_półokrągły_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "corrina": {
+  "file": "corrina.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "CORRINA\\Kwadrat\\1. Aranżacja\\Aranżacja_Corrina_2500x2500px_300dpi_kwadrat_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-zoom-ws": {
+  "file": "balans-zoom-ws.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS - ZOOM.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-zoom-bs": {
+  "file": "balans-zoom-bs.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS CZARNY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px i 300dpi\\BALANS - ZOOM (2).jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-cut": {
+  "file": "balans-cut.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ PROSTOKĄT\\5. DODATKOWE ZDJĘCIA SLIDER\\balans 300 dpi JPG.jpg",
+  "base": "p",
+  "orig": [
+   3600,
+   3600
+  ],
+  "tb": false
+ },
+ "balans-feet": {
+  "file": "balans-feet.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\rich content premium\\zdjęcia - rich content premium\\cisza i przyjemne ciepło.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "balans-clean": {
+  "file": "balans-clean.jpg",
+  "w": 1200,
+  "h": 1200,
+  "kind": "sq",
+  "alpha": false,
+  "src": "BALANS\\rich content premium\\zdjęcia - rich content premium\\czystość bez wysiłku.jpg",
+  "base": "p",
+  "orig": [
+   2048,
+   2048
+  ],
+  "tb": false
+ },
+ "tex-white-stone": {
+  "file": "tex-white-stone.jpg",
+  "w": 720,
+  "h": 720,
+  "kind": "tex",
+  "alpha": false,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ KWADRAT\\5. ZDJĘCIA DODATKOWE\\BIAŁY KAMIEŃ - TEKSTURA.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "tex-black-stone": {
+  "file": "tex-black-stone.jpg",
+  "w": 720,
+  "h": 720,
+  "kind": "tex",
+  "alpha": false,
+  "src": "BALANS\\BALANS CZARNY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px i 300dpi\\BALANS CZARNY KAMIEŃ KWADRAT\\zdjęcia dodatkowe\\tekstura - black 01 A 3k.jpg",
+  "base": "p",
+  "orig": [
+   3000,
+   3000
+  ],
+  "tb": false
+ },
+ "tex-cashmere": {
+  "file": "tex-cashmere.jpg",
+  "w": 720,
+  "h": 720,
+  "kind": "tex",
+  "alpha": false,
+  "src": "BALANS\\BALANS KASZMIROWY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px i 300dpi\\Bezszwowy kaszmir.jpg",
+  "base": "p",
+  "orig": [
+   3600,
+   3600
+  ],
+  "tb": false
+ },
+ "tex-grey-stone": {
+  "file": "tex-grey-stone.jpg",
+  "w": 720,
+  "h": 720,
+  "kind": "tex",
+  "alpha": false,
+  "src": "BALANS\\BALANS SZARY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px 300dpi\\BALANS SZARY KAMIEŃ KWADRAT\\4. ZDJĘCIA DODATKOWE\\tekstura - szar_kamien 01 A 3k.png",
+  "base": "p",
+  "orig": [
+   3000,
+   3000
+  ],
+  "tb": false
+ },
+ "wc-tex-sw": {
+  "file": "wc-tex-sw.jpg",
+  "w": 720,
+  "h": 720,
+  "kind": "tex",
+  "alpha": false,
+  "src": "ŚCIANKA\\1. Thin (1cm)\\1. Smooth White Thin (1 cm)\\1. Aranżacja\\Aranżacja_zbliżenie_ścianka_thin_1cm_Smooth_White_2500x2500px_300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "wc-tex-bs": {
+  "file": "wc-tex-bs.jpg",
+  "w": 720,
+  "h": 720,
+  "kind": "tex",
+  "alpha": false,
+  "src": "ŚCIANKA\\1. Thin (1cm)\\2. Black Stone Thin (1 cm)\\1. Aranżacja\\Aranżacja_zbliżenie_ścianka_Black-Stone_Thin_1cm_2500x2500px_300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "wc-tex-ws": {
+  "file": "wc-tex-ws.jpg",
+  "w": 720,
+  "h": 720,
+  "kind": "tex",
+  "alpha": false,
+  "src": "ŚCIANKA\\1. Thin (1cm)\\3. White Stone Thin (1 cm)\\1. Aranżacja\\Aranżacja_ścinak-White_Stone_Thin_1cm_2500x2500px_300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "wc-tex-gs": {
+  "file": "wc-tex-gs.jpg",
+  "w": 720,
+  "h": 720,
+  "kind": "tex",
+  "alpha": false,
+  "src": "ŚCIANKA\\1. Thin (1cm)\\4. GreyStone Thin (1cm)\\1. Aranżacja\\Aranżacja_ścianka_Grey_Stone_Thin_1cm_2500x2500px_300dpi_JPG.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "draw-balans-sq": {
+  "file": "draw-balans-sq.jpg",
+  "w": 1400,
+  "h": 1400,
+  "kind": "draw",
+  "alpha": false,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ KWADRAT\\1. RYS TECHNICZNY\\RYS. TECH.jpg",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "draw-balans-rect": {
+  "file": "draw-balans-rect.jpg",
+  "w": 1400,
+  "h": 1400,
+  "kind": "draw",
+  "alpha": false,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ PROSTOKĄT\\1. RYS TECHNICZNY\\BALANS LM 2026 - prostokąt.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "info-balans": {
+  "file": "info-balans.jpg",
+  "w": 1400,
+  "h": 1400,
+  "kind": "info",
+  "alpha": false,
+  "src": "BALANS\\1. BIAŁY KAMIEŃ\\1. KWADRAT\\LM BALANS - zalety KOMPOZYT - infografika.png",
+  "base": "e",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "info-frigo": {
+  "file": "info-frigo.jpg",
+  "w": 1400,
+  "h": 1400,
+  "kind": "info",
+  "alpha": false,
+  "src": "FRIGO\\1. BIAŁY GŁADKI\\4 KWADRAT\\LM FRIGO - ZLETY ZINTEGROWANE - INFOGRAFIKA (2).png",
+  "base": "e",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "info-ipsilon": {
+  "file": "info-ipsilon.jpg",
+  "w": 1400,
+  "h": 1400,
+  "kind": "info",
+  "alpha": false,
+  "src": "IPSILON\\4. BIAŁY GŁADKI\\1. KWADRAT\\LM ipsilon - zalety STADNDARD (2).png",
+  "base": "e",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-balans-ws": {
+  "file": "p-balans-ws.webp",
+  "w": 760,
+  "h": 485,
+  "kind": "pack",
+  "alpha": true,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ KWADRAT\\2. PACKSHOT\\Packshot Balans WS 2500x2500px 300dpi #2 PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-balans-ws-top": {
+  "file": "p-balans-ws-top.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ KWADRAT\\2. PACKSHOT\\Packshot Balans WS 2500x2500px 300dpi #3 PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-balans-ws-rect": {
+  "file": "p-balans-ws-rect.webp",
+  "w": 760,
+  "h": 556,
+  "kind": "pack",
+  "alpha": true,
+  "src": "BALANS\\BALANS BIAŁY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500 px\\BALANS BIAŁY KAMIEŃ PROSTOKĄT\\2. PACKSHOT\\Packshot Balans WS 2500x2500px 300dpi prostokąt #2 PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-balans-bs": {
+  "file": "p-balans-bs.webp",
+  "w": 760,
+  "h": 490,
+  "kind": "pack",
+  "alpha": true,
+  "src": "BALANS\\BALANS CZARNY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px i 300dpi\\BALANS CZARNY KAMIEŃ KWADRAT\\2. PACKSHOT\\Packshot Balans BS 2500x2500px 300dpi kwadrat.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-balans-cas": {
+  "file": "p-balans-cas.webp",
+  "w": 760,
+  "h": 581,
+  "kind": "pack",
+  "alpha": true,
+  "src": "BALANS\\BALANS KASZMIROWY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px i 300dpi\\BALANS KASZMIROWY KAMIEŃ KWADRAT\\2. PACKSHOT\\Packshot Balans CaS 2500x2500px 300dpi kwadrat PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-balans-gs": {
+  "file": "p-balans-gs.webp",
+  "w": 760,
+  "h": 489,
+  "kind": "pack",
+  "alpha": true,
+  "src": "BALANS\\BALANS SZARY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px 300dpi\\BALANS SZARY KAMIEŃ KWADRAT\\2. PACKSHOT\\Packshot Balans GS 2500x2500px 300dpi. PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-magnetic-ws": {
+  "file": "p-magnetic-ws.webp",
+  "w": 759,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "MAGNETIC\\1. Biała struktura\\1. KWADRAT\\1. PACKSHOT\\Packshot_Magnetic-White_Stone_2500x2500px_300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-magnetic-sw": {
+  "file": "p-magnetic-sw.webp",
+  "w": 760,
+  "h": 758,
+  "kind": "pack",
+  "alpha": true,
+  "src": "MAGNETIC\\2. Biały gładki\\1. KWADRAT\\1. PACKSHOT\\Packshot_Magnetic_Smooth_White_2500x2500px_300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-magnetic-bs": {
+  "file": "p-magnetic-bs.webp",
+  "w": 753,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "MAGNETIC\\3. Czarny strukturalny\\1. KWADRAT\\1. PACKSHOT\\Packshot_Magnetic-Black_Stone_2500x2500px_300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-magnetic-gs": {
+  "file": "p-magnetic-gs.webp",
+  "w": 757,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "MAGNETIC\\4. Szary\\1. KWADRAT\\1. PACKSHOT\\Packshot_Magnetic_Grey_Stone_2500x2500px_300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-magnetic-r55": {
+  "file": "p-magnetic-r55.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "MAGNETIC\\2. Biały gładki\\2. PÓŁOKRĄGŁY\\1. PACKSHOT\\Packshot_Magnetic_Smooth_White_2500x2500px_300dpi_półokrągły_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-ipsilon-sw": {
+  "file": "p-ipsilon-sw.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "IPSILON\\IPSILON BIAŁY GŁADKI\\GOTOWE PACZKI - min. 2500x2500 300dpi\\IPSILON BIAŁY GŁADKI KWADRAT\\2. PACKSHOT\\Packshot Ipsilon SW 2500x2500px 300dpi kwadrat PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-ipsilon-r55": {
+  "file": "p-ipsilon-r55.webp",
+  "w": 760,
+  "h": 566,
+  "kind": "pack",
+  "alpha": true,
+  "src": "IPSILON\\IPSILON BIAŁY GŁADKI\\GOTOWE PACZKI - min. 2500x2500 300dpi\\IPSILON BIAŁY GŁADKI PÓŁOKRĄGŁY\\2. PACKSHOT\\Packshot Ipsilon SW 2500x2500px 300dpi półokrągły. PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-ipsilon-5": {
+  "file": "p-ipsilon-5.webp",
+  "w": 760,
+  "h": 716,
+  "kind": "pack",
+  "alpha": true,
+  "src": "IPSILON\\IPSILON BIAŁY GŁADKI\\GOTOWE PACZKI - min. 2500x2500 300dpi\\IPSILON BIAŁY GŁADKI PIĘCIOKĄT\\2. PACKSHOT\\Packshot Ipsilon SW 2500x2500px 300dpi pięciokąt. PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-ipsilon-rect": {
+  "file": "p-ipsilon-rect.webp",
+  "w": 760,
+  "h": 471,
+  "kind": "pack",
+  "alpha": true,
+  "src": "IPSILON\\IPSILON BIAŁY GŁADKI\\GOTOWE PACZKI - min. 2500x2500 300dpi\\IPSILON BIAŁY GŁADKI PROSTOKĄT\\2. PACKSHOT\\Packshot Ipsilon SW 2500x2500px 300dpi prostokąt PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-ipsilon-bs": {
+  "file": "p-ipsilon-bs.webp",
+  "w": 760,
+  "h": 374,
+  "kind": "pack",
+  "alpha": true,
+  "src": "IPSILON\\IPSILON CZARNY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px 300dpi\\IPSILON CZARNY KAMIEŃ KWADRAT\\2. PACKSHOT\\Packshot Ipsilon BS 2500x2500px 300dpi kwadrat PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-ipsilon-gs": {
+  "file": "p-ipsilon-gs.webp",
+  "w": 760,
+  "h": 374,
+  "kind": "pack",
+  "alpha": true,
+  "src": "IPSILON\\IPSILON SZARY KAMIEŃ\\GOTOWE PACZKI - min. 2500x2500px 300dpi\\IPSILON SZARY KAMIEŃ KWADRAT\\2. PACKSHOT\\Packshot Ipsilon GS 2500x2500px 300dpi kwadrat PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-ipsilon-ws": {
+  "file": "p-ipsilon-ws.webp",
+  "w": 760,
+  "h": 373,
+  "kind": "pack",
+  "alpha": true,
+  "src": "IPSILON\\IPSILON BIAŁY KAMIEŃ\\min. 2500x2500px 300dpi\\IPSILON BIAŁY KAMIEŃ KWADRAT\\2. PACKSHOT\\Packshot Ipsilon WS 2500x2500px 300dpi kwadrat PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-frigo-sw": {
+  "file": "p-frigo-sw.webp",
+  "w": 760,
+  "h": 651,
+  "kind": "pack",
+  "alpha": true,
+  "src": "FRIGO - sensea\\FRIGO BIAŁY GŁADKI\\GOTOWE PACZKI - PLIKI 300 DPI\\FRIGO BIAŁY GŁADKI KWADRAT\\1. PACKSHOT\\Packshot Frigo SW 2500x2500px 300dpi kwadrat PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-frigo-ws": {
+  "file": "p-frigo-ws.webp",
+  "w": 760,
+  "h": 423,
+  "kind": "pack",
+  "alpha": true,
+  "src": "FRIGO - sensea\\FRIGO BIAŁY KAMIEŃ\\GOTOWE PACZKI - PLIKI 300 DPI\\FRIGO BIAŁY KAMIEŃ KWADRAT\\1. PACKSHOT\\Packshot Frigo WS 2500x2500px 300dpi kwadrat PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-frigo-bs": {
+  "file": "p-frigo-bs.webp",
+  "w": 760,
+  "h": 423,
+  "kind": "pack",
+  "alpha": true,
+  "src": "FRIGO - sensea\\FRIGO CZARNY KAMIEŃ\\packshot - pliki 300 dpi\\FRIGO_CZARNY_KAMIEŃ_KWADRAT.png",
+  "base": "p",
+  "orig": [
+   2600,
+   2600
+  ],
+  "tb": true
+ },
+ "p-frigo-gs": {
+  "file": "p-frigo-gs.jpg",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": false,
+  "src": "FRIGO - sensea\\FRIGO SZARY KAMIEŃ\\PACKSHOTY - PLIKI 300 DPI\\FRIGO KWADRAT 2026.png",
+  "base": "p",
+  "orig": [
+   2600,
+   2600
+  ],
+  "tb": false
+ },
+ "p-sinegrid-sw": {
+  "file": "p-sinegrid-sw.webp",
+  "w": 760,
+  "h": 757,
+  "kind": "pack",
+  "alpha": true,
+  "src": "SINEGRID\\Sinegrid biały gładki\\1. kwadrat\\1. packshot\\Packshot_Sinegrid_Smooth_White_2500x2500px_300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-sinegrid-bm": {
+  "file": "p-sinegrid-bm.webp",
+  "w": 760,
+  "h": 757,
+  "kind": "pack",
+  "alpha": true,
+  "src": "SINEGRID\\Sinegrid black mat\\1. kwadrat\\1. packshot\\Packshot_Sinegrid_Black_Mat_2500x2500px_300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-sinegrid-ws": {
+  "file": "p-sinegrid-ws.webp",
+  "w": 760,
+  "h": 757,
+  "kind": "pack",
+  "alpha": true,
+  "src": "SINEGRID\\Sinegrid white stone\\1. kwadrat\\1. packshot\\Packshot_Sinegrid_White_Stone_2500x2500px_300dpi_kawadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-integral-bs": {
+  "file": "p-integral-bs.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "INTEGRAL\\Black Stone\\1. Kwadrat\\2. Packshot\\Packshot_Integral_Black_Stone_2500x2500px-300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-integral-ws": {
+  "file": "p-integral-ws.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "INTEGRAL\\White Stone\\1. Kwdrat\\2. Packshot\\Packshot_Integral_White_Stone_2500x2500px_300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-consist": {
+  "file": "p-consist.webp",
+  "w": 760,
+  "h": 758,
+  "kind": "pack",
+  "alpha": true,
+  "src": "CONSIST\\Kwadrat\\2. Packshot\\Packshot_Consist_Smooth_White_Półokrągły_2500x2500px_300dpi_png.png",
+  "base": "p",
+  "orig": [
+   2489,
+   2494
+  ],
+  "tb": true
+ },
+ "p-comfo": {
+  "file": "p-comfo.webp",
+  "w": 760,
+  "h": 757,
+  "kind": "pack",
+  "alpha": true,
+  "src": "COMFO\\1. Kwadrat\\2. Packshot\\Packshot_Comfo_Smooth_White_kwadrat_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-corrina": {
+  "file": "p-corrina.webp",
+  "w": 760,
+  "h": 624,
+  "kind": "pack",
+  "alpha": true,
+  "src": "CORRINA\\Kwadrat\\2. Packshot\\Packshot_Corrina_Smooth_White_2500x2500px_300dpi_kwadrat_PNG #2.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-dafne": {
+  "file": "p-dafne.webp",
+  "w": 760,
+  "h": 758,
+  "kind": "pack",
+  "alpha": true,
+  "src": "DAFNE\\Półokrągły\\2. Packshoty\\Packshot_Dafne_Smooth_White_2500x2500px_300dpi_półokrągły_PNG.png",
+  "base": "p",
+  "orig": [
+   2378,
+   2372
+  ],
+  "tb": false
+ },
+ "p-dante": {
+  "file": "p-dante.webp",
+  "w": 760,
+  "h": 752,
+  "kind": "pack",
+  "alpha": true,
+  "src": "DANTE\\2. Półokrągły\\2. Packshot\\Packshot_Dante_Smooth_White_2500x2500px_300dpi_półokrągły_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-gobaby": {
+  "file": "p-gobaby.webp",
+  "w": 760,
+  "h": 759,
+  "kind": "pack",
+  "alpha": true,
+  "src": "GO BABY\\Półokragły\\2. Packshot\\Packshot_GO Baby_Smooth_White_2500x2500px_300dpi_półokragły_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-grawello": {
+  "file": "p-grawello.webp",
+  "w": 759,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "GRAWELLO\\1. Kwdrat\\2. Packshot\\Packshot_Grawello)Smooth_White-2500x2500px-300dpi_kwadrat_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-tebe": {
+  "file": "p-tebe.webp",
+  "w": 760,
+  "h": 757,
+  "kind": "pack",
+  "alpha": true,
+  "src": "TEBE\\Czarny Mat\\1. Kwadrat\\2. Packshot\\Packshot_Tebe_Black_Mat_2500x25000px_300dpi_kwadrat_.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-torres-w": {
+  "file": "p-torres-w.webp",
+  "w": 760,
+  "h": 311,
+  "kind": "pack",
+  "alpha": true,
+  "src": "TORRES\\TORRES BIAŁY MAT\\2. Packshot\\Packshot_Terres_White-Mat-2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-torres-b": {
+  "file": "p-torres-b.webp",
+  "w": 760,
+  "h": 312,
+  "kind": "pack",
+  "alpha": true,
+  "src": "TORRES\\TORRES CZARNY MAT\\2. Packshot\\Packshot_Terres_Black_Mat_2500x2500px-300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-harmony": {
+  "file": "p-harmony.webp",
+  "w": 760,
+  "h": 365,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ODPŁYWY LINIOWE\\HARMONY\\2. Packshot\\Packshot_Harmony_wariant_1_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-harmony-black": {
+  "file": "p-harmony-black.webp",
+  "w": 760,
+  "h": 365,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ODPŁYWY LINIOWE\\HARMONY BLACK\\2. Packshot\\Packshot_Harmony_Black_Wariant_1_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-harmony-prime": {
+  "file": "p-harmony-prime.webp",
+  "w": 760,
+  "h": 483,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ODPŁYWY LINIOWE\\HARMONY PRIME\\2. Packshot\\Packshot-Harmony_Prime-Wariant-1_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-harmony-prime-black": {
+  "file": "p-harmony-prime-black.webp",
+  "w": 760,
+  "h": 363,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ODPŁYWY LINIOWE\\HARMONY PRIME BLACK\\2. Packshot\\Packshot-Harmony_Prome_Black_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-wall-sw": {
+  "file": "p-wall-sw.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ŚCIANKA\\1. Thin (1cm)\\1. Smooth White Thin (1 cm)\\2. Packshot\\Packshot_Wall_Comfort _Thin_White_Stone_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-wall-bs": {
+  "file": "p-wall-bs.webp",
+  "w": 234,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ŚCIANKA\\1. Thin (1cm)\\2. Black Stone Thin (1 cm)\\2. Packshot\\Packshot_Wall_Comfort_Thin_Black_Stone_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-wall-ws": {
+  "file": "p-wall-ws.webp",
+  "w": 259,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ŚCIANKA\\1. Thin (1cm)\\3. White Stone Thin (1 cm)\\2. Packshot\\Packshot_Wall_Comfort_Thin_White_Stone_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-wall-gs": {
+  "file": "p-wall-gs.webp",
+  "w": 244,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ŚCIANKA\\1. Thin (1cm)\\4. GreyStone Thin (1cm)\\2. Packshot\\Packshot_Wall_Comfort_Thin_Cement_Stone_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": false
+ },
+ "p-wall6-sw": {
+  "file": "p-wall6-sw.webp",
+  "w": 280,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ŚCIANKA\\2. Thick (6cm)\\1. Smooth White\\2. Packshot\\Packshot_Wall_Comfort_Thick_White_Stone_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-nosnik-wanna": {
+  "file": "p-nosnik-wanna.webp",
+  "w": 760,
+  "h": 629,
+  "kind": "pack",
+  "alpha": true,
+  "src": "NOŚNIK DO WANNY\\1.2 Nośnik do PROSTOKĄTNYCH wanien z podcięciem na stopy_led\\2. Packshot\\Packshot_Nośnik_do_prostokątnych_wanien_z_podcięciem_na_stopy_led_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-nosnik-polokr": {
+  "file": "p-nosnik-polokr.webp",
+  "w": 760,
+  "h": 517,
+  "kind": "pack",
+  "alpha": true,
+  "src": "NOŚNIK DO WANNY\\2. NOŚNIK DO WANIEN PÓŁOKRĄGŁYCH GAMA X\\1. Packshot\\Packshot_nosnik_do_półokrągłych_wanien_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-nosnik-brodzik": {
+  "file": "p-nosnik-brodzik.webp",
+  "w": 760,
+  "h": 733,
+  "kind": "pack",
+  "alpha": true,
+  "src": "NOŚNIK DLA BRODZIKA\\2. Packshot\\Packshot_Nośnik_brodzikowy_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-obudowa": {
+  "file": "p-obudowa.webp",
+  "w": 760,
+  "h": 607,
+  "kind": "pack",
+  "alpha": true,
+  "src": "ZABUDOWA WANNY\\1. OBUDOWA UNIWERSALNE DO WANIEN prostokątnych\\1. Z podcięciem na stopyled\\2. Packshot\\Packshot_obudowa_do_wanien_prostokątnych_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-najazd": {
+  "file": "p-najazd.webp",
+  "w": 760,
+  "h": 423,
+  "kind": "pack",
+  "alpha": true,
+  "src": "NAJAZD DO BRODZIKÓW\\Najazd do brodzików - Smooth White\\2. Packshot\\Packshot_Najazd_do_brodzików_Smooth_White_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-maskownica-zlota": {
+  "file": "p-maskownica-zlota.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "MASKOWNICE DO BRODZIKÓW BALANSINTEGRAL\\1.Maskownica złota\\2. Packshot\\Packshot_Maskownica_do_brodzików_balans_ipsilon_Złota_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-maskownica-szczot": {
+  "file": "p-maskownica-szczot.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "MASKOWNICE DO BRODZIKÓW BALANSINTEGRAL\\2. Maskownica złota szczotkowana\\2. Packshot\\Packshot_Maskownica_do_brodzików_balans_integral_ZŁota_Szczotkowana_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-maskownica-miedz": {
+  "file": "p-maskownica-miedz.webp",
+  "w": 760,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "MASKOWNICE DO BRODZIKÓW BALANSINTEGRAL\\3. Maskownica miedźiana\\2. Packshot\\Packshot_Maskownica_do_brodzików_balans_integral_Miedźiana_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-panel-gobaby": {
+  "file": "p-panel-gobaby.webp",
+  "w": 760,
+  "h": 291,
+  "kind": "pack",
+  "alpha": true,
+  "src": "PANELE DO BRODZIKÓW\\1. Panel Go Baby\\2. Packshot\\Packshot_Panel_brodzikowy_do_brodzika_Go_Baby_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-panel-dante": {
+  "file": "p-panel-dante.webp",
+  "w": 760,
+  "h": 338,
+  "kind": "pack",
+  "alpha": true,
+  "src": "PANELE DO BRODZIKÓW\\4. Panel Dante\\2. Packshot\\Packshot_Panel_do_brodzika_Dante_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-nogi": {
+  "file": "p-nogi.webp",
+  "w": 759,
+  "h": 760,
+  "kind": "pack",
+  "alpha": true,
+  "src": "NOGI DO BRODZIKÓW IPSILON\\2. Packshot\\Packshot_nogi_do_brodzików_ipsilon_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ }
+}
