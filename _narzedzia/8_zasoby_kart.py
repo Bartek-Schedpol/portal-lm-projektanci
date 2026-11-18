@@ -12,7 +12,7 @@ Wyjście:
   assets/img/rys/*    rysunki techniczne;  assets/rysunki.js  (SP.rys: nr ref. → plik)
 Użycie: python 8_zasoby_kart.py
 """
-import os, sys, io, json, glob, re
+import os, sys, io, json, glob, re, shutil
 import fitz, openpyxl
 from PIL import Image, ImageOps
 
@@ -31,6 +31,9 @@ OUT_R = os.path.join(ROOT, "assets", "img", "rys")
 def products():
     s = io.open(os.path.join(ROOT, "assets", "data.js"), encoding="utf-8").read()
     return json.loads(s[s.index("window.SP = ") + 12: s.index(";\n\n/* ---- pomocnicze")])["products"]
+
+
+
 
 
 # ---------- 1. eksport LM ----------
@@ -265,8 +268,303 @@ def rysunki(P, L):
         print("  ", b)
 
 
+# ---------- 4. packshoty — poprawki do data.js ----------
+# Frigo szary kamień miał w data.js packshot białego kamienia (plik „szary” z paczki był rysunkiem technicznym).
+# Źródło: najpierw packshot konkretnego indeksu (folder PACKSHOTY, plik Product-<EAN>-P.png),
+# potem packshot kształtu z GOTOWE PACZKI (szary kamień).
+FRIGO_GS = E("FRIGO - sensea", "FRIGO SZARY KAMIEŃ")
+GS_SHAPE = {"kwadratowy": "KWADRAT", "prostokątny": "PROSTOKĄT", "półokrągły": "PÓŁOKRĄGŁY", "pięciokątny": "PIĘCIOKĄT"}
+
+
+def pack_save(src, key, out_dir, maxpx=760, crop=True):
+    """Zapis do webp. Zwraca (w, h, tb) — tb = przezroczyste tło."""
+    im = Image.open(src).convert("RGBA")
+    a = im.getchannel("A")
+    tb = a.getextrema()[0] < 250
+    if crop:
+        box = a.point(lambda v: 255 if v > 8 else 0).getbbox() if tb else \
+            ImageOps.invert(im.convert("L")).point(lambda v: 255 if v > 12 else 0).getbbox()
+        if box:
+            pad = 0 if tb else int(max(im.size) * 0.03)
+            im = im.crop((max(0, box[0] - pad), max(0, box[1] - pad), min(im.width, box[2] + pad), min(im.height, box[3] + pad)))
+    im.thumbnail((maxpx, maxpx), Image.LANCZOS)
+    if not tb:
+        im = im.convert("RGB")
+    im.save(os.path.join(out_dir, key + ".webp"), "WEBP", quality=86, method=6)
+    return im.size[0], im.size[1], tb
+
+
+# Balans: packshot wg koloru i kształtu + zdjęcia dodatkowe z paczki. Infografiki i przekrój pominięte celowo:
+# zawierają Antibac, „50% CO₂” z liściem, „ekstremalną wytrzymałość”, ochronę przed pleśnią (czarna lista EmpCo).
+BAL_COL = {"biały kamień": ("BIAŁY KAMIEŃ", "ws"), "czarny kamień": ("CZARNY KAMIEŃ", "bs"),
+           "szary kamień": ("SZARY KAMIEŃ", "gs"), "kaszmirowy kamień": ("KASZMIROWY KAMIEŃ", "cas")}
+BAL_SH = {"kwadratowy": ("KWADRAT", "kw"), "prostokątny": ("PROSTOKĄT", "pr")}
+EXTRA_SKIP = re.compile(r"infografik|przekr|zalety", re.I)
+
+
+def extra_cap(name):
+    n = name.lower()
+    if "zoom" in n: return "Zbliżenie powierzchni"
+    if "tekstur" in n: return "Struktura powierzchni"
+    if "balans 300 dpi" in n: return "Linie docinania · wizualizacja poglądowa"
+    return None
+
+
+def balans(P, out_dir, img, ref_im, extra, log):
+    base = E("BALANS")
+    groups = {}
+    for p in P:
+        if p["fam"] == "Balans" and p.get("c") in BAL_COL and p.get("shape") in BAL_SH:
+            groups.setdefault((p["c"], p["shape"]), []).append(p["ref"])
+    for (c, sh), refs in sorted(groups.items()):
+        cname, ccode = BAL_COL[c]
+        sname, scode = BAL_SH[sh]
+        d = glob.glob(os.path.join(base, "BALANS " + cname, "GOTOWE PACZKI*", "BALANS %s %s" % (cname, sname)))
+        if not d:
+            log.append(("Balans", c, sh, "brak folderu")); continue
+        d = d[0]
+        packs = [f for f in glob.glob(os.path.join(d, "*PACKSHOT*", "*")) if f.lower().endswith((".png", ".jpg"))]
+        pngs = sorted([f for f in packs if f.lower().endswith(".png")], key=lambda f: ("#" in os.path.basename(f), os.path.basename(f)))
+        pngs = pngs or sorted(packs)
+        # biały prostokąt: ujęcie #1 ma narysowane linie cięcia — główny packshot to #2, a #1 pomijamy (jest zdjęcie „Linie docinania”)
+        if (ccode, scode) == ("ws", "pr"):
+            pngs = [f for f in pngs if "#2" in f] + [f for f in pngs if "#2" not in f and "#1" not in f]
+        main, alts = pngs[0], pngs[1:]
+        key = "p-balans-%s-%s" % (ccode, scode)
+        w, h, tb = pack_save(main, key, out_dir)
+        img[key] = {"f": key + ".webp", "w": w, "h": h, "tb": tb, "k": "pack"}
+        items, n = [], 2
+        for f in alts:
+            if n > 3:
+                break
+            k = "%s-%d" % (key, n)
+            w, h, tb = pack_save(f, k, out_dir)
+            if scode == "kw" and h > w * 1.1:              # w folderach KWADRAT są widoki z góry prostokąta — pomijamy
+                os.remove(os.path.join(out_dir, k + ".webp"))
+                log.append(("Balans", c, sh, "pominięto widok prostokąta: " + os.path.basename(f)))
+                continue
+            img[k] = {"f": k + ".webp", "w": w, "h": h, "tb": tb, "k": "pack"}
+            items.append({"k": k, "kind": "pack", "cap": "Packshot · inne ujęcie"})
+            n += 1
+        exf = [f for f in glob.glob(os.path.join(d, "*odatkowe*", "*")) + glob.glob(os.path.join(d, "*ODATKOWE*", "*"))
+               if f.lower().endswith((".png", ".jpg")) and not EXTRA_SKIP.search(os.path.basename(f))]
+        for f in sorted(set(exf)):
+            cap = extra_cap(os.path.basename(f))
+            if not cap:
+                log.append(("Balans", c, sh, "pominięto " + os.path.basename(f))); continue
+            k = "x-balans-%s-%s-%s" % (ccode, scode, re.sub(r"[^a-z]+", "", cap.lower())[:10])
+            w, h, tb = pack_save(f, k, out_dir, maxpx=1200, crop=False)
+            img[k] = {"f": k + ".webp", "w": w, "h": h, "tb": tb, "k": "extra"}
+            items.append({"k": k, "kind": "extra", "cap": cap})
+        for r in refs:
+            ref_im[r] = key
+            extra[r] = items
+        log.append(("Balans", c, sh, key, len(refs), [x["cap"] for x in items]))
+
+
+# ---------- 4b. packshoty dla wszystkich serii ----------
+# --- kolor i kształt wg nazwy w systemie LM (kody na końcu nazwy) ---
+LM_COL = [(r"CZMAT$", "czarny mat"), (r"(?:BSTR|BST|BS)$", "biały kamień"), (r"(?:CSTR|CZST|CZS|CZA|CS)$", "czarny kamień"),
+          (r"SZ$", "szary kamień"), (r"(?:CEM|CE)$", "cementowy kamień"), (r"(?:BIA|B)$", "biały gładki")]
+LM_SHAPE = [(r"\b5K[AĄ]T\b", "pięciokątny"), (r"(?:\b1/4K\b|\b14K\b|\bPÓŁ\b|\bPOL\b)", "półokrągły"), (r"\bKW\b", "kwadratowy"), (r"\bPR\b", "prostokątny")]
+LM_SHAPE_SKIP = {"95495956"}                                # „BALANS KW 120X90” — błąd w nazwie LM
+COLOR_FAMS = {"Frigo", "Ipsilon", "Magnetic", "Sinergid", "Integral"}
+
+
+def lm_color(name):
+    last = (name or "").split()[-1] if name else ""
+    last = re.sub(r"^.*?(\d)(?=[A-Z])", "", last)        # „80X80X5/3BIA” → „BIA”
+    for rx, c in LM_COL:
+        if re.search(rx, last):
+            return c
+    return None
+
+
+def lm_shape(ref, name):
+    if ref in LM_SHAPE_SKIP:
+        return None
+    for rx, s in LM_SHAPE:
+        if re.search(rx, (name or "").upper()):
+            return s
+    return None
+
+
+def _norm(s):
+    s = unicodedata.normalize("NFD", s.lower())
+    return "".join(ch for ch in s if unicodedata.category(ch) != "Mn").replace("ł", "l")
+
+
+COL_TOK = {"biały gładki": ["bialy gladki", "smooth white"], "biały kamień": ["bialy kamien", "biala struktura", "white stone"],
+           "czarny kamień": ["czarny kamien", "czarny strukturalny", "black stone"], "szary kamień": ["szary kamien", "4. szary", "grey stone", "greystone"],
+           "czarny mat": ["czarny mat", "black mat"], "biały mat": ["bialy mat"], "kaszmirowy kamień": ["kaszmirowy"]}
+SHP_TOK = {"kwadratowy": ["kwadrat", "kwdrat"], "prostokątny": ["prostokat", "prosotkat"], "półokrągły": ["polokragl", "polokrag"],
+           "pięciokątny": ["pieciokat", "piecioka"]}
+FAM_DIR = {"Sinergid": "SINEGRID", "Frigo": "FRIGO - sensea", "Wall Comfort": "ŚCIANKA", "Harmony": "ODPŁYWY LINIOWE"}
+
+
+def pack_dirs():
+    out = []
+    for root, dirs, files in os.walk(ECOM):
+        n = _norm(root)
+        if "pack" in _norm(os.path.basename(root)) and "surow" not in n and "nie edyt" not in n and "frigo - sensea\\frigo\\" not in n:
+            imgs = [os.path.join(root, f) for f in files if f.lower().endswith((".png", ".jpg"))]
+            if imgs:
+                out.append((n, root, imgs))
+    return out
+
+
+def pick_main(imgs):
+    imgs = [f for f in imgs if not re.search(r"rys|tech|product-", _norm(os.path.basename(f)))]
+    png = sorted([f for f in imgs if f.lower().endswith(".png")], key=lambda f: ("#" in os.path.basename(f), os.path.basename(f)))
+    jpg = sorted([f for f in imgs if f.lower().endswith(".jpg")], key=lambda f: ("#" in os.path.basename(f), os.path.basename(f)))
+    return (png + jpg)[:1]
+
+
+def resolve_dir(p, color, shape, DIRS):
+    fam = FAM_DIR.get(p["fam"], p["fam"].upper())
+    cands = [d for d in DIRS if ("\\" + _norm(fam) + "\\") in d[0] + "\\"]
+    if p["fam"] == "Wall Comfort":
+        cands = [d for d in cands if ("thick" in d[0]) == (str(p.get("h")) == "6")]
+    if p["fam"] == "Harmony":
+        want = "harmony" + (" prime" if "Prime" in p["s"] else "") + (" black" if p.get("c") == "czarny" else "")
+        cands = [d for d in cands if d[0].split("\\odplywy liniowe\\")[-1].split("\\")[0] == want]
+    if p["fam"] == "Panele do brodzików":
+        cands = [d for d in DIRS if "panele do brodzikow" in d[0] and _norm(p["s"].replace("Panel ", "")) in d[0]]
+    if color and color in COL_TOK and p["fam"] not in ("Harmony",):
+        c2 = [d for d in cands if any(t in d[0] for t in COL_TOK[color])]
+        if c2 or p["fam"] in COLOR_FAMS or p["fam"] in ("Wall Comfort", "Torres", "Tebe"):
+            cands = c2
+    if shape and shape in SHP_TOK:
+        s2 = [d for d in cands if any(t in d[0] for t in SHP_TOK[shape])]
+        if s2 or any(any(t in d[0] for t in sum(SHP_TOK.values(), [])) for d in cands):
+            cands = s2
+    cands = [d for d in cands if "gotowe paczki" in d[0]] or cands  # Frigo: foldery GOTOWE PACZKI zamiast luźnych
+    return cands[0] if len(cands) >= 1 else None
+
+
+SKIP_FAMS = {"Balans", "Nośnik", "Obudowa uniwersalna", "Najazd", "Nogi Ipsilon", "Maskownica Balans/Integral"}  # Balans osobno; reszta bez zmian
+
+
+def packshoty(P, L):
+    out_dir = os.path.join(ROOT, "assets", "img")
+    img, ref_im, extra, log, fix = {}, {}, {}, [], {}
+    DIRS = pack_dirs()
+    by_ean = {}
+    for n, root, imgs in DIRS:
+        for f in imgs:
+            m = re.search(r"Product-(\d+)-P\.png$", f)
+            if m:
+                by_ean[m.group(1)] = f
+    for root, _, files in os.walk(os.path.join(ECOM, "FRIGO - sensea")):
+        for f in files:
+            m = re.search(r"Product-(\d+)-P\.png$", f)
+            if m and "surow" not in _norm(root):
+                by_ean.setdefault(m.group(1), os.path.join(root, f))
+    for p in P:
+        x = L.get(p["ref"]) or {}
+        name = x.get("n", "")
+        color = (lm_color(name) if p["fam"] in COLOR_FAMS else None) or p.get("c")
+        shape = lm_shape(p["ref"], name) or SHAPE_FIX.get(p["ref"], p.get("shape"))
+        f = {}
+        if p["fam"] in COLOR_FAMS and color and color != p.get("c"):
+            f["c"] = color
+        if shape and shape != p.get("shape") and p.get("shape"):
+            f["shape"] = shape
+        if f:
+            fix[p["ref"]] = f
+        if p["fam"] in SKIP_FAMS or (color or "").startswith("cementowy"):
+            continue                                        # cementowy kamień: brak packshotu w paczce — zostaje dotychczasowy
+        ean = x.get("ean", "")
+        if ean in by_ean:
+            src, key = by_ean[ean], "pk-" + ean
+        else:
+            d = resolve_dir(p, color, shape, DIRS)
+            m = pick_main(d[2]) if d else []
+            if not m:
+                log.append((p["ref"], p["fam"], color, shape, "BRAK packshotu w paczce")); continue
+            src = m[0]
+            import hashlib                                  # skrót pełnej ścieżki: ta sama nazwa pliku bywa w kilku folderach
+            key = "pk-" + re.sub(r"[^a-z0-9]+", "-", _norm(os.path.basename(src)))[:40].strip("-") + "-" + hashlib.md5(src.encode("utf-8")).hexdigest()[:6]
+        if key not in img:
+            w, h, tb = pack_save(src, key, out_dir)
+            img[key] = {"f": key + ".webp", "w": w, "h": h, "tb": tb, "k": "pack", "src": os.path.relpath(src, ECOM)}
+        ref_im[p["ref"]] = key
+        log.append((p["ref"], p["fam"], color, shape, key))
+    balans(P, out_dir, img, ref_im, extra, log)
+    js = ("/* Wygenerowano (8_zasoby_kart.py): packshot każdego indeksu wg serii, koloru i kształtu z paczki e-commerce\n"
+          "   (kolor i kształt wg nazwy w systemie LM), zdjęcia dodatkowe Balans (SP.extra: nr ref. → [{k, kind, cap}]). */\n"
+          "(function (SP) {\n  var IMG = " + json.dumps(img, ensure_ascii=False) + ";\n  var IM = " + json.dumps(ref_im) + ";\n"
+          "  var EX = " + json.dumps(extra, ensure_ascii=False) + ";\n"
+          "  var FIX = " + json.dumps(fix, ensure_ascii=False) + ";\n"
+          "  var SURF = {}; (SP.surfaces || []).forEach(function (x) { SURF[x.pl] = x; });\n"
+          "  Object.keys(IMG).forEach(function (k) { SP.img[k] = IMG[k]; });\n"
+          "  SP.extra = EX;\n"
+          "  SP.products.forEach(function (p) {\n"
+          "    if (IM[p.ref]) p.im = IM[p.ref];\n"
+          "    var f = FIX[p.ref];\n"
+          "    if (f) { if (f.shape) p.shape = f.shape; if (f.c) { p.c = f.c; var su = SURF[f.c]; if (su) { p.hx = su.hx; p.ral = su.ral; p.ce = su.n; } } }\n"
+          "  });\n"
+          "})(window.SP);\n")
+    io.open(os.path.join(ROOT, "assets", "packshoty.js"), "w", encoding="utf-8").write(js)
+    print("Poprawki packshotów: %d indeksów, %d nowych plików" % (len(ref_im), len(img)))
+    for x in log:
+        print("  ", x)
+
+
+# ---------- 5. karty gwarancyjne i instrukcje montażu ----------
+DOCS_DIR = os.path.join(MAT, "Instrukcje i Karty")
+# klucz: (plik źródłowy, nazwa publikowana, tytuł, typ)
+DOCS = {
+    "gw-stabilsafe": ("00. Karta Gwarancyjna_Stabilsafe_v15.25 (8str A3) 16.06.2025.pdf", "Karta-gwarancyjna_Stabilsafe_v15.25.pdf", "Karta gwarancyjna Stabilsafe v15.25", "gw"),
+    "no01": ("01. Brodziki_StabPlus_instr_mont_No01 v09.2024 A4.pdf", "Instrukcja-montazu_No01_brodziki-kompozytowe_v09.2024.pdf", "Instrukcja montażu No01 — brodziki kompozytowe", "in"),
+    "no02": ("02. Brodziki_Stabilsound_instr_mont_No02_v06.2023 A4.pdf", "Instrukcja-montazu_No02_brodziki-zintegrowane_v06.2023.pdf", "Instrukcja montażu No02 — brodziki zintegrowane", "in"),
+    "no03": ("03. Brodziki_standard_Instrukcja_No03 v06.2023 A4.pdf", "Instrukcja-montazu_No03_brodziki-standard_v06.2023.pdf", "Instrukcja montażu No03 — brodziki laminowane", "in"),
+    "no04": ("04. Obudowy_podpłytkowe_Instrukcja_No4 v11.2023.pdf", "Instrukcja-montazu_No04_obudowy-podplytkowe_v11.2023.pdf", "Instrukcja montażu No04 — obudowy podpłytkowe", "in"),
+    "no05": ("05.Odplywy_liniowe_instr_mont_No05_v07.2024.pdf", "Instrukcja-montazu_No05_odplywy-liniowe_v07.2024.pdf", "Instrukcja montażu No05 — odpływy liniowe", "in"),
+    "no07": ("07. Schedpol_Wanny_instr_No07v12.2025.pdf", "Instrukcja-montazu_No07_wanny_v12.2025.pdf", "Instrukcja montażu No07 — wanny", "in"),
+    "no08": ("08. Nośnik_do_wanien_No08 v14.2023.pdf", "Instrukcja-montazu_No08_nosnik-do-wanien_v14.2023.pdf", "Instrukcja montażu No08 — nośnik do wanien", "in"),
+    "no12": ("12. Instrukcja montażu Wall_comfort No12 v11.2023.pdf", "Instrukcja-montazu_No12_Wall-Comfort_v11.2023.pdf", "Instrukcja montażu No12 — Wall Comfort", "in"),
+    "no27": ("27. Instrukcja Najazd Schedpol No27v2025.pdf", "Instrukcja-montazu_No27_najazd_v2025.pdf", "Instrukcja montażu No27 — najazd do brodzików", "in"),
+    "comfo": ("Brodziki_Comfo_2022.pdf", "Instrukcja-montazu_Comfo_2022.pdf", "Instrukcja montażu — brodziki Comfo", "in"),
+    "frigo": ("FRIGO_Sensea_v3.2022.pdf", "Instrukcja-montazu_Frigo-Sensea_v3.2022.pdf", "Instrukcja montażu — Frigo Sensea", "in"),
+    "ipsilon": ("Ipsilon_Sensea_2024_v5 - Druk A4.pdf", "Instrukcja-montazu_Ipsilon-Sensea_2024_v5.pdf", "Instrukcja montażu — Ipsilon Sensea", "in"),
+    "ob1040": ("Obudowa podpłytkowa 1.040 (2018).pdf", "Instrukcja-montazu_obudowa-podplytkowa-1.040_2018.pdf", "Instrukcja montażu — obudowa podpłytkowa 1.040", "in"),
+}
+DOC_FAM = {"Balans": "no01", "Magnetic": "no01", "Sinergid": "no02", "Integral": "no02", "Consist": "no02", "Grawello": "no02",
+           "Dante": "no02", "Go Baby": "no02", "Panele do brodzików": "no02", "Tebe": "no03", "Corrina": "no03", "Dafne": "no03",
+           "Comfo": "comfo", "Frigo": "frigo", "Ipsilon": "ipsilon", "Nogi Ipsilon": "ipsilon", "Harmony": "no05", "Torres": "no07",
+           "Nośnik": "no08", "Wall Comfort": "no12", "Najazd": "no27"}
+DOC_REF = {"90151710": "no04", "90151711": "no04", "43416086": "ob1040", "43732703": "ob1040"}   # obudowy LED vs 1040/1.041
+
+
+def dokumenty(P):
+    out = os.path.join(ROOT, "assets", "dokumenty")
+    os.makedirs(out, exist_ok=True)
+    D, M = {}, {}
+    for k, (src, dst, title, typ) in DOCS.items():
+        s = os.path.join(DOCS_DIR, src)
+        shutil.copy2(s, os.path.join(out, dst))
+        d = fitz.open(s)
+        D[k] = {"f": dst, "t": title, "typ": typ, "mb": round(os.path.getsize(s) / 1048576, 1), "str": d.page_count}
+    for p in P:
+        lst = ["gw-stabilsafe"]
+        ins = DOC_REF.get(p["ref"]) or DOC_FAM.get(p["fam"])
+        if ins:
+            lst.insert(0, ins)
+        M[p["ref"]] = lst
+    js = ("/* Wygenerowano (8_zasoby_kart.py): karty gwarancyjne i instrukcje montażu przypisane do indeksów.\n"
+          "   Źródło: materiały/Instrukcje i Karty. SP.docs: klucz → plik; SP.docMap: nr ref. → [klucze]. */\n"
+          "window.SP.docs = " + json.dumps(D, ensure_ascii=False) + ";\nwindow.SP.docMap = " + json.dumps(M) + ";\n")
+    io.open(os.path.join(ROOT, "assets", "dokumenty.js"), "w", encoding="utf-8").write(js)
+    bez = [p["ref"] + " " + p["fam"] for p in P if len(M[p["ref"]]) == 1]
+    print("Dokumenty: %d plików, %.1f MB; indeksów z instrukcją: %d, bez instrukcji: %s" %
+          (len(D), sum(v["mb"] for v in D.values()), len(P) - len(bez), bez))
+
+
 if __name__ == "__main__":
     P = products()
     L = lm_export(P)
     znaki()
     rysunki(P, L)
+    packshoty(P, L)
+    dokumenty(P)

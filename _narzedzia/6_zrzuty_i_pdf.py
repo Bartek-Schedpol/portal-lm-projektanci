@@ -13,9 +13,9 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 BASE = "http://localhost:8766/"
-EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+EDGE = r"C:\Program Files\Google\Chrome\Application\chrome.exe"   # Chrome: Edge 157 bez okna nie drukuje PDF (11.2026)
 if not os.path.exists(EDGE):
-    EDGE = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 
 SHOTS = [
     ("a-1-start", "a-biblioteka/index.html?clean=1#/start"),

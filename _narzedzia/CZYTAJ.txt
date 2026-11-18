@@ -8,4 +8,7 @@ Kolejność (TMP = dowolny pusty folder roboczy):
   6_zrzuty_i_pdf.py zrzuty|pdf           -> zrzuty ekranów makiet i PDF opracowania (wymaga podglądu na porcie 8766)
   7_karty_pdf.py                         -> assets\karty\Karta-produktu_LM<nr>.pdf dla wszystkich indeksów
                                             (szablon: karta\index.html?ref=<nr>; po zmianie data.js uruchomić ponownie)
+  8_zasoby_kart.py                       -> gama/EAN z eksportu LM (assets\lm.js), znaki gwarancji, rysunki techniczne
+  9_publikacja_github.py                 -> odtwarza folder "github-portal-lm" (repo Bartek-Schedpol/portal-lm-projektanci);
+                                            potem w nim: git add -A, git commit, git push
 Ścieżki do materiałów są wpisane na stałe w skryptach (folder "18. Leroy Merlin - Portal\materiały").

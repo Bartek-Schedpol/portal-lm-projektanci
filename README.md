@@ -6,7 +6,7 @@ Centrum plików z paczkami serii, teczka plików oraz karty produktów PDF (A4) 
 
 **Podgląd:** https://bartek-schedpol.github.io/portal-lm-projektanci/
 
-> Makieta poglądowa — nie jest działającym serwisem. Pobieranie plików innych niż karty PDF jest symulowane.
+> Makieta poglądowa — nie jest działającym serwisem. Działa pobieranie kart produktów PDF, kart gwarancyjnych i instrukcji montażu; pozostałe pliki są symulowane.
 > Ceny i dostępność produktów: w systemie sklepu Leroy Merlin. Zdjęcia aranżacyjne są wizualizacjami poglądowymi.
 
 ## Struktura
@@ -17,7 +17,9 @@ Centrum plików z paczkami serii, teczka plików oraz karty produktów PDF (A4) 
 | `karta/` | szablon karty produktu A4 — podgląd: `karta/index.html?ref=<nr ref. LM>` |
 | `assets/data.js` | 371 indeksów i 23 serie (generowane z materiałów Schedpol) |
 | `assets/lm.js` | gama, EAN i kod dostawcy z eksportu referencji LM (26.03.2026) |
+| `assets/packshoty.js` | packshot każdego indeksu wg serii, koloru i kształtu (paczka e-commerce), zdjęcia dodatkowe |
 | `assets/rysunki.js`, `assets/img/rys/` | rysunki techniczne do kart |
+| `assets/dokumenty.js`, `assets/dokumenty/` | karty gwarancyjne i instrukcje montażu przypisane do indeksów |
 | `assets/karty/` | wygenerowane karty produktów PDF — **wersja robocza, do przebudowy** |
 | `assets/fonts/` | Roboto i Roboto Condensed (licencja Apache 2.0) |
 | `_narzedzia/` | skrypty Pythona do odświeżenia danych, zasobów i kart (wymagają materiałów źródłowych spoza repozytorium) |

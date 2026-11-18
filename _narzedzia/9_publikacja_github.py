@@ -16,8 +16,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.dirname(HERE)
 DST = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(SRC), "github-portal-lm")
 
-DIRS = ["a-biblioteka", "karta", "assets/fonts", "assets/img", "assets/znaki", "assets/karty", "_narzedzia"]
-FILES = ["assets/data.js", "assets/lm.js", "assets/rysunki.js", "assets/icons.js", "assets/proto.js",
+DIRS = ["a-biblioteka", "karta", "assets/fonts", "assets/img", "assets/znaki", "assets/karty", "assets/dokumenty", "_narzedzia"]
+FILES = ["assets/data.js", "assets/lm.js", "assets/packshoty.js", "assets/rysunki.js", "assets/dokumenty.js", "assets/icons.js", "assets/proto.js",
          "assets/logo.svg", "assets/logo-white.svg", "assets/img-manifest.json"]
 SKIP = ("__pycache__", ".tmp", "Thumbs.db")
 
@@ -41,7 +41,7 @@ Centrum plików z paczkami serii, teczka plików oraz karty produktów PDF (A4) 
 
 **Podgląd:** https://bartek-schedpol.github.io/portal-lm-projektanci/
 
-> Makieta poglądowa — nie jest działającym serwisem. Pobieranie plików innych niż karty PDF jest symulowane.
+> Makieta poglądowa — nie jest działającym serwisem. Działa pobieranie kart produktów PDF, kart gwarancyjnych i instrukcji montażu; pozostałe pliki są symulowane.
 > Ceny i dostępność produktów: w systemie sklepu Leroy Merlin. Zdjęcia aranżacyjne są wizualizacjami poglądowymi.
 
 ## Struktura
@@ -52,7 +52,9 @@ Centrum plików z paczkami serii, teczka plików oraz karty produktów PDF (A4) 
 | `karta/` | szablon karty produktu A4 — podgląd: `karta/index.html?ref=<nr ref. LM>` |
 | `assets/data.js` | 371 indeksów i 23 serie (generowane z materiałów Schedpol) |
 | `assets/lm.js` | gama, EAN i kod dostawcy z eksportu referencji LM (26.03.2026) |
+| `assets/packshoty.js` | packshot każdego indeksu wg serii, koloru i kształtu (paczka e-commerce), zdjęcia dodatkowe |
 | `assets/rysunki.js`, `assets/img/rys/` | rysunki techniczne do kart |
+| `assets/dokumenty.js`, `assets/dokumenty/` | karty gwarancyjne i instrukcje montażu przypisane do indeksów |
 | `assets/karty/` | wygenerowane karty produktów PDF — **wersja robocza, do przebudowy** |
 | `assets/fonts/` | Roboto i Roboto Condensed (licencja Apache 2.0) |
 | `_narzedzia/` | skrypty Pythona do odświeżenia danych, zasobów i kart (wymagają materiałów źródłowych spoza repozytorium) |

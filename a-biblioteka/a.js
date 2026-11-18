@@ -125,6 +125,11 @@
   /* karta produktu PDF: prawdziwe pliki z _narzedzia/7_karty_pdf.py (szablon ../karta/index.html) */
   function kartaPdf(p) { return '../assets/karty/Karta-produktu_LM' + p.ref + '.pdf'; }
   function kartaView(p) { return '../karta/index.html?ref=' + encodeURIComponent(p.ref); }
+  /* karty gwarancyjne i instrukcje montażu przypisane do indeksu (assets/dokumenty.js) */
+  const DOC_BASE = '../assets/dokumenty/';
+  function docsFor(p) {
+    return ((SP.docMap && SP.docMap[p.ref]) || []).map(function (k) { return SP.docs[k]; }).filter(Boolean);
+  }
   function filesFor(p) {
     const s = serieOf(p), f = [], base = fileBase(p), has = s.files || {};
     f.push({ ext: 'PDF', name: 'Karta-produktu_LM' + p.ref + '.pdf', desc: 'Karta produktu PDF, A4 — parametry, nr ref., EAN, rysunek techniczny, gwarancja', mb: 0.2, href: kartaPdf(p), view: kartaView(p), karta: true });
@@ -138,8 +143,9 @@
     }
     if (has['infografika']) f.push({ ext: 'PNG', name: base + '_cechy.png', desc: 'Infografika: cechy serii', mb: rnd(p.ref + 'f', 0.5, 1.4) });
     if (has['opis']) f.push({ ext: 'PDF', name: base + '_opis.pdf', desc: 'Opis produktu', mb: rnd(p.ref + 'g', 0.05, 0.2) });
-    f.push({ ext: 'PDF', name: 'Karta-gwarancyjna_Stabilsafe_v15-25.pdf', desc: 'Karta gwarancyjna PDF', mb: 0.3 });
-    f.push({ ext: 'PDF', name: fileBase({ brand: p.brand, s: p.s, a: null, b: null, c: '' }) + '_instrukcja-montazu.pdf', desc: 'Instrukcja montażu PDF', mb: rnd(p.fam + 'i', 0.4, 3.8) });
+    docsFor(p).forEach(function (d) {              // prawdziwe pliki: assets/dokumenty (8_zasoby_kart.py)
+      f.push({ ext: 'PDF', name: d.f, desc: d.t + ' · ' + d.str + ' ' + plural(d.str, 'strona', 'strony', 'stron'), mb: d.mb, href: DOC_BASE + d.f, doc: d.typ });
+    });
     return f;
   }
   function extList(p) {
@@ -180,13 +186,19 @@
       return '<span class="ft' + (e === '3D' ? ' ft-3d' : '') + '">' + e + '</span>';
     }).join('') + '</span>';
   }
+  /* flaga marki na zdjęciu w katalogu: oryginalne logo Sensea (z etykiety) lub Schedpol (logotyp korporacyjny 2016) */
+  const BRAND_LOGO = { 'Sensea': '../assets/znaki/sensea.png', 'Schedpol': '../assets/znaki/schedpol.svg' };
+  function brandFlag(p) {
+    const src = BRAND_LOGO[p.brand];
+    return src ? '<span class="flag flag-' + esc(p.brand.toLowerCase()) + '"><img src="' + src + '" alt="' + esc(p.brand) + '"></span>' : '';
+  }
   function cardHTML(p, i) {
     const href = H('produkt', { ref: p.ref }), inT = inTeczka('p:' + p.ref);
     return `<article class="card" style="--i:${Math.min(i, 14)}">
       <a class="card-media" href="${href}" tabindex="-1" aria-hidden="true">
         ${pimg(p.im, '')}
         ${p.new ? '<span class="tag">Nowość</span>' : ''}
-        ${p.brand === 'Sensea' ? '<span class="tag tag-brand">Sensea</span>' : ''}
+        ${brandFlag(p)}
       </a>
       <button type="button" class="card-add${inT ? ' is-in' : ''}" data-act="add-product" data-ref="${esc(p.ref)}" aria-label="Dodaj pliki produktu ${esc(p.ref)} do teczki" title="Dodaj pliki do teczki">${ic(inT ? 'check' : 'plus', 16, 1.8)}</button>
       <div class="card-body">
@@ -816,18 +828,27 @@
   }
   function galleryFor(p) {
     const s = serieOf(p), pc = prodCol(p), docs = [];
-    if (p.fam === 'Balans') {
+    const ex = (SP.extra && SP.extra[p.ref]) || [];          // zdjęcia dodatkowe z paczki e-commerce (packshoty.js)
+    const rys = SP.rys && SP.rys[p.ref];                     // rysunek techniczny tego indeksu (rysunki.js)
+    if (rys) {
+      const rk = 'rys:' + rys.f;
+      SP.img[rk] = SP.img[rk] || { f: 'rys/' + rys.f, w: rys.w, h: rys.h, tb: false };
+      docs.push({ k: rk, kind: 'doc', cap: 'Rysunek techniczny · wymiary w mm' });
+    } else if (p.fam === 'Balans') {
       docs.push({ k: p.shape === 'prostokątny' ? 'draw-balans-rect' : 'draw-balans-sq', kind: 'doc', cap: 'Rysunek techniczny · wymiary w mm' });
-      docs.push({ k: 'info-balans', kind: 'doc', cap: 'Infografika · cechy serii' });
     }
+    if (p.fam === 'Balans') docs.push({ k: 'info-balans', kind: 'doc', cap: 'Infografika · cechy serii' });
     /* info-frigo / info-ipsilon celowo pominięte: grafiki zawierają „Ponad 45 lat doświadczenia” i goły badge gwarancji — do korekty przed publikacją */
-    const all = (s.scenes || []).concat(EXTRA_SCENES[p.fam] || []).filter(function (k) { return SP.img[k]; });
+    const exPack = ex.filter(function (x) { return x.kind === 'pack'; }).map(function (x) { return { k: x.k, kind: 'pack', cap: x.cap }; });
+    const exPhoto = ex.filter(function (x) { return x.kind !== 'pack'; }).map(function (x) { return { k: x.k, kind: 'scene', cap: x.cap }; });
+    const dup = ex.length ? { 'balans-zoom-ws': 1, 'balans-zoom-bs': 1, 'balans-cut': 1 } : {};
+    const all = (s.scenes || []).concat(EXTRA_SCENES[p.fam] || []).filter(function (k) { return SP.img[k] && !dup[k]; });
     let own = all.filter(function (k) { const sc = sceneCol(k); return sc === '' || sc === pc; });
     own.sort(function (a, b) { return (sceneCol(b) === pc ? 1 : 0) - (sceneCol(a) === pc ? 1 : 0); });
     let cap = 'Wizualizacja poglądowa';
     if (!own.length && all.length) { own = all; cap = 'Wizualizacja poglądowa · inny wariant kolorystyczny'; }
-    const scenes = own.slice(0, 7 - docs.length).map(function (k) { return { k: k, kind: 'scene', cap: cap }; });
-    return [{ k: p.im, kind: 'pack', cap: '' }].concat(scenes, docs).filter(function (x) { return SP.img[x.k]; });
+    const scenes = own.slice(0, Math.max(2, 9 - docs.length - ex.length)).map(function (k) { return { k: k, kind: 'scene', cap: cap }; });
+    return [{ k: p.im, kind: 'pack', cap: '' }].concat(exPack, scenes, exPhoto, docs).filter(function (x) { return SP.img[x.k]; });
   }
   function stageInner(item, alt) {
     const i = SP.img[item.k];
@@ -946,7 +967,9 @@
         <section class="panel gw" aria-labelledby="gT">
           <h2 class="gw-h" id="gT">${ic('shield', 20)} Gwarancja</h2>
           <p>${esc(s.gw)}</p>
-          <button class="link" type="button" data-act="demo" data-msg="Makieta: pobieranie pliku" data-detail="Karta-gwarancyjna_Stabilsafe_v15-25.pdf">${ic('file', 15)} Karta gwarancyjna (PDF)</button>
+          ${docsFor(p).map(function (d) {
+            return '<a class="link" href="' + esc(DOC_BASE + d.f) + '" target="_blank" rel="noopener">' + ic('file', 15) + ' ' + esc(d.t) + ' <small>(PDF, ' + esc(nf(d.mb, 1)) + ' MB)</small></a>';
+          }).join('')}
         </section>
       </div>
 

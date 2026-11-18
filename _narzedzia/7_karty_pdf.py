@@ -18,9 +18,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 OUT = os.path.join(ROOT, "assets", "karty")
 BASE = "http://localhost:8766/karta/index.html?druk=1&ref="
-EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+EDGE = r"C:\Program Files\Google\Chrome\Application\chrome.exe"   # Chrome: Edge 157 bez okna nie drukuje PDF (11.2026)
 if not os.path.exists(EDGE):
-    EDGE = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 WORKERS = 6
 
 
@@ -48,7 +48,7 @@ def one(ref):
         import fitz                                        # odchudzenie: zdjęcia do 180 dpi, podzbiór fontów
         d = fitz.open(out)
         d.set_metadata({"title": "Karta produktu LM %s" % ref, "author": "SCHEDPOL Sp. z o.o.", "subject": "Karta produktu dla projektantów Leroy Merlin"})
-        d.rewrite_images(dpi_threshold=200, dpi_target=180, quality=80)
+        d.rewrite_images(dpi_threshold=170, dpi_target=150, quality=78)
         d.subset_fonts()
         tmp = out + ".tmp"
         d.ez_save(tmp); d.close()
