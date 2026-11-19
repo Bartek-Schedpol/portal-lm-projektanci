@@ -9,6 +9,12 @@ window.SP.ytChannel = 'https://www.youtube.com/@schedpol';
 window.SP.videos = [
   { id: 'Pi-RpbXVFWk', t: 'Docinanie brodzika kompozytowego bez bałaganu! Zobacz, jakie to proste!', kind: 'Montaż', g: 'brodziki', y: 2026, fams: ['Balans'] },
   { id: 'yLs0NYJzRig', t: 'Montaż brodzika z DIN 18534 1 Schedpol', kind: 'Szkolenie · montaż', g: 'brodziki', y: 2024, cats: ['brodzik'] },
+  /* brodziki kompozytowe w technologii Stabilsound Plus (oferta katalogowa Schedpol, nie seria LM) — dodane na prośbę użytkownika 19.11.2026; tylko w Akademii */
+  { id: 'NgdrtUwx9ic', t: 'Montaż i docinanie brodzika kompozytowego w technologii STABILSOUND PLUS® | Schedpol', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2021 },
+  { id: 'H92RaxaBTNI', t: 'Montaż brodzika STABILSOUND PLUS® na nośniku z podcięciem panelu | SCHEDPOL®', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2022 },
+  { id: 'X-IB6cWoc5Q', t: 'STABILNE BRODZIKI WYSOKIE – DOCINANE NA WYMIAR! ŁATWY MONTAŻ BEZ PODKUWANIA - SCHEDPOL', kind: 'Prezentacja · brodziki wysokie', g: 'brodziki', y: 2023 },
+  { id: 'hZ-liL5so1U', t: 'Brodziki w technologii STABILSOUND® - cechy innowacyjnego brodzika. | Schedpol', kind: 'Prezentacja · technologia Stabilsound', g: 'brodziki', y: 2022 },
+  { id: '7ZoJDkV-WTA', t: 'Brodziki kompozytowe do nowoczesnych łazienek | SCHEDPOL® | Stabilsound Plus®', kind: 'Prezentacja · technologia Stabilsound Plus', g: 'brodziki', y: 2021 },
   { id: 'IJ9kaWSjZfI', t: 'Najazd do brodzików podpłytkowych przeznaczony do zabudowy płytkami - montaż', kind: 'Montaż', g: 'brodziki', y: 2026, fams: ['Najazd'] },
   { id: 'QQsoJ7NhcVY', t: '[360] Grawello półokrągły', kind: 'Prezentacja 360°', g: '360', y: 2026, fams: ['Grawello'], short: 1 },
   { id: 'fbefVh2UcT4', t: '[360] Grawello - kwadrat', kind: 'Prezentacja 360°', g: '360', y: 2026, fams: ['Grawello'], short: 1 },
@@ -37,6 +43,6 @@ window.SP.videoGroups = [
 ];
 /* prezentacje i katalog do Akademii — pliki w assets/akademia/ (ok = gotowe do publikacji) */
 window.SP.academyDocs = [
-  { k: 'przeglad', t: 'Przegląd Produktów LM', d: 'Katalog produktów Schedpol i Sensea w ofercie Leroy Merlin — serie, wymiary, kolory, numery ref. LM.', f: '', ok: false,
-    note: 'Aktualizowana wersja katalogu jest w przygotowaniu.' }  // wersja 2025.09 ma twierdzenia niedozwolone po 27.09.2026 (EmpCo) — nie publikować
+  { k: 'przeglad', t: 'Przegląd Produktów LM', d: 'Katalog produktów Schedpol i Sensea w ofercie Leroy Merlin — serie, wymiary, kolory, numery ref. LM, gwarancje z zakresem. Wydanie 11.2026 · PDF, 28 stron, 18 MB.',
+    f: 'Przeglad-Produktow-LM_2026.11.pdf', ok: true }
 ];

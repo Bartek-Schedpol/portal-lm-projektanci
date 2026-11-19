@@ -488,7 +488,14 @@
   /* Start → Nowości: kafle jak w Kategoriach [seria, obraz, x%, y%, podpis] */
   const NEWS = [
     ['Balans', 'balans-cas', 30, 75, 'Balans'], ['Harmony', 'odplyw-black', 55, 60], ['Consist', 'consist', 50, 60],
-    ['Tebe', 'tebe', 50, 60], ['Najazd', 'najazd-a', 50, 60, 'Najazd do brodzików'], ['Sinergid', 'p-sinegrid-bm', 50, 50]
+    ['Tebe', 'tebe', 50, 60], ['Najazd', 'najazd-a', 50, 60, 'Najazd do brodzików']
+  ];
+  /* Start → współpraca z LM (dane od użytkownika, 19.11.2026) */
+  const COOP = [
+    { l: 'Kompletność dostaw w 2025 r.', v: '99,53%' },
+    { l: 'Średni czas realizacji zamówień w 2025 r.', v: '6,31', u: 'dnia' },
+    { l: 'Minimum zakupowe', v: '1800 zł', u: 'netto' },
+    { l: 'Dropshipping od 1 produktu', v: '+65 zł', u: 'netto dopłaty' }
   ];
   /* doradca techniczny — dane ze schedpol.pl/kontakt (sprawdzone 19.11.2026) */
   const TECH = { n: 'Maciej Naskręt', role: 'Doradca techniczny — klient indywidualny i inwestycje', tel: '502 356 267', mail: 'doradcatechniczny@schedpol.pl' };
@@ -528,24 +535,32 @@
               return '<button class="hint" type="button" data-act="hint" data-q="' + esc(h) + '">' + esc(h) + '</button>';
             }).join('')}</div>
           </div>
-          <div class="hnews-box rv" style="--d:200ms" aria-labelledby="newsT">
-            <div class="hnews-h"><span class="home-k">Nowości 2026</span><h2 id="newsT">Nowe serie w ofercie Leroy Merlin</h2></div>
-            <div class="hnews">${NEWS.map(function (x, i) {
-              const s = SP.serie(x[0]); if (!s) return '';
-              const n = SP.products.filter(function (p) { return p.fam === x[0]; }).length;
-              const pack = !SP.img[x[1]] || SP.img[x[1]].k === 'pack' || /^p-|^pk-/.test(x[1]);
-              return `<a class="hcat hnew hnew-${i}${pack ? ' is-pack' : ''}" href="${H('katalog', { seria: x[0] })}">
-                <img src="${esc(SP.src(x[1]))}" alt="" decoding="async" style="object-position:${x[2]}% ${x[3]}%">
-                <span class="hcat-go">${ic('arrow-up-right', 16)}</span>
-                <span class="hcat-txt"><b>${esc(x[4] || x[0])}</b><span>${esc(typeShort({ fam: x[0] }))} · ${indeksy(n)}</span></span>
-              </a>`;
-            }).join('')}</div>
+          <div class="hcoop rv" style="--d:200ms" aria-labelledby="coopT">
+            <div class="hcoop-h"><span class="home-k">30 lat współpracy z Leroy Merlin</span><h2 id="coopT">Razem od 1997 roku</h2></div>
+            <dl class="hcoop-l">${COOP.map(function (c) {
+              return '<div class="hco' + (c.wide ? ' is-wide' : '') + '"><dt>' + esc(c.l) + '</dt><dd><b>' + esc(c.v) + '</b>' + (c.u ? '<span>' + esc(c.u) + '</span>' : '') + '</dd></div>';
+            }).join('')}</dl>
           </div>
 </div>
         </div>
       </section>
 
       <div class="wrap">
+          <section class="home-block hnews-box" aria-labelledby="newsT">
+            <div class="home-h home-h-row"><div><span class="home-k">Nowości 2026</span><h2 id="newsT">Nowe serie w ofercie Leroy Merlin</h2></div>
+              <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
+            <div class="hnews">${NEWS.map(function (x, i) {
+              const s = SP.serie(x[0]); if (!s) return '';
+              const n = SP.products.filter(function (p) { return p.fam === x[0]; }).length;
+              const pack = !SP.img[x[1]] || SP.img[x[1]].k === 'pack' || /^p-|^pk-/.test(x[1]);
+              return `<a class="hcat hnew rv hnew-${i}${pack ? ' is-pack' : ''}" href="${H('katalog', { seria: x[0] })}">
+                <img src="${esc(SP.src(x[1]))}" alt="" decoding="async" style="object-position:${x[2]}% ${x[3]}%">
+                <span class="hcat-go">${ic('arrow-up-right', 16)}</span>
+                <span class="hcat-txt"><b>${esc(x[4] || x[0])}</b><span>${esc(typeShort({ fam: x[0] }))} · ${indeksy(n)}</span></span>
+              </a>`;
+            }).join('')}</div>
+          </section>
+
       <section class="home-block" aria-labelledby="catT">
         <div class="home-h home-h-row"><div><span class="home-k">Oferta w Leroy Merlin</span><h2 id="catT">Kategorie</h2></div>
           <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
