@@ -213,7 +213,7 @@ contacts = {
  "bok": [{"n": "BOK 1 · Zachód", "tel": "691 947 536", "mail": "bok1@schedpol.pl"},
          {"n": "BOK 2 · Wschód", "tel": "603 509 837", "mail": "bok2@schedpol.pl"},
          {"n": "BOK 3 · Południe", "tel": "601 424 132", "mail": "bok3@schedpol.pl"}],
- "hours": "pon.–pt. 8:00–15:00", "company": "SCHEDPOL Sp. z o.o., ul. Przemysłowa 2, 64-400 Bielsko (Międzychód)", "since": 1981,
+ "hours": "pon.–pt. 8:00–16:00", "company": "SCHEDPOL Sp. z o.o., ul. Przemysłowa 2, 64-400 Bielsko (Międzychód)", "since": 1981,
 }
 surfaces = [
  {"n": "Smooth White", "pl": "biały gładki", "ral": "RAL 9003", "hx": "#F7F7F5", "tex": "wc-tex-sw"},

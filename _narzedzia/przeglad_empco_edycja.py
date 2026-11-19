@@ -280,6 +280,9 @@ for p, (l1, l2, a1, a2) in {21: (27149, 27148, 27199, 27198), 22: (29451, 29450,
 set_text(21, 27239, 'Podparcie dna wanny na całej powierzchni\rnośnika')
 badge(23, 30359, 30358, 'N'); footnote(23, GW['N'])
 
+# ---------- str. 28 — kontakt: godziny BOK (informacja użytkownika 19.11.2026)
+sub(28, 46947, '8:00-15:00', '8:00-16:00')
+
 print('OK:', len(ok), ' BŁĘDY:', len(bad))
 for b in bad:
     print('  !', b)
