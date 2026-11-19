@@ -149,9 +149,51 @@
     if (has['infografika']) f.push({ ext: 'PNG', name: base + '_cechy.png', desc: 'Infografika: cechy serii', mb: rnd(p.ref + 'f', 0.5, 1.4) });
     if (has['opis']) f.push({ ext: 'PDF', name: base + '_opis.pdf', desc: 'Opis produktu', mb: rnd(p.ref + 'g', 0.05, 0.2) });
     docsFor(p).forEach(function (d) {              // prawdziwe pliki: assets/dokumenty (8_zasoby_kart.py)
-      f.push({ ext: 'PDF', name: d.f, desc: d.t + ' · ' + d.str + ' ' + plural(d.str, 'strona', 'strony', 'stron'), mb: d.mb, href: DOC_BASE + d.f, doc: d.typ });
+      f.push({ ext: 'PDF', name: d.f, desc: d.t + ' · ' + d.str + ' ' + plural(d.str, 'strona', 'strony', 'stron'), mb: d.mb, href: DOC_BASE + d.f, doc: d.typ, t: d.t });
     });
+    f.forEach(function (x) { x.pv = previewOf(p, x); });
     return f;
+  }
+  /* podgląd pliku przed pobraniem: PDF w ramce, obrazy w lightboksie, opis jako tekst */
+  function previewOf(p, f) {
+    const s = serieOf(p), n = f.name || '';
+    const rys = SP.rys && SP.rys[p.ref];
+    const rysSrc = rys ? SP.base + 'rys/' + rys.f : (p.fam === 'Balans' ? SP.src(p.shape === 'prostokątny' ? 'draw-balans-rect' : 'draw-balans-sq') : '');
+    if (f.karta) return { t: 'pdf', src: f.view };
+    if (f.doc) return { t: 'pdf', src: f.href };
+    if (/_packshot\./.test(n)) return { t: 'img', src: SP.src(p.im), tb: true };
+    if (/_aranzacja/.test(n)) { const k = (s.scenes || []).filter(function (x) { return SP.img[x]; })[0]; return k ? { t: 'img', src: SP.src(k), note: 'Wizualizacja poglądowa' } : { t: 'img', src: SP.src(p.im), tb: true }; }
+    if (/_rysunek/.test(n)) return rysSrc ? { t: 'img', src: rysSrc, note: f.ext === 'DWG' ? 'Podgląd rysunku — plik DWG zawiera ten sam widok w wektorze' : 'Wymiary w mm' } : { t: 'img', src: SP.src(p.im), tb: true, note: 'Rysunek w przygotowaniu — podgląd produktu' };
+    if (f.cad) return { t: 'img', src: SP.src(p.im), tb: true, note: 'Model 3D jest w bazie CAD Decor „' + CAD.name + '” — podgląd produktu' };
+    if (/_cechy/.test(n)) return p.fam === 'Balans' && SP.img['info-balans'] ? { t: 'img', src: SP.src('info-balans') } : { t: 'text', html: '<ol>' + (s.feats || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol>' };
+    if (/_opis/.test(n)) return { t: 'text', html: '<p>' + esc(s.lead) + '</p>' + ((s.feats || []).length ? '<ul>' + s.feats.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '') };
+    return { t: 'img', src: SP.src(p.im), tb: true };
+  }
+  function pvBtn(i, name) {
+    return '<button class="icon-btn" type="button" data-act="preview" data-file="' + i + '" aria-label="Podgląd: ' + esc(name) + '" title="Podgląd przed pobraniem">' + ic('eye', 16) + '</button>';
+  }
+  function openPreview(f) {
+    if (!f || !f.pv) return;
+    let box = $('#pv');
+    if (!box) {
+      box = document.createElement('div'); box.id = 'pv'; box.className = 'pv'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true');
+      document.body.appendChild(box);
+      box.addEventListener('click', function (e) { if (e.target === box || e.target.closest('[data-pv-close]')) closePreview(); });
+    }
+    const v = f.pv;
+    const body = v.t === 'pdf' ? '<iframe src="' + esc(v.src) + '" title="Podgląd: ' + esc(f.name) + '"></iframe>'
+      : v.t === 'text' ? '<div class="pv-text">' + v.html + '</div>'
+      : '<div class="pv-img' + (v.tb ? ' is-pack' : '') + '"><img src="' + esc(v.src) + '" alt="' + esc(f.desc) + '"></div>';
+    const dl = f.href ? '<a class="btn btn-sm btn-primary" href="' + esc(f.href) + '" download>' + ic('download', 15) + ' Pobierz</a>'
+      : '<button class="btn btn-sm btn-primary" type="button" data-act="demo" data-msg="Makieta: pobieranie pliku" data-detail="' + esc(f.name) + '">' + ic('download', 15) + ' Pobierz</button>';
+    box.innerHTML = '<div class="pv-card"><header class="pv-h">' + extBadge(f.ext) + '<div><b>' + esc(f.name) + '</b><small>' + esc(f.desc) + (v.note ? ' · ' + esc(v.note) : '') + '</small></div>' + dl +
+      '<button class="icon-btn" type="button" data-pv-close aria-label="Zamknij podgląd">' + ic('x', 18) + '</button></header><div class="pv-b is-' + v.t + '">' + body + '</div></div>';
+    box.classList.add('is-open'); document.documentElement.classList.add('pv-lock');
+    const c = $('[data-pv-close]', box); if (c) c.focus({ preventScroll: true });
+  }
+  function closePreview() {
+    const box = $('#pv'); if (!box) return;
+    box.classList.remove('is-open'); box.innerHTML = ''; document.documentElement.classList.remove('pv-lock');
   }
   function extList(p) {
     const seen = {}, out = [];
@@ -443,30 +485,23 @@
       </div>`;
   }
 
+  /* Start → Nowości: kafle jak w Kategoriach [seria, obraz, x%, y%, podpis] */
+  const NEWS = [
+    ['Balans', 'balans-cas', 30, 75, 'Balans'], ['Harmony', 'odplyw-black', 55, 60], ['Consist', 'consist', 50, 60],
+    ['Tebe', 'tebe', 50, 60], ['Najazd', 'najazd-a', 50, 60, 'Najazd do brodzików'], ['Sinergid', 'p-sinegrid-bm', 50, 50]
+  ];
+  /* doradca techniczny — dane ze schedpol.pl/kontakt (sprawdzone 19.11.2026) */
+  const TECH = { n: 'Maciej Naskręt', role: 'Doradca techniczny — klient indywidualny i inwestycje', tel: '502 356 267', mail: 'doradcatechniczny@schedpol.pl' };
+  const BOK_AREA = { '1': 'Polska zachodnia', '2': 'Polska wschodnia i północna', '3': 'Polska południowa' };
+  function bokMapSVG(k) {
+    const m = SP.bokMap; if (!m) return '';
+    return '<svg class="bok-map" viewBox="' + m.vb + '" role="img" aria-label="Region ' + esc(BOK_AREA[k] || '') + '">' +
+      Object.keys(m.r).map(function (r) { return '<path class="' + (r === k ? 'on' : '') + '" d="' + m.r[r] + '"/>'; }).join('') + '</svg>';
+  }
   function renderStart(params) {
     const total = SP.products.length;
     const nFiles = SP.series.reduce(function (a, s) { return a + sumFiles(s); }, 0);
     const mb = SP.series.reduce(function (a, s) { return a + (s.mb || 0); }, 0);
-    const dp = SP.byRef(DEFAULT_REF) || SP.products[0];
-    const dFiles = filesFor(dp);
-    const pick = [];
-    ['JPG', 'PNG', 'PDF', 'DWG', '3D'].forEach(function (x) {
-      const f = dFiles.filter(function (y) { return y.ext === x; })[0];
-      if (f) pick.push(f);
-    });
-    const dMb = dFiles.reduce(function (a, f) { return a + (f.mb || 0); }, 0);
-    const news = SP.series.filter(function (s) { return s.new; });
-
-    /* Strona główna wg projektu „Strefa architekta i projektanta” (hero + panel liczb, szybkie akcje, nowości, wsparcie).
-       Treści wyłącznie z danych portalu — bez zmyślonych modeli, osób, terminów i certyfikatów. */
-    const nRys = SP.rys ? Object.keys(SP.rys).length : 0;
-    const nDocs = SP.docMap ? Object.keys(SP.docMap).filter(function (r) { return SP.docMap[r].length > 1; }).length : 0;
-    const gwDoc = SP.docs && SP.docs['gw-stabilsafe'];
-    const newRows = news.map(function (s) {
-      const ps = SP.products.filter(function (p) { return p.fam === s.fam && p.new; });
-      const p0 = ps[0] || SP.products.filter(function (p) { return p.fam === s.fam; })[0];
-      return { s: s, p: p0, n: ps.length };
-    }).filter(function (x) { return x.p; }).slice(0, 4);   // projekt: krótka lista, reszta w katalogu
     const tiles = [
       { ic: 'grid', t: 'Katalog z filtrami', d: 'Szukaj po nr. ref. LM, serii, wymiarze, kolorze i kształcie — ' + total + ' indeksów Schedpol i Sensea.', href: H('katalog') },
       { ic: 'zip', t: 'Paczki plików serii', d: 'Packshoty, aranżacje, rysunki i karty produktów całej serii w jednym pliku ZIP.', href: H('pliki') },
@@ -493,51 +528,24 @@
               return '<button class="hint" type="button" data-act="hint" data-q="' + esc(h) + '">' + esc(h) + '</button>';
             }).join('')}</div>
           </div>
-          <div class="home-stats rv" style="--d:200ms" aria-label="Biblioteka w liczbach">
-            <div class="hstat"><b>${total}</b><span>${plural(total, 'indeks', 'indeksy', 'indeksów')} Schedpol i Sensea w ofercie Leroy Merlin</span></div>
-            <div class="hstat"><b>${total}</b><span>${plural(total, 'karta', 'karty', 'kart')} produktów dostępnych natychmiast</span></div>
-            <div class="hstat is-muted"><b>${nFiles.toLocaleString('pl-PL')}</b><span>${plural(nFiles, 'plik', 'pliki', 'plików')} w bibliotece · ${nf(mb / 1000, 1)} GB</span></div>
+          <div class="hnews-box rv" style="--d:200ms" aria-labelledby="newsT">
+            <div class="hnews-h"><span class="home-k">Nowości 2026</span><h2 id="newsT">Nowe serie w ofercie Leroy Merlin</h2></div>
+            <div class="hnews">${NEWS.map(function (x, i) {
+              const s = SP.serie(x[0]); if (!s) return '';
+              const n = SP.products.filter(function (p) { return p.fam === x[0]; }).length;
+              const pack = !SP.img[x[1]] || SP.img[x[1]].k === 'pack' || /^p-|^pk-/.test(x[1]);
+              return `<a class="hcat hnew hnew-${i}${pack ? ' is-pack' : ''}" href="${H('katalog', { seria: x[0] })}">
+                <img src="${esc(SP.src(x[1]))}" alt="" decoding="async" style="object-position:${x[2]}% ${x[3]}%">
+                <span class="hcat-go">${ic('arrow-up-right', 16)}</span>
+                <span class="hcat-txt"><b>${esc(x[4] || x[0])}</b><span>${esc(typeShort({ fam: x[0] }))} · ${indeksy(n)}</span></span>
+              </a>`;
+            }).join('')}</div>
           </div>
+</div>
         </div>
       </section>
 
       <div class="wrap">
-      <section class="home-main">
-        <div class="home-left">
-          <div class="home-sec">
-            <div class="home-h home-h-row"><div><span class="home-k">Nowości 2026</span><h2>Nowe serie w ofercie Leroy Merlin</h2></div>
-              <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
-            <div class="nlist">${newRows.map(function (x) {
-              const href = H('produkt', { ref: x.p.ref });
-              return `<article class="nrow rv">
-                <a class="nrow-thumb" href="${href}" tabindex="-1" aria-hidden="true">${pimg(x.p.im, '')}</a>
-                <div class="nrow-main">
-                  <div class="nrow-tags">${extList(x.p).map(function (e) { return '<span class="ft' + (e === '3D' ? ' ft-3d' : '') + '">' + e + '</span>'; }).join('')}<span class="nrow-n">${indeksy(x.n || 1)}</span></div>
-                  <h3><a href="${href}">${esc(x.s.fam === 'Balans' ? 'Balans — kaszmirowy kamień' : x.s.fam)}</a></h3>
-                  <p>${esc(x.s.lead)}</p>
-                </div>
-                <div class="nrow-act">
-                  <a class="btn btn-sm" href="${esc(kartaView(x.p))}" target="_blank" rel="noopener">${ic('eye', 15)} Podgląd karty</a>
-                  <a class="btn btn-sm btn-primary" href="${esc(kartaPdf(x.p))}" download>${ic('download', 15)} Karta PDF</a>
-                </div>
-              </article>`;
-            }).join('')}</div>
-          </div>
-        </div>
-
-        <aside class="home-side">
-          <div class="side-card rv">
-            <h3>Dokumenty i parametry</h3>
-            <ul class="side-list">
-              <li>${ic('check', 16, 2)}<span>Antypoślizgowość klasy A wg DIN EN 16165:2023 (zał. A) — brodziki o strukturze kamienia</span></li>
-              <li>${ic('check', 16, 2)}<span>Instrukcja montażu dla ${nDocs} ${plural(nDocs, 'indeksu', 'indeksów', 'indeksów')}</span></li>
-              <li>${ic('check', 16, 2)}<span>Gwarancja producenta wg karty Stabilsafe v15.25 — zakres i warunki w karcie</span></li>
-            </ul>
-            ${gwDoc ? '<a class="btn btn-sm side-btn" href="../assets/dokumenty/' + esc(gwDoc.f) + '" target="_blank" rel="noopener">' + ic('shield', 15) + ' Karta gwarancyjna (PDF)</a>' : ''}
-          </div>
-        </aside>
-      </section>
-
       <section class="home-block" aria-labelledby="catT">
         <div class="home-h home-h-row"><div><span class="home-k">Oferta w Leroy Merlin</span><h2 id="catT">Kategorie</h2></div>
           <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
@@ -579,11 +587,19 @@
           <p>Biuro Obsługi Klienta Schedpol odpowiada na pytania o montaż, dobór produktu i materiały do projektu.</p>
           <span class="chip">${ic('clock', 14)} ${esc(SP.contacts.hours)}</span>
         </div>
-        ${SP.contacts.bok.map(function (b) {
-          return `<div class="sb"><b>${esc(b.n)}</b>
+        <div class="bok-grid">${SP.contacts.bok.map(function (b, i) {
+          return `<div class="sb bok">
+            ${bokMapSVG(String(i + 1))}
+            <div class="bok-txt"><b>${esc(b.n)}</b>
+            <small>${esc(BOK_AREA[String(i + 1)] || '')}</small>
             <a class="mono" href="tel:+48${esc(b.tel.replace(/\s/g, ''))}">${ic('phone', 15)} ${esc(b.tel)}</a>
-            <a href="mailto:${esc(b.mail)}">${ic('mail', 15)} ${esc(b.mail)}</a></div>`;
+            <a href="mailto:${esc(b.mail)}">${ic('mail', 15)} ${esc(b.mail)}</a></div></div>`;
         }).join('')}
+        ${TECH ? `<div class="sb bok bok-tech">
+            <span class="bok-ic">${ic('user', 30)}</span>
+            <div class="bok-txt"><b>${esc(TECH.n)}</b><small>${esc(TECH.role)}</small>
+            <a class="mono" href="tel:+48${esc(TECH.tel.replace(/\s/g, ''))}">${ic('phone', 15)} ${esc(TECH.tel)}</a>
+            <a href="mailto:${esc(TECH.mail)}">${ic('mail', 15)} ${esc(TECH.mail)}</a></div></div>` : ''}</div>
       </section>
 
       <section class="home-block" aria-labelledby="toolT">
@@ -931,10 +947,35 @@
       return x.ref !== p.ref && x.fam === p.fam && x.s === p.s && x.c && x.c !== p.c && sizeKey(x) === k && (x.shape || '') === (p.shape || '');
     }).sort(function (a, b) { return a.c.localeCompare(b.c, 'pl'); });
   }
+  /* inne produkty o tych samych wymiarach boków (inne serie / kolory), ta sama kategoria */
+  function sameSize(p, excl) {
+    const k = sizeKey(p); if (!k || p.cat === 'odpływ liniowy') return [];
+    const seen = {};
+    return SP.products.filter(function (x) {
+      return x.ref !== p.ref && !excl[x.ref] && sizeKey(x) === k && x.cat === p.cat;
+    }).sort(function (a, b) {
+      return ((a.fam === p.fam ? 1 : 0) - (b.fam === p.fam ? 1 : 0)) || ((a.shape === p.shape ? 0 : 1) - (b.shape === p.shape ? 0 : 1)) || a.s.localeCompare(b.s, 'pl');
+    }).filter(function (x) { const kk = x.fam + '|' + x.c + '|' + x.shape; if (seen[kk]) return false; seen[kk] = 1; return true; });
+  }
+  /* filmy z kanału YouTube Schedpol (assets/filmy.js) przypisane do serii / kategorii */
+  function videosFor(p) {
+    const own = function (v) { return (v.fams || []).indexOf(p.fam) !== -1 ? 1 : 0; };
+    return (SP.videos || []).filter(function (v) {
+      return own(v) || (v.cats || []).indexOf(p.cat) !== -1;
+    }).sort(function (a, b) { return own(b) - own(a); });
+  }
+  function ytHTML(v, lazy) {
+    return '<figure class="yt"><div class="yt-frame">' +
+      '<button type="button" class="yt-poster" data-act="yt" data-id="' + esc(v.id) + '" aria-label="Odtwórz film: ' + esc(v.t) + '">' +
+      '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="' + (lazy ? 'lazy' : 'eager') + '"><span class="yt-play">' + ic('play', 26) + '</span></button></div>' +
+      '<figcaption><b>' + esc(v.t) + '</b><small>' + esc(v.kind || 'Film') + ' · YouTube Schedpol</small></figcaption></figure>';
+  }
   function renderProdukt(params) {
     const p = SP.byRef((params && params.ref) || DEFAULT_REF) || SP.byRef(DEFAULT_REF) || SP.products[0];
-    const s = serieOf(p), files = filesFor(p), gal = galleryFor(p);
-    PD = { p: p, files: files, gal: gal };
+    const s = serieOf(p), allFiles = filesFor(p), gal = galleryFor(p);
+    const files = allFiles.filter(function (f) { return !f.doc; });
+    const docFiles = allFiles.filter(function (f) { return f.doc; });
+    PD = { p: p, files: files, docs: docFiles, all: allFiles, gal: gal };
     const stone = p.cat === 'brodzik' && /kamień/.test(p.c || '');
     const tech = p.tn ? p.tn + (p.tn === 'Stabilsafe' ? '®' : '') + (p.tech ? ' · ' + p.tech : '') : (p.tech || '');
     const attrs = [
@@ -950,7 +991,8 @@
     ].filter(Boolean);
     const sibs = SP.products.filter(function (x) { return x.fam === p.fam && x.s === p.s && x.c === p.c && x.ref !== p.ref; })
       .sort(function (a, b) { return area(a) - area(b); });
-    const zest = zestawFor(p), gw = gwFor(p), cvar = colorVariants(p);
+    const zest = zestawFor(p), gw = gwFor(p), cvar = colorVariants(p), vids = videosFor(p);
+    const same = sameSize(p, cvar.reduce(function (a, x) { a[x.ref] = 1; return a; }, {})).slice(0, 12);
     const pdBits = [];
     if (SP.dims(p)) pdBits.push('<span class="mono">' + esc(variant(p)) + '</span>');
     if (p.c) pdBits.push('<span>' + dot(p.hx, 'lg') + esc(p.c) + '</span>');
@@ -969,7 +1011,8 @@
 
       <div class="pd-top">
         <section class="gal" aria-label="Galeria produktu">
-          <div class="bezel"><div class="core gal-stage is-pack" id="galStage">${stageInner(gal[0], galAlt(gal[0], p))}</div></div>
+          <div class="bezel gal-bezel"><div class="core gal-stage is-pack" id="galStage">${stageInner(gal[0], galAlt(gal[0], p))}</div>
+            ${gw.badge ? '<a class="gal-gw" href="#gT" title="Gwarancja producenta — zakres niżej"><img src="../assets/znaki/' + gw.badge + '.png" alt="Znak gwarancji producenta: ' + esc(gw.lines[0] ? gw.lines[0].split(' — ')[0] : '') + '"></a>' : ''}</div>
           ${gal.length > 1 ? '<div class="gal-thumbs">' + gal.map(function (g, i) {
             return '<button type="button" class="gal-thumb is-' + g.kind + (i === 0 ? ' is-on' : '') + '" data-act="gal" data-idx="' + i + '" aria-pressed="' + (i === 0) + '" aria-label="' +
               esc(g.kind === 'pack' ? 'Packshot' : g.cap) + ' ' + (i + 1) + ' z ' + gal.length + '"><img' + (g.kind === 'pack' && !SP.img[g.k].tb ? ' class="is-mult"' : '') + ' src="' + esc(SP.src(g.k)) + '" alt=""></button>';
@@ -981,11 +1024,16 @@
           <h1 class="pd-title" id="pdT">${esc(titleOf(p))}</h1>
           ${pdVar ? '<p class="pd-var">' + pdVar + '</p>' : ''}
           <div class="pd-ref">${refChip(p, true)}<span>Numer referencyjny Leroy Merlin</span></div>
-          ${cvar.length ? '<div class="pd-colors"><span class="pd-colors-h">Inne kolory w tym wymiarze</span><div class="pd-colors-l">' + cvar.map(function (x) {
-            return '<a class="cvar" href="' + H('produkt', { ref: x.ref }) + '" title="' + esc(cap(x.c)) + ' · LM ' + esc(x.ref) + '">' + dot(x.hx, 'lg') + '<span>' + esc(cap(x.c)) + '</span><small class="mono">' + esc(x.ref) + '</small></a>';
+          ${cvar.length ? '<div class="pd-colors"><div class="pd-colors-h">' + ic('drop', 16) + '<b>Dostępne kolory w tym wymiarze</b><span>' + (cvar.length + 1) + ' ' + plural(cvar.length + 1, 'wariant', 'warianty', 'wariantów') + '</span></div><div class="pd-colors-l">' + [p].concat(cvar).map(function (x) {
+            const on = x.ref === p.ref;
+            return '<a class="cvar' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="' + esc(cap(x.c)) + ' · LM ' + esc(x.ref) + '"><span class="cvar-img">' + pimg(x.im, '') + '</span><span class="cvar-n">' + dot(x.hx) + esc(cap(x.c)) + '</span><small class="mono">LM ' + esc(x.ref) + '</small>' + (on ? '<span class="cvar-tag">Oglądasz</span>' : '') + '</a>';
           }).join('') + '</div></div>' : ''}
           <dl class="attrs">${attrs.map(function (a) { return '<div><dt>' + a[0] + '</dt><dd>' + a[1] + '</dd></div>'; }).join('')}</dl>
-          ${gw.lines.length ? '<div class="pd-gw">' + (gw.badge ? '<img src="../assets/znaki/' + gw.badge + '.png" alt="Znak gwarancji">' : '') + '<div><b>Gwarancja producenta</b><ul>' + gw.lines.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul><small>Zakres i warunki — karta gwarancyjna Stabilsafe v15.25</small></div></div>' : ''}
+          ${docFiles.length ? '<div class="pd-docs"><div class="pd-docs-h">' + ic('clipboard', 16) + '<b>Instrukcja montażu i karta gwarancyjna</b></div>' + docFiles.map(function (f) {
+            const i = allFiles.indexOf(f), gwd = /gwaranc/i.test(f.t || f.doc || '');
+            return '<div class="pd-doc"><span class="pd-doc-ic' + (gwd ? ' is-gw' : '') + '">' + ic(gwd ? 'shield' : 'book', 18) + '</span><div class="pd-doc-t"><b>' + esc(f.t || f.name) + '</b><small>PDF · ' + esc(nf(f.mb, 1)) + ' MB</small></div>' +
+              '<button class="btn btn-sm" type="button" data-act="preview-all" data-file="' + i + '">' + ic('eye', 15) + ' Podgląd</button><a class="btn btn-sm btn-dark" href="' + esc(f.href) + '" download>' + ic('download', 15) + ' Pobierz</a></div>';
+          }).join('') + '</div>' : ''}
           <div class="pd-cta">
             <button class="btn btn-primary" type="button" data-act="add-product-sel">Dodaj pliki do teczki <span class="btn-ic">${ic('arrow-right', 16)}</span></button>
             <a class="btn" href="${esc(kartaPdf(p))}" download>${ic('file', 16)} Karta produktu PDF</a>
@@ -994,31 +1042,6 @@
           <p class="pd-note">${ic('info', 16)} Cena i dostępność: w systemie sklepu Leroy Merlin.</p>
         </section>
       </div>
-
-      <section class="pd-sec" aria-labelledby="fT">
-        <div class="sec-h">
-          <div><h2 id="fT">Pliki do tego indeksu</h2><p>Zaznacz, czego potrzebujesz do projektu. Nazwy plików mają jeden schemat: marka, seria, wymiar, typ.</p></div>
-          <div class="files-tools">
-            <label class="check" style="position:relative"><input type="checkbox" id="fAll" checked><span class="fbox">${ic('check', 12, 2.2)}</span>Zaznacz wszystkie</label>
-            <span class="mono" id="fSum">${pliki(files.length)} · ${mbLabel(mbAll)}</span>
-            <button class="btn btn-sm btn-dark" type="button" data-act="add-product-sel">${ic('plus', 15, 1.8)} Dodaj zaznaczone</button>
-          </div>
-        </div>
-        <div class="tbl-wrap"><table class="tbl files-tbl">
-          <thead><tr><th><span class="sr">Zaznacz</span></th><th>Plik</th><th style="text-align:right">Rozmiar</th><th>Status</th><th><span class="sr">Pobierz</span></th></tr></thead>
-          <tbody>${files.map(function (f, i) {
-            return `<tr>
-              <td><label class="f-check"><input type="checkbox" data-file="${i}" checked aria-label="Zaznacz plik: ${esc(f.desc)}"><span class="fbox">${ic('check', 12, 2.2)}</span></label></td>
-              <td><div class="f-file">${extBadge(f.ext)}<div><b>${esc(f.name)}</b><small>${esc(f.desc)}</small></div></div></td>
-              <td class="num">${f.mb ? mbLabel(f.mb) : '<span class="muted">—</span>'}</td>
-              <td>${f.cad ? '<span class="st st-cad">' + ic('cube', 12, 1.8) + ' Baza ' + CAD.date + '</span>' : '<span class="st st-ok">' + ic('check', 12, 2) + ' Zweryfikowano ' + VERIFIED + '</span>'}</td>
-              <td><div class="t-act">${f.href
-                ? '<a class="icon-btn" href="' + esc(f.view) + '" target="_blank" rel="noopener" aria-label="Podgląd: ' + esc(f.name) + '" title="Podgląd karty">' + ic('eye', 16) + '</a><a class="icon-btn" href="' + esc(f.href) + '" download aria-label="Pobierz: ' + esc(f.name) + '" title="Pobierz PDF">' + ic('download', 16) + '</a>'
-                : '<button class="icon-btn" type="button" data-act="demo" data-msg="Makieta: pobieranie pliku" data-detail="' + esc(f.name) + '" aria-label="Pobierz: ' + esc(f.name) + '">' + ic('download', 16) + '</button>'}</div></td>
-            </tr>`;
-          }).join('')}</tbody>
-        </table></div>
-      </section>
 
       <div class="pd-two">
         <section class="panel" aria-labelledby="cT">
@@ -1034,6 +1057,32 @@
           }).join('')}
         </section>
       </div>
+
+      <section class="pd-sec" aria-labelledby="fT">
+        <div class="sec-h">
+          <div><h2 id="fT">Pliki do tego indeksu</h2><p>Zaznacz, czego potrzebujesz do projektu. Każdy plik można obejrzeć przed pobraniem. Instrukcja i karta gwarancyjna są wyżej, przy opisie produktu.</p></div>
+          <div class="files-tools">
+            <label class="check" style="position:relative"><input type="checkbox" id="fAll" checked><span class="fbox">${ic('check', 12, 2.2)}</span>Zaznacz wszystkie</label>
+            <span class="mono" id="fSum">${pliki(files.length)} · ${mbLabel(mbAll)}</span>
+            <button class="btn btn-sm btn-dark" type="button" data-act="add-product-sel">${ic('plus', 15, 1.8)} Dodaj zaznaczone</button>
+          </div>
+        </div>
+        <div class="tbl-wrap"><table class="tbl files-tbl">
+          <thead><tr><th><span class="sr">Zaznacz</span></th><th>Plik</th><th style="text-align:right">Rozmiar</th><th>Status</th><th><span class="sr">Pobierz</span></th></tr></thead>
+          <tbody>${files.map(function (f, i) {
+            return `<tr>
+              <td><label class="f-check"><input type="checkbox" data-file="${i}" checked aria-label="Zaznacz plik: ${esc(f.desc)}"><span class="fbox">${ic('check', 12, 2.2)}</span></label></td>
+              <td><div class="f-file">${extBadge(f.ext)}<div><b>${esc(f.name)}</b><small>${esc(f.desc)}</small></div></div></td>
+              <td class="num">${f.mb ? mbLabel(f.mb) : '<span class="muted">—</span>'}</td>
+              <td>${f.cad ? '<span class="st st-cad">' + ic('cube', 12, 1.8) + ' Baza ' + CAD.date + '</span>' : '<span class="st st-ok">' + ic('check', 12, 2) + ' Zweryfikowano ' + VERIFIED + '</span>'}</td>
+              <td><div class="t-act">${pvBtn(i, f.name)}${f.href
+                ? '<a class="icon-btn" href="' + esc(f.href) + '" download aria-label="Pobierz: ' + esc(f.name) + '" title="Pobierz PDF">' + ic('download', 16) + '</a>'
+                : '<button class="icon-btn" type="button" data-act="demo" data-msg="Makieta: pobieranie pliku" data-detail="' + esc(f.name) + '" aria-label="Pobierz: ' + esc(f.name) + '">' + ic('download', 16) + '</button>'}</div></td>
+            </tr>`;
+          }).join('')}</tbody>
+        </table></div>
+      </section>
+
 
       ${sibs.length ? `<section class="pd-sec" aria-labelledby="sT">
         <div class="sec-h"><div><h2 id="sT">Inne rozmiary w tej serii i kolorze</h2><p>${esc(p.s)}${p.c ? ' · ' + esc(p.c) : ''} — ${indeksy(sibs.length)}</p></div></div>
@@ -1062,6 +1111,18 @@
             <span class="zcard-main"><span class="kicker">${esc(z.why)}</span><b>${esc(zp ? zp.s : zs.fam)}</b><p>${esc(zs.lead)}</p><span class="mono">${indeksy(zs.n)}</span></span>
           </a>`;
         }).join('')}</div>
+      </section>` : ''}
+
+      ${same.length ? `<section class="pd-sec" aria-labelledby="ssT">
+        <div class="sec-h"><div><h2 id="ssT">Inne produkty w tym rozmiarze</h2><p><span class="mono">${esc(sizeKey(p))}</span> — inne serie i kolory o tych samych wymiarach boków.</p></div>
+          <a class="link" href="${H('katalog', { cat: p.cat, rozmiar: sizeKey(p) })}">Wszystkie w katalogu ${ic('arrow-right', 14)}</a></div>
+        <div class="grid same-grid">${same.map(function (x, i) { return cardHTML(x, i); }).join('')}</div>
+      </section>` : ''}
+
+      ${vids.length ? `<section class="pd-sec" aria-labelledby="vT">
+        <div class="sec-h"><div><h2 id="vT">Filmy</h2><p>Montaż i prezentacja produktu — z kanału YouTube Schedpol.</p></div>
+          <a class="link" href="${H('akademia')}">Wszystkie w Akademii ${ic('arrow-right', 14)}</a></div>
+        <div class="yt-grid">${vids.slice(0, 6).map(function (v) { return ytHTML(v, true); }).join('')}</div>
       </section>` : ''}
     </div>`;
 
@@ -1098,7 +1159,7 @@
           <td>${d.typ === 'gw' ? '<span class="st st-ok">' + ic('shield', 12, 1.8) + ' Karta gwarancyjna</span> ' : ''}<small class="docs-fams">${esc(fams)}</small></td>
           <td class="num">${nf(d.mb, 1)} MB</td>
           <td><div class="t-act">
-            <a class="icon-btn" href="${esc(href)}" target="_blank" rel="noopener" aria-label="Otwórz: ${esc(d.t)}" title="Otwórz">${ic('eye', 16)}</a>
+            <button class="icon-btn" type="button" data-act="preview-url" data-src="${esc(href)}" data-name="${esc(d.f)}" data-desc="${esc(d.t)}" aria-label="Podgląd: ${esc(d.t)}" title="Podgląd przed pobraniem">${ic('eye', 16)}</button>
             <a class="icon-btn" href="${esc(href)}" download aria-label="Pobierz: ${esc(d.t)}" title="Pobierz PDF">${ic('download', 16)}</a>
           </div></td>
         </tr>`;
@@ -1159,6 +1220,61 @@
     tabs.innerHTML = tabsHTML();
     box.innerHTML = plikiTableHTML();
   }
+  /* ==========================================================================
+     Ekran: Akademia — filmy szkoleniowe (YouTube Schedpol), prezentacje, katalog
+     ========================================================================== */
+  function renderAkademia(params) {
+    const V = SP.videos || [], G = (SP.videoGroups || []).filter(function (g) { return V.some(function (v) { return v.g === g.k; }); });
+    const grp = G.some(function (g) { return g.k === (params && params.g); }) ? params.g : 'all';
+    const docs = SP.academyDocs || [];
+    const shown = V.filter(function (v) { return grp === 'all' || v.g === grp; });
+    app.innerHTML = `
+    <div class="wrap ak">
+      <header class="page-head">
+        <div>
+          <span class="eyebrow">Akademia</span>
+          <h1 class="page-title" style="margin-top:18px">Filmy, prezentacje i katalog</h1>
+          <p class="page-sub">Materiały szkoleniowe Schedpol dla projektantów i zespołów Leroy Merlin: ${V.length} ${plural(V.length, 'film', 'filmy', 'filmów')} z kanału YouTube Schedpol, prezentacje i katalog produktów.</p>
+        </div>
+        <a class="btn" href="${esc(SP.ytChannel || 'https://www.youtube.com/@schedpol')}" target="_blank" rel="noopener">${ic('play', 16)} Kanał YouTube Schedpol ${ic('external', 14)}</a>
+      </header>
+
+      <section class="ak-docs" aria-labelledby="akDocT">
+        <h2 class="sr" id="akDocT">Katalog i prezentacje</h2>
+        ${docs.map(function (d) {
+          return `<article class="ak-doc${d.ok ? '' : ' is-soon'}">
+            <span class="ak-doc-ic">${ic('book', 26)}</span>
+            <div class="ak-doc-t"><span class="home-k">Katalog PDF</span><h3>${esc(d.t)}</h3><p>${esc(d.d)}</p>${d.ok ? '' : '<p class="ak-soon">' + ic('clock', 14) + ' ' + esc(d.note) + '</p>'}</div>
+            <div class="ak-doc-a">${d.ok
+              ? '<button class="btn" type="button" data-act="preview-url" data-src="../assets/akademia/' + esc(d.f) + '" data-name="' + esc(d.f) + '" data-desc="' + esc(d.t) + '">' + ic('eye', 16) + ' Podgląd</button><a class="btn btn-primary" href="../assets/akademia/' + esc(d.f) + '" download>' + ic('download', 16) + ' Pobierz PDF</a>'
+              : '<button class="btn" type="button" disabled>' + ic('download', 16) + ' Wkrótce</button>'}</div>
+          </article>`;
+        }).join('')}
+        <article class="ak-doc is-soon">
+          <span class="ak-doc-ic">${ic('layers', 26)}</span>
+          <div class="ak-doc-t"><span class="home-k">Prezentacje PDF / PowerPoint</span><h3>Prezentacje szkoleniowe dla Leroy Merlin</h3><p>Technologie brodzików, dobór produktu do projektu, montaż — materiały dla doradców i projektantów sieci.</p><p class="ak-soon">${ic('clock', 14)} Pierwsze prezentacje są w przygotowaniu.</p></div>
+          <div class="ak-doc-a"><button class="btn" type="button" disabled>${ic('download', 16)} Wkrótce</button></div>
+        </article>
+      </section>
+
+      <section class="pd-sec ak-vids" aria-labelledby="akVT">
+        <div class="sec-h"><div><h2 id="akVT">Filmy szkoleniowe i montażowe</h2><p>Kliknij miniaturę, żeby odtworzyć film na stronie.</p></div></div>
+        <div class="tabs ak-tabs" role="tablist" aria-label="Temat filmów">
+          <a class="tab${grp === 'all' ? ' is-on' : ''}" href="${H('akademia', { keep: 1 })}" role="tab" aria-selected="${grp === 'all'}">Wszystkie<small>${V.length}</small></a>
+          ${G.map(function (g) {
+            const n = V.filter(function (v) { return v.g === g.k; }).length;
+            return '<a class="tab' + (grp === g.k ? ' is-on' : '') + '" href="' + H('akademia', { g: g.k, keep: 1 }) + '" role="tab" aria-selected="' + (grp === g.k) + '">' + esc(g.l) + '<small>' + n + '</small></a>';
+          }).join('')}
+        </div>
+        ${G.filter(function (g) { return grp === 'all' || g.k === grp; }).map(function (g) {
+          const vs = shown.filter(function (v) { return v.g === g.k; });
+          return `<div class="ak-grp"><h3>${esc(g.l)}</h3><div class="yt-grid${g.k === '360' ? ' is-short' : ''}">${vs.map(function (v) { return ytHTML(v, true); }).join('')}</div></div>`;
+        }).join('')}
+        <p class="hcats-note">Filmy są osadzone z serwisu YouTube (tryb bez plików cookie do chwili odtworzenia).</p>
+      </section>
+    </div>`;
+  }
+
   function renderPliki(params) {
     P.tab = TABS.some(function (t) { return t.k === (params && params.typ); }) ? params.typ : 'all';
     const nFiles = SP.series.reduce(function (a, s) { return a + sumFiles(s); }, 0);
@@ -1263,7 +1379,7 @@
   }
 
   function render(route) {
-    const screen = ['start', 'katalog', 'produkt', 'pliki'].indexOf(route.screen) !== -1 ? route.screen : 'start';
+    const screen = ['start', 'katalog', 'produkt', 'pliki', 'akademia'].indexOf(route.screen) !== -1 ? route.screen : 'start';
     const params = route.params || {};
     closeAll();
     if (screen === 'start' && current === 'start' && params.sek && $('#sek-' + params.sek)) {
@@ -1271,13 +1387,14 @@
     } else if (screen === 'katalog') renderKatalog(params);
     else if (screen === 'produkt') renderProdukt(params);
     else if (screen === 'pliki') renderPliki(params);
+    else if (screen === 'akademia') renderAkademia(params);
     else renderStart(params);
     current = screen;
     app.setAttribute('data-screen', screen);
     setNav(screen, params);
     tzPaint();
     observeReveals();
-    document.title = ({ start: 'Start', katalog: 'Katalog', produkt: 'Karta produktu', pliki: 'Centrum plików' })[screen] + ' — Strefa projektanta Schedpol (koncepcja A)';
+    document.title = ({ start: 'Start', katalog: 'Katalog', produkt: 'Karta produktu', pliki: 'Centrum plików', akademia: 'Akademia' })[screen] + ' — Strefa projektanta Schedpol';
     if (!firstRender) app.focus({ preventScroll: true });
     firstRender = false;
   }
@@ -1318,7 +1435,7 @@
     else if (act === 'add-product-sel') {
       if (!PD.p) return;
       const sel = $$('.files-tbl input[data-file]').filter(function (i) { return i.checked; }).map(function (i) { return PD.files[+i.getAttribute('data-file')]; });
-      addProduct(PD.p.ref, sel);
+      addProduct(PD.p.ref, sel.concat(PD.docs || []));
     }
     else if (act === 'add-series') addSeries(t.getAttribute('data-fam'));
     else if (act === 'add-type') addType(t.getAttribute('data-fam'), t.getAttribute('data-type'));
@@ -1329,6 +1446,10 @@
     else if (act === 'tz-mail') toast('Makieta: link do teczki wysłany', 'anna.nowak@…', 'mail');
     else if (act === 'demo') toast(t.getAttribute('data-msg') || 'Makieta', t.getAttribute('data-detail') || '', 'download');
     else if (act === 'gal') setStage(+t.getAttribute('data-idx'));
+    else if (act === 'preview') openPreview(PD.files && PD.files[+t.getAttribute('data-file')]);
+    else if (act === 'preview-all') openPreview(PD.all && PD.all[+t.getAttribute('data-file')]);
+    else if (act === 'preview-url') openPreview({ ext: t.getAttribute('data-ext') || 'PDF', name: t.getAttribute('data-name') || '', desc: t.getAttribute('data-desc') || '', href: t.getAttribute('data-src'), pv: { t: 'pdf', src: t.getAttribute('data-src') } });
+    else if (act === 'yt') { const fr = t.closest('.yt-frame'); if (fr) fr.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(t.getAttribute('data-id')) + '?autoplay=1&rel=0" title="Film YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }
     else if (act === 'more') { C.limit += 24; paintCatalog(); }
     else if (act === 'view') { C.view = t.getAttribute('data-view'); paintCatalog(); syncUrl(); }
     else if (act === 'facet-more') { const id = t.getAttribute('data-facet'); C.open[id] = !C.open[id]; paintCatalog(); }
@@ -1351,7 +1472,7 @@
 
   document.addEventListener('keydown', function (e) {
     const typing = /^(input|textarea|select)$/i.test(e.target.tagName || '');
-    if (e.key === 'Escape') { closeAll(true); return; }
+    if (e.key === 'Escape') { if ($('#pv.is-open')) { closePreview(); return; } closeAll(true); return; }
     if (e.key === '/' && !typing && !e.ctrlKey && !e.metaKey && !e.altKey) {
       e.preventDefault();
       const big = $('#bigSearch'), cq = $('#catQ');
@@ -1377,7 +1498,8 @@
       { id: 'start', label: 'Start' },
       { id: 'katalog', label: 'Katalog' },
       { id: 'produkt', label: 'Karta produktu' },
-      { id: 'pliki', label: 'Pliki' }
+      { id: 'pliki', label: 'Pliki' },
+      { id: 'akademia', label: 'Akademia' }
     ],
     render: render
   });

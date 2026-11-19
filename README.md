@@ -16,6 +16,8 @@ Centrum plików z paczkami serii, teczka plików oraz karty produktów PDF (A4) 
 | `a-biblioteka/` | makieta portalu (HTML/CSS/JS bez frameworków, router na hashach) |
 | `karta/` | szablon karty produktu A4 — podgląd: `karta/index.html?ref=<nr ref. LM>` |
 | `assets/data.js` | 371 indeksów i 23 serie (generowane z materiałów Schedpol) |
+| `assets/filmy.js` | filmy z kanału YouTube Schedpol (ID sprawdzone oEmbed) i materiały Akademii |
+| `assets/bokmapa.js` | mapa regionów BOK (wektor z przeglądu oferty) |
 | `assets/lm.js` | gama, EAN i kod dostawcy z eksportu referencji LM (26.03.2026) |
 | `assets/packshoty.js` | packshot każdego indeksu wg serii, koloru i kształtu (paczka e-commerce), zdjęcia dodatkowe |
 | `assets/rysunki.js`, `assets/img/rys/` | rysunki techniczne do kart |

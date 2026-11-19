@@ -17,7 +17,7 @@ SRC = os.path.dirname(HERE)
 DST = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(SRC), "github-portal-lm")
 
 DIRS = ["a-biblioteka", "karta", "assets/fonts", "assets/img", "assets/znaki", "assets/karty", "assets/dokumenty", "_narzedzia"]
-FILES = ["assets/data.js", "assets/lm.js", "assets/packshoty.js", "assets/rysunki.js", "assets/dokumenty.js", "assets/icons.js", "assets/proto.js",
+FILES = ["assets/data.js", "assets/bokmapa.js", "assets/filmy.js", "assets/lm.js", "assets/packshoty.js", "assets/rysunki.js", "assets/dokumenty.js", "assets/icons.js", "assets/proto.js",
          "assets/logo.svg", "assets/logo-white.svg", "assets/img-manifest.json"]
 SKIP = ("__pycache__", ".tmp", "Thumbs.db")
 
@@ -51,6 +51,8 @@ Centrum plików z paczkami serii, teczka plików oraz karty produktów PDF (A4) 
 | `a-biblioteka/` | makieta portalu (HTML/CSS/JS bez frameworków, router na hashach) |
 | `karta/` | szablon karty produktu A4 — podgląd: `karta/index.html?ref=<nr ref. LM>` |
 | `assets/data.js` | 371 indeksów i 23 serie (generowane z materiałów Schedpol) |
+| `assets/filmy.js` | filmy z kanału YouTube Schedpol (ID sprawdzone oEmbed) i materiały Akademii |
+| `assets/bokmapa.js` | mapa regionów BOK (wektor z przeglądu oferty) |
 | `assets/lm.js` | gama, EAN i kod dostawcy z eksportu referencji LM (26.03.2026) |
 | `assets/packshoty.js` | packshot każdego indeksu wg serii, koloru i kształtu (paczka e-commerce), zdjęcia dodatkowe |
 | `assets/rysunki.js`, `assets/img/rys/` | rysunki techniczne do kart |
