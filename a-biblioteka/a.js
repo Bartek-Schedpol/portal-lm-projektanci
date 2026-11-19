@@ -162,7 +162,7 @@
     const cad = cadFor(p);
     if (cad) {                                      // prawdziwe modele: assets/cad (10_modele_3d.py)
       const glb = (cad.files.filter(function (x) { return x.ext === 'GLB'; })[0] || {}).f;
-      const CADD = { DWG: 'Model 3D DWG (AutoCAD)', OBJ: 'Model 3D OBJ (SketchUp, Blender, 3ds Max)', '3DS': 'Model 3D 3DS (3ds Max, CAD Decor)' };
+      const CADD = { DWG: 'Model 3D DWG (AutoCAD)', OBJ: 'Model 3D OBJ w archiwum ZIP (SketchUp, Blender, 3ds Max)', '3DS': 'Model 3D 3DS (3ds Max, CAD Decor)' };
       cad.files.filter(function (x) { return x.ext !== 'GLB'; }).forEach(function (x) {
         f.push({ ext: x.ext, name: x.f, desc: CADD[x.ext] + ' · wymiary w cm', mb: x.kb / 1024, href: CAD_BASE + x.f, glb: glb ? CAD_BASE + glb : '' });
       });
@@ -1316,17 +1316,12 @@
         ${docs.map(function (d) {
           return `<article class="ak-doc${d.ok ? '' : ' is-soon'}">
             <span class="ak-doc-ic">${ic('book', 26)}</span>
-            <div class="ak-doc-t"><span class="home-k">Katalog PDF</span><h3>${esc(d.t)}</h3><p>${esc(d.d)}</p>${d.ok ? '' : '<p class="ak-soon">' + ic('clock', 14) + ' ' + esc(d.note) + '</p>'}</div>
+            <div class="ak-doc-t"><span class="home-k">${esc(d.kind || 'Katalog PDF')}</span><h3>${esc(d.t)}</h3><p>${esc(d.d)}</p>${d.ok ? '' : '<p class="ak-soon">' + ic('clock', 14) + ' ' + esc(d.note) + '</p>'}</div>
             <div class="ak-doc-a">${d.ok
               ? '<button class="btn" type="button" data-act="preview-url" data-src="../assets/akademia/' + esc(d.f) + '" data-name="' + esc(d.f) + '" data-desc="' + esc(d.t) + '">' + ic('eye', 16) + ' Podgląd</button><a class="btn btn-primary" href="../assets/akademia/' + esc(d.f) + '" download>' + ic('download', 16) + ' Pobierz PDF</a>'
               : '<button class="btn" type="button" disabled>' + ic('download', 16) + ' Wkrótce</button>'}</div>
           </article>`;
         }).join('')}
-        <article class="ak-doc is-soon">
-          <span class="ak-doc-ic">${ic('layers', 26)}</span>
-          <div class="ak-doc-t"><span class="home-k">Prezentacje PDF / PowerPoint</span><h3>Prezentacje szkoleniowe dla Leroy Merlin</h3><p>Technologie brodzików, dobór produktu do projektu, montaż — materiały dla doradców i projektantów sieci.</p><p class="ak-soon">${ic('clock', 14)} Pierwsze prezentacje są w przygotowaniu.</p></div>
-          <div class="ak-doc-a"><button class="btn" type="button" disabled>${ic('download', 16)} Wkrótce</button></div>
-        </article>
       </section>
 
       <section class="pd-sec ak-vids" aria-labelledby="akVT">

@@ -4,7 +4,7 @@
    ========================================================================== */
 
 :root {
-  --bg: #F6F6F4;
+  --bg: #FFFFFF;   /* tło strony białe (decyzja użytkownika 19.11.2026) */
   --surface: #FFFFFF;
   --tile: #EFEFEC;
   --ink: #141414;

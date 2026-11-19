@@ -1,0 +1,2482 @@
+{
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 100-100-3,5.obj": {
+"w": 146.0,
+"l": 100.0,
+"h": 3.5,
+"fill": 0.863,
+"depth": 0.0,
+"nv": 41806
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 70-100-3,5.obj": {
+"w": 110.5,
+"l": 100.0,
+"h": 3.5,
+"fill": 0.84,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 70-120-3,5.obj": {
+"w": 120.0,
+"l": 110.5,
+"h": 3.5,
+"fill": 0.836,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 70-140-3,5.obj": {
+"w": 140.0,
+"l": 110.5,
+"h": 3.5,
+"fill": 0.833,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 70-80-3,5.obj": {
+"w": 110.1,
+"l": 80.0,
+"h": 3.5,
+"fill": 0.847,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 70-90-3,5.obj": {
+"w": 110.1,
+"l": 90.0,
+"h": 3.5,
+"fill": 0.843,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 80-100-3,5.obj": {
+"w": 127.2,
+"l": 100.0,
+"h": 3.5,
+"fill": 0.838,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 80-120-3,5.obj": {
+"w": 127.1,
+"l": 120.0,
+"h": 3.5,
+"fill": 0.834,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 80-140-3,5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 3.5,
+"fill": 1.0,
+"depth": 0.0,
+"nv": 2445
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 80-160-3,5.obj": {
+"w": 160.0,
+"l": 125.1,
+"h": 3.5,
+"fill": 0.834,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 80-180-3,5.obj": {
+"w": 180.0,
+"l": 125.1,
+"h": 3.5,
+"fill": 0.832,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 80-80-3,5.obj": {
+"w": 146.0,
+"l": 89.9,
+"h": 3.5,
+"fill": 0.763,
+"depth": 0.0,
+"nv": 41806
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 80-90-3,5.obj": {
+"w": 127.2,
+"l": 90.0,
+"h": 3.5,
+"fill": 0.841,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 90-100-3,5.obj": {
+"w": 140.0,
+"l": 100.0,
+"h": 3.5,
+"fill": 0.844,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 90-110-3,5.obj": {
+"w": 139.0,
+"l": 110.0,
+"h": 3.5,
+"fill": 0.844,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 90-120-3,5.obj": {
+"w": 139.0,
+"l": 120.0,
+"h": 3.5,
+"fill": 0.842,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 90-140-3,5.obj": {
+"w": 140.0,
+"l": 139.0,
+"h": 3.5,
+"fill": 0.84,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 90-160-3,5.obj": {
+"w": 160.0,
+"l": 139.3,
+"h": 3.5,
+"fill": 0.837,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT 90-90-3,5.obj": {
+"w": 146.0,
+"l": 90.0,
+"h": 3.5,
+"fill": 0.836,
+"depth": 0.0,
+"nv": 41806
+},
+"01. 3D_SCHEDPOL_2021\\00. KALAIT\\obj\\KALAIT R90s-3,5.obj": {
+"w": 136.4,
+"l": 90.0,
+"h": 3.5,
+"fill": 0.756,
+"depth": 0.0,
+"nv": 41706
+},
+"01. 3D_SCHEDPOL_2021\\01. ETRUSCO\\obj\\80x120x3.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 3.0,
+"fill": 1.0,
+"depth": 0.8,
+"nv": 837
+},
+"01. 3D_SCHEDPOL_2021\\01. ETRUSCO\\obj\\80x80x3 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 3.0,
+"fill": 0.894,
+"depth": null,
+"nv": 813
+},
+"01. 3D_SCHEDPOL_2021\\01. ETRUSCO\\obj\\80x80x3.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 3.0,
+"fill": 1.0,
+"depth": 0.8,
+"nv": 837
+},
+"01. 3D_SCHEDPOL_2021\\01. ETRUSCO\\obj\\90x120x3.obj": {
+"w": 120.0,
+"l": 90.0,
+"h": 3.0,
+"fill": 1.0,
+"depth": 0.8,
+"nv": 3257
+},
+"01. 3D_SCHEDPOL_2021\\01. ETRUSCO\\obj\\90x90 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 3.0,
+"fill": 0.914,
+"depth": 0.8,
+"nv": 3153
+},
+"01. 3D_SCHEDPOL_2021\\01. ETRUSCO\\obj\\90x90x3.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 3.0,
+"fill": 1.0,
+"depth": 0.8,
+"nv": 3257
+},
+"01. 3D_SCHEDPOL_2021\\02. DE LUXE\\obj\\100x100x3,5.obj": {
+"w": 100.4,
+"l": 100.4,
+"h": 3.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 12401
+},
+"01. 3D_SCHEDPOL_2021\\02. DE LUXE\\obj\\90x90x3,5 R55.obj": {
+"w": 90.4,
+"l": 90.4,
+"h": 3.5,
+"fill": 0.919,
+"depth": 1.8,
+"nv": 11809
+},
+"01. 3D_SCHEDPOL_2021\\02. DE LUXE\\obj\\90x90x3,5.obj": {
+"w": 90.4,
+"l": 90.4,
+"h": 3.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 12401
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\100x100x5 R55.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 5.5,
+"fill": 0.933,
+"depth": null,
+"nv": 1410
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\80x100x5.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\80x110x5.obj": {
+"w": 110.0,
+"l": 80.0,
+"h": 6.0,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\80x120x5.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\80x140x5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\80x80x5 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 0.896,
+"depth": null,
+"nv": 1410
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\80x80x5.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\90x100x5.obj": {
+"w": 100.0,
+"l": 90.0,
+"h": 6.0,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\90x120x5.obj": {
+"w": 120.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\90x140x5.obj": {
+"w": 140.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\90x90x5 r55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 0.918,
+"depth": null,
+"nv": 1410
+},
+"01. 3D_SCHEDPOL_2021\\03. OMEGA\\obj\\90x90x5.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\100x100x5 R55.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 5.5,
+"fill": 0.933,
+"depth": null,
+"nv": 1410
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\80x100x5.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\80x110x5.obj": {
+"w": 110.0,
+"l": 80.0,
+"h": 6.0,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\80x120x5.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\80x140x5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\80x80x5 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 0.896,
+"depth": null,
+"nv": 1410
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\80x80x5.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\90x100x5.obj": {
+"w": 100.0,
+"l": 90.0,
+"h": 6.0,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\90x120x5.obj": {
+"w": 120.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\90x140x5.obj": {
+"w": 140.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\90x90x5 r55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 0.918,
+"depth": null,
+"nv": 1410
+},
+"01. 3D_SCHEDPOL_2021\\04. OMEGA STONE\\obj\\90x90x5.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": null,
+"nv": 1657
+},
+"01. 3D_SCHEDPOL_2021\\05. AJAX B&W\\obj\\80x100x5.obj": {
+"w": 99.9,
+"l": 80.4,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.3,
+"nv": 3897
+},
+"01. 3D_SCHEDPOL_2021\\05. AJAX B&W\\obj\\90x120x5.obj": {
+"w": 120.1,
+"l": 90.1,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.3,
+"nv": 3897
+},
+"01. 3D_SCHEDPOL_2021\\05. AJAX B&W\\obj\\90x90x5 r55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 0.905,
+"depth": 1.3,
+"nv": 4577
+},
+"01. 3D_SCHEDPOL_2021\\05. AJAX B&W\\obj\\90x90x5.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.3,
+"nv": 3897
+},
+"01. 3D_SCHEDPOL_2021\\06. CAMPARO\\obj\\100x100x6,5.obj": {
+"w": 99.9,
+"l": 98.9,
+"h": 6.5,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 10370
+},
+"01. 3D_SCHEDPOL_2021\\06. CAMPARO\\obj\\80x100x6,5.obj": {
+"w": 99.9,
+"l": 79.9,
+"h": 6.5,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 10370
+},
+"01. 3D_SCHEDPOL_2021\\06. CAMPARO\\obj\\80x120x6,5.obj": {
+"w": 119.9,
+"l": 79.9,
+"h": 6.5,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 11170
+},
+"01. 3D_SCHEDPOL_2021\\06. CAMPARO\\obj\\90x100x6,5.obj": {
+"w": 100.1,
+"l": 90.1,
+"h": 6.5,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 10370
+},
+"01. 3D_SCHEDPOL_2021\\06. CAMPARO\\obj\\90x120x6,5.obj": {
+"w": 119.9,
+"l": 90.1,
+"h": 6.5,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 11170
+},
+"01. 3D_SCHEDPOL_2021\\06. CAMPARO\\obj\\90x90x6,5 R55.obj": {
+"w": 90.0,
+"l": 89.9,
+"h": 6.5,
+"fill": 0.913,
+"depth": 3.0,
+"nv": 9649
+},
+"01. 3D_SCHEDPOL_2021\\06. CAMPARO\\obj\\90x90x6,5.obj": {
+"w": 90.0,
+"l": 89.9,
+"h": 6.5,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 10370
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\100x100x5 R55.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 5.0,
+"fill": 0.934,
+"depth": 3.0,
+"nv": 2141
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\100x100x5.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2092
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\70x80x5.obj": {
+"w": 90.0,
+"l": 70.0,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2092
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\70x90x5.obj": {
+"w": 90.0,
+"l": 70.0,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2092
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x100x5 R55 lewy.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 5.0,
+"fill": 0.917,
+"depth": 3.0,
+"nv": 2141
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x100x5 R55 prawy.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 5.0,
+"fill": 0.917,
+"depth": 3.0,
+"nv": 2141
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x100x5.obj": {
+"w": 100.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x110x5.obj": {
+"w": 110.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x120x5.obj": {
+"w": 120.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x130x5.obj": {
+"w": 130.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x140x5.obj": {
+"w": 140.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x80x5 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 5.0,
+"fill": 0.897,
+"depth": 3.0,
+"nv": 2141
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x80x5.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2092
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\80x90x5.obj": {
+"w": 90.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\90x100x5.obj": {
+"w": 100.1,
+"l": 89.9,
+"h": 5.5,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 6265
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\90x120x5.obj": {
+"w": 120.1,
+"l": 89.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\90x140x5.obj": {
+"w": 140.1,
+"l": 89.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\90x160x5 dlugi.obj": {
+"w": 159.9,
+"l": 90.1,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\90x160x5.obj": {
+"w": 160.1,
+"l": 89.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\90x90x5 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.0,
+"fill": 0.918,
+"depth": 3.0,
+"nv": 2141
+},
+"01. 3D_SCHEDPOL_2021\\07. CORRINA\\obj\\90x90x5.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2092
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\100x100x4,5 R55.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 4.5,
+"fill": 0.934,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\100x100x4,5.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\5k 5h.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.0,
+"fill": 0.872,
+"depth": 2.1,
+"nv": 3327
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\70x100x4,5.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\70x110x4,5.obj": {
+"w": 110.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\70x120x4,5.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\70x140x4,5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\70x160x5,5.obj": {
+"w": 160.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x100x4,5.obj": {
+"w": 100.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x120x4,5.obj": {
+"w": 120.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x140x4,5.obj": {
+"w": 140.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x150x5,5.obj": {
+"w": 150.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x160x5,5.obj": {
+"w": 160.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x170x5,5.obj": {
+"w": 170.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x75x4,5.obj": {
+"w": 75.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x80x4,5.obj": {
+"w": 80.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\75x90x4,5.obj": {
+"w": 90.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x100x4,5.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x120x4,5.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x140x4,5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x150x5,5.obj": {
+"w": 150.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x160x5,5.obj": {
+"w": 160.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x170x5,5.obj": {
+"w": 170.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x80x4,5 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 0.897,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x80x4,5.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\80x90x4,5.obj": {
+"w": 90.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\90x100x4,5.obj": {
+"w": 100.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\90x120x4,5.obj": {
+"w": 120.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\90x140x4,5.obj": {
+"w": 140.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\90x160x5,5.obj": {
+"w": 160.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\90x180x5,5.obj": {
+"w": 180.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\90x90x4,5 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 0.919,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\08. CORRINA NEW\\obj\\90x90x4,5.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\09. MEDIUM\\obj\\80x100 MEDIUM 3D.obj": {
+"w": 39.4,
+"l": 31.5,
+"h": 6.3,
+"fill": 1.0,
+"depth": null,
+"nv": 3747
+},
+"01. 3D_SCHEDPOL_2021\\09. MEDIUM\\obj\\80x80 MEDIUM 3D.obj": {
+"w": 31.5,
+"l": 31.5,
+"h": 6.3,
+"fill": 1.0,
+"depth": null,
+"nv": 3681
+},
+"01. 3D_SCHEDPOL_2021\\09. MEDIUM\\obj\\80x80R55 MEDIUM 3D.obj": {
+"w": 31.5,
+"l": 31.5,
+"h": 6.3,
+"fill": 0.899,
+"depth": null,
+"nv": 7788
+},
+"01. 3D_SCHEDPOL_2021\\09. MEDIUM\\obj\\90x100 MEDIUM 3D.obj": {
+"w": 39.4,
+"l": 35.4,
+"h": 6.3,
+"fill": 1.0,
+"depth": null,
+"nv": 3559
+},
+"01. 3D_SCHEDPOL_2021\\09. MEDIUM\\obj\\90x120 MEDIUM 3D.obj": {
+"w": 47.2,
+"l": 35.4,
+"h": 6.3,
+"fill": 1.0,
+"depth": null,
+"nv": 4622
+},
+"01. 3D_SCHEDPOL_2021\\09. MEDIUM\\obj\\90x90 MEDIUM 3D.obj": {
+"w": 35.5,
+"l": 35.5,
+"h": 6.3,
+"fill": 1.0,
+"depth": null,
+"nv": 2793
+},
+"01. 3D_SCHEDPOL_2021\\09. MEDIUM\\obj\\90x90R55 MEDIUM 3D.obj": {
+"w": 35.5,
+"l": 35.5,
+"h": 6.3,
+"fill": 0.92,
+"depth": null,
+"nv": 7566
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 100-100-12.obj": {
+"w": 146.0,
+"l": 100.0,
+"h": 12.0,
+"fill": 0.863,
+"depth": 0.0,
+"nv": 41806
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 70-100-12.obj": {
+"w": 110.5,
+"l": 100.0,
+"h": 12.0,
+"fill": 0.84,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 70-120-12.obj": {
+"w": 120.0,
+"l": 110.5,
+"h": 12.0,
+"fill": 0.836,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 70-140-12.obj": {
+"w": 140.0,
+"l": 110.5,
+"h": 12.0,
+"fill": 0.833,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 70-80-12.obj": {
+"w": 110.1,
+"l": 80.0,
+"h": 12.0,
+"fill": 0.847,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 70-90-12.obj": {
+"w": 110.1,
+"l": 90.0,
+"h": 12.0,
+"fill": 0.843,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 80-100-12.obj": {
+"w": 127.2,
+"l": 100.0,
+"h": 12.0,
+"fill": 0.838,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 80-120-12.obj": {
+"w": 127.1,
+"l": 120.0,
+"h": 12.0,
+"fill": 0.834,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 80-140-12.obj": {
+"w": 140.0,
+"l": 127.1,
+"h": 12.0,
+"fill": 0.831,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 80-160-12.obj": {
+"w": 160.0,
+"l": 125.1,
+"h": 12.0,
+"fill": 0.834,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 80-80-12.obj": {
+"w": 146.0,
+"l": 89.9,
+"h": 12.0,
+"fill": 0.763,
+"depth": 0.0,
+"nv": 41806
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 80-90-12.obj": {
+"w": 127.2,
+"l": 90.0,
+"h": 12.0,
+"fill": 0.841,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 90-100-12.obj": {
+"w": 140.0,
+"l": 100.0,
+"h": 12.0,
+"fill": 0.844,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 90-120-12.obj": {
+"w": 139.0,
+"l": 120.0,
+"h": 12.0,
+"fill": 0.842,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 90-140-12.obj": {
+"w": 140.0,
+"l": 139.0,
+"h": 12.0,
+"fill": 0.84,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 90-160-12.obj": {
+"w": 160.0,
+"l": 139.3,
+"h": 12.0,
+"fill": 0.837,
+"depth": 0.0,
+"nv": 41770
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS 90-90-12.obj": {
+"w": 146.0,
+"l": 90.0,
+"h": 12.0,
+"fill": 0.836,
+"depth": 0.0,
+"nv": 41806
+},
+"01. 3D_SCHEDPOL_2021\\09. NEW HORIZONS\\obj\\NEW HORIZONS R90s-12.obj": {
+"w": 136.4,
+"l": 90.0,
+"h": 12.0,
+"fill": 0.756,
+"depth": 0.0,
+"nv": 41706
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\100x100x14 R55.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 14.0,
+"fill": 0.948,
+"depth": 3.0,
+"nv": 5460
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\100x100x14.obj": {
+"w": 99.9,
+"l": 99.9,
+"h": 13.9,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 5809
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\100x80x14 R55.obj": {
+"w": 99.8,
+"l": 79.9,
+"h": 13.9,
+"fill": 0.935,
+"depth": 3.0,
+"nv": 5460
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\70x80x14.obj": {
+"w": 80.1,
+"l": 70.1,
+"h": 13.9,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 3768
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\70x90x14.obj": {
+"w": 90.1,
+"l": 70.1,
+"h": 13.9,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 3768
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\80x100x14 R55.obj": {
+"w": 99.8,
+"l": 79.9,
+"h": 13.9,
+"fill": 0.935,
+"depth": 3.0,
+"nv": 5460
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\80x100x14.obj": {
+"w": 100.1,
+"l": 80.0,
+"h": 14.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 6265
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\80x120x14.obj": {
+"w": 120.1,
+"l": 80.0,
+"h": 14.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 6265
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\80x140x14.obj": {
+"w": 140.1,
+"l": 79.9,
+"h": 14.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2175
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\80x80x14 R55.obj": {
+"w": 79.2,
+"l": 79.0,
+"h": 14.0,
+"fill": 0.918,
+"depth": 3.0,
+"nv": 5460
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\80x80x14.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 13.9,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 5809
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\80x90x14.obj": {
+"w": 90.1,
+"l": 79.9,
+"h": 14.1,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 4378
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\85x120x14 R55 P.obj": {
+"w": 120.1,
+"l": 85.1,
+"h": 14.0,
+"fill": 0.949,
+"depth": 3.0,
+"nv": 2428
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\85x120x14 R55.obj": {
+"w": 120.1,
+"l": 85.1,
+"h": 14.0,
+"fill": 0.949,
+"depth": 3.0,
+"nv": 4299
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\90x100x14.obj": {
+"w": 100.1,
+"l": 89.9,
+"h": 14.1,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 6265
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\90x120x14.obj": {
+"w": 120.1,
+"l": 89.9,
+"h": 14.1,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 6265
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\90x140x14.obj": {
+"w": 140.1,
+"l": 89.9,
+"h": 14.1,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 3378
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\90x90x14 R55.obj": {
+"w": 90.1,
+"l": 90.1,
+"h": 14.0,
+"fill": 0.936,
+"depth": 3.0,
+"nv": 5460
+},
+"01. 3D_SCHEDPOL_2021\\10. COMPETIA\\obj\\90x90x14.obj": {
+"w": 90.1,
+"l": 90.1,
+"h": 13.9,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 5809
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\100x100x12 R55.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 12.0,
+"fill": 0.934,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\100x100x12.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\5k 12h.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 12.0,
+"fill": 0.872,
+"depth": 2.1,
+"nv": 3327
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\70x100x12.obj": {
+"w": 100.0,
+"l": 70.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\70x120x12.obj": {
+"w": 120.0,
+"l": 70.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\70x140x12.obj": {
+"w": 140.0,
+"l": 70.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\70x160x12.obj": {
+"w": 140.0,
+"l": 70.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\75x170x12.obj": {
+"w": 170.0,
+"l": 75.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\75x75x12.obj": {
+"w": 75.0,
+"l": 75.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\75x90x12.obj": {
+"w": 90.0,
+"l": 75.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\80x160x12.obj": {
+"w": 160.0,
+"l": 80.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\80x80x12 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 12.0,
+"fill": 0.897,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\80x80x12.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\90x90x12 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 12.0,
+"fill": 0.919,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\11. COMPETIA NEW\\obj\\90x90x12.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 12.0,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\12. GRANDO PLUS\\obj\\70x70x17.obj": {
+"w": 70.0,
+"l": 69.9,
+"h": 17.0,
+"fill": 0.999,
+"depth": 6.4,
+"nv": 3284
+},
+"01. 3D_SCHEDPOL_2021\\12. GRANDO PLUS\\obj\\80x80x17 R55.obj": {
+"w": 80.1,
+"l": 80.0,
+"h": 17.0,
+"fill": 0.894,
+"depth": 6.5,
+"nv": 3300
+},
+"01. 3D_SCHEDPOL_2021\\12. GRANDO PLUS\\obj\\80x80x17.obj": {
+"w": 80.1,
+"l": 80.0,
+"h": 17.0,
+"fill": 0.999,
+"depth": 6.4,
+"nv": 3284
+},
+"01. 3D_SCHEDPOL_2021\\12. GRANDO PLUS\\obj\\90x90x17 R55.obj": {
+"w": 89.9,
+"l": 89.4,
+"h": 17.0,
+"fill": 0.915,
+"depth": 6.5,
+"nv": 3300
+},
+"01. 3D_SCHEDPOL_2021\\12. GRANDO PLUS\\obj\\90x90x17.obj": {
+"w": 90.1,
+"l": 90.1,
+"h": 17.0,
+"fill": 0.999,
+"depth": 6.4,
+"nv": 3284
+},
+"01. 3D_SCHEDPOL_2021\\13. GRAWELLO\\obj\\80x100x26.obj": {
+"w": 99.9,
+"l": 80.0,
+"h": 25.9,
+"fill": 1.0,
+"depth": 11.1,
+"nv": 4564
+},
+"01. 3D_SCHEDPOL_2021\\13. GRAWELLO\\obj\\80x80x26 R55.obj": {
+"w": 80.1,
+"l": 79.8,
+"h": 25.9,
+"fill": 0.89,
+"depth": 11.1,
+"nv": 4152
+},
+"01. 3D_SCHEDPOL_2021\\13. GRAWELLO\\obj\\80x80x26.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 25.9,
+"fill": 0.999,
+"depth": 11.1,
+"nv": 4564
+},
+"01. 3D_SCHEDPOL_2021\\13. GRAWELLO\\obj\\90x120x26.obj": {
+"w": 120.0,
+"l": 90.0,
+"h": 25.9,
+"fill": 1.0,
+"depth": 11.1,
+"nv": 4564
+},
+"01. 3D_SCHEDPOL_2021\\13. GRAWELLO\\obj\\90x90x26 R55.obj": {
+"w": 90.0,
+"l": 89.8,
+"h": 25.9,
+"fill": 0.912,
+"depth": 11.1,
+"nv": 4152
+},
+"01. 3D_SCHEDPOL_2021\\13. GRAWELLO\\obj\\90x90x26.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 25.9,
+"fill": 1.0,
+"depth": 11.1,
+"nv": 4564
+},
+"01. 3D_SCHEDPOL_2021\\14. GO BABY\\obj\\80x80x26 R55.obj": {
+"w": 80.1,
+"l": 80.1,
+"h": 40.6,
+"fill": 0.905,
+"depth": 28.8,
+"nv": 5284
+},
+"01. 3D_SCHEDPOL_2021\\14. GO BABY\\obj\\90x90x26 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 40.6,
+"fill": 0.925,
+"depth": 28.8,
+"nv": 5284
+},
+"01. 3D_SCHEDPOL_2021\\15. DANTE\\obj\\80x80x41 R55.obj": {
+"w": 80.1,
+"l": 80.1,
+"h": 41.2,
+"fill": 0.905,
+"depth": 27.4,
+"nv": 5114
+},
+"01. 3D_SCHEDPOL_2021\\15. DANTE\\obj\\80x80x41.obj": {
+"w": 80.1,
+"l": 80.1,
+"h": 41.0,
+"fill": 0.999,
+"depth": 27.4,
+"nv": 5366
+},
+"01. 3D_SCHEDPOL_2021\\15. DANTE\\obj\\90x90x41 R55.obj": {
+"w": 90.0,
+"l": 89.9,
+"h": 41.2,
+"fill": 0.925,
+"depth": 27.6,
+"nv": 5114
+},
+"01. 3D_SCHEDPOL_2021\\15. DANTE\\obj\\90x90x41.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 41.3,
+"fill": 0.999,
+"depth": 27.6,
+"nv": 5366
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\70x90x5.obj": {
+"w": 90.0,
+"l": 70.0,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2092
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\80x100x5.obj": {
+"w": 100.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\80x120x5.obj": {
+"w": 120.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\80x140x5.obj": {
+"w": 140.1,
+"l": 79.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\80x80x5 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 5.0,
+"fill": 0.897,
+"depth": 3.0,
+"nv": 2141
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\80x80x5.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2092
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\90x100x5.obj": {
+"w": 100.1,
+"l": 89.9,
+"h": 5.5,
+"fill": 1.0,
+"depth": 3.0,
+"nv": 6265
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\90x120x5.obj": {
+"w": 120.1,
+"l": 89.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\90x140x5.obj": {
+"w": 140.1,
+"l": 89.9,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\90x160x5 dlugi.obj": {
+"w": 159.9,
+"l": 90.1,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2231
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\90x90x5 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.0,
+"fill": 0.918,
+"depth": 3.0,
+"nv": 2141
+},
+"01. 3D_SCHEDPOL_2021\\16. CASPAR\\obj\\90x90x5.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.0,
+"fill": 1.0,
+"depth": null,
+"nv": 2092
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\100x100x4,5 R55.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 4.5,
+"fill": 0.934,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\100x100x4,5.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\5k 5h.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.0,
+"fill": 0.872,
+"depth": 2.1,
+"nv": 3327
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\70x100x4,5.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\70x110x4,5.obj": {
+"w": 110.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\70x120x4,5.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\70x140x4,5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\70x160x5,5.obj": {
+"w": 160.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x100x4,5.obj": {
+"w": 100.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x120x4,5.obj": {
+"w": 120.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x140x4,5.obj": {
+"w": 140.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x150x5,5.obj": {
+"w": 150.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x160x5,5.obj": {
+"w": 160.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x170x5,5.obj": {
+"w": 170.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x75x4,5.obj": {
+"w": 75.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x80x4,5.obj": {
+"w": 80.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\75x90x4,5.obj": {
+"w": 90.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x100x4,5.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x120x4,5.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x140x4,5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x150x5,5.obj": {
+"w": 150.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x160x5,5.obj": {
+"w": 160.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x170x5,5.obj": {
+"w": 170.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x80x4,5 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 0.897,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x80x4,5.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\80x90x4,5.obj": {
+"w": 90.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\90x100x4,5.obj": {
+"w": 100.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\90x120x4,5.obj": {
+"w": 120.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\90x140x4,5.obj": {
+"w": 140.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\90x160x5,5.obj": {
+"w": 160.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\90x180x5,5.obj": {
+"w": 180.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\90x90x4,5 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 0.919,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\90x90x4,5.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\BL2830 80x80 model 3D.obj": {
+"w": 800.0,
+"l": 800.0,
+"h": 45.0,
+"fill": 1.0,
+"depth": 22.6,
+"nv": 3627
+},
+"01. 3D_SCHEDPOL_2021\\17. CASPAR NEW\\obj\\BL2831 90x90 model 3D.obj": {
+"w": 901.0,
+"l": 901.0,
+"h": 45.0,
+"fill": 1.0,
+"depth": 16.9,
+"nv": 6478
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\100x100x4,5 R55.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 4.5,
+"fill": 0.934,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\100x100x4,5.obj": {
+"w": 100.0,
+"l": 100.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\5k 5h.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 5.0,
+"fill": 0.872,
+"depth": 2.1,
+"nv": 3327
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\70x100x4,5.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\70x110x4,5.obj": {
+"w": 110.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\70x120x4,5.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\70x140x4,5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\70x160x5,5.obj": {
+"w": 160.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x100x4,5.obj": {
+"w": 100.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x120x4,5.obj": {
+"w": 120.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x140x4,5.obj": {
+"w": 140.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x150x5,5.obj": {
+"w": 150.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x160x5,5.obj": {
+"w": 160.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x170x5,5.obj": {
+"w": 170.0,
+"l": 75.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x75x4,5.obj": {
+"w": 75.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x80x4,5.obj": {
+"w": 80.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\75x90x4,5.obj": {
+"w": 90.0,
+"l": 75.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x100x4,5.obj": {
+"w": 100.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x120x4,5.obj": {
+"w": 120.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x140x4,5.obj": {
+"w": 140.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x150x5,5.obj": {
+"w": 150.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x160x5,5.obj": {
+"w": 160.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x170x5,5.obj": {
+"w": 170.0,
+"l": 80.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x80x4,5 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 0.897,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x80x4,5.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\80x90x4,5.obj": {
+"w": 90.0,
+"l": 80.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\90x100x4,5.obj": {
+"w": 100.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\90x120x4,5.obj": {
+"w": 120.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\90x140x4,5.obj": {
+"w": 140.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\90x160x5,5.obj": {
+"w": 160.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\90x180x5,5.obj": {
+"w": 180.0,
+"l": 90.0,
+"h": 5.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\90x90x4,5 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 0.919,
+"depth": null,
+"nv": 3411
+},
+"01. 3D_SCHEDPOL_2021\\18. CASPAR NEW STONE\\obj\\90x90x4,5.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 4.5,
+"fill": 1.0,
+"depth": 1.7,
+"nv": 3552
+},
+"01. 3D_SCHEDPOL_2021\\19. EKO 2\\obj\\80x80x16 R55.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 17.0,
+"fill": 0.894,
+"depth": 5.0,
+"nv": 1125
+},
+"01. 3D_SCHEDPOL_2021\\19. EKO 2\\obj\\80x80x16.obj": {
+"w": 80.0,
+"l": 80.0,
+"h": 17.0,
+"fill": 1.0,
+"depth": null,
+"nv": 1799
+},
+"01. 3D_SCHEDPOL_2021\\19. EKO 2\\obj\\90x90x16 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 17.0,
+"fill": 0.916,
+"depth": 5.0,
+"nv": 1125
+},
+"01. 3D_SCHEDPOL_2021\\19. EKO 2\\obj\\90x90x16.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 17.0,
+"fill": 1.0,
+"depth": 4.6,
+"nv": 1929
+},
+"01. 3D_SCHEDPOL_2021\\20. ZEFIR\\obj\\80x80x26 R55.obj": {
+"w": 31.5,
+"l": 31.4,
+"h": 4.7,
+"fill": 0.889,
+"depth": 4.4,
+"nv": 4096
+},
+"01. 3D_SCHEDPOL_2021\\20. ZEFIR\\obj\\80x80x26.obj": {
+"w": 31.5,
+"l": 31.5,
+"h": 4.7,
+"fill": 0.999,
+"depth": 4.4,
+"nv": 4532
+},
+"01. 3D_SCHEDPOL_2021\\20. ZEFIR\\obj\\90x90x26 R55.obj": {
+"w": 35.4,
+"l": 35.4,
+"h": 4.7,
+"fill": 0.912,
+"depth": 4.4,
+"nv": 4096
+},
+"01. 3D_SCHEDPOL_2021\\20. ZEFIR\\obj\\90x90x26.obj": {
+"w": 35.5,
+"l": 35.4,
+"h": 4.7,
+"fill": 1.0,
+"depth": 4.4,
+"nv": 4532
+},
+"01. 3D_SCHEDPOL_2021\\21. DAFNE\\obj\\80x80x35 R55.obj": {
+"w": 80.1,
+"l": 80.0,
+"h": 35.0,
+"fill": 0.889,
+"depth": 22.3,
+"nv": 3564
+},
+"01. 3D_SCHEDPOL_2021\\21. DAFNE\\obj\\90x90x35 R55.obj": {
+"w": 89.9,
+"l": 89.8,
+"h": 35.0,
+"fill": 0.911,
+"depth": 22.3,
+"nv": 3564
+},
+"01. 3D_SCHEDPOL_2021\\22. BONA\\obj\\80x80x26-41 R55.obj": {
+"w": 80.1,
+"l": 80.1,
+"h": 40.6,
+"fill": 0.905,
+"depth": 28.8,
+"nv": 5284
+},
+"01. 3D_SCHEDPOL_2021\\22. BONA\\obj\\90x90x26-41 R55.obj": {
+"w": 90.0,
+"l": 90.0,
+"h": 40.6,
+"fill": 0.925,
+"depth": 28.8,
+"nv": 5284
+},
+"01. 3D_SCHEDPOL_2021\\23. DORIS\\obj\\80x80x41 R55.obj": {
+"w": 31.5,
+"l": 31.5,
+"h": 11.1,
+"fill": 0.906,
+"depth": 10.8,
+"nv": 5058
+},
+"01. 3D_SCHEDPOL_2021\\23. DORIS\\obj\\80x80x41.obj": {
+"w": 31.5,
+"l": 31.5,
+"h": 11.1,
+"fill": 0.999,
+"depth": 10.8,
+"nv": 5350
+},
+"01. 3D_SCHEDPOL_2021\\23. DORIS\\obj\\90x90x41 R55.obj": {
+"w": 35.4,
+"l": 35.4,
+"h": 11.1,
+"fill": 0.925,
+"depth": 10.9,
+"nv": 5058
+},
+"01. 3D_SCHEDPOL_2021\\23. DORIS\\obj\\90x90x41.obj": {
+"w": 35.4,
+"l": 35.4,
+"h": 11.1,
+"fill": 0.999,
+"depth": 10.9,
+"nv": 5350
+},
+"01. 3D_SCHEDPOL_2021\\24. PANEL GRAWELLO - ZEFIR\\obj\\80x80x22,5 R55.obj": {
+"w": 80.1,
+"l": 79.8,
+"h": 23.5,
+"fill": 0.414,
+"depth": null,
+"nv": 247
+},
+"01. 3D_SCHEDPOL_2021\\24. PANEL GRAWELLO - ZEFIR\\obj\\90x90x22,5 R55.obj": {
+"w": 89.6,
+"l": 89.2,
+"h": 24.2,
+"fill": 0.433,
+"depth": null,
+"nv": 190
+},
+"01. 3D_SCHEDPOL_2021\\25. PANEL GO BABY - BONA\\obj\\80x80x26 R55.obj": {
+"w": 80.9,
+"l": 80.1,
+"h": 27.5,
+"fill": 0.448,
+"depth": null,
+"nv": 840
+},
+"01. 3D_SCHEDPOL_2021\\25. PANEL GO BABY - BONA\\obj\\90x90x26 R55.obj": {
+"w": 90.5,
+"l": 90.4,
+"h": 27.5,
+"fill": 0.464,
+"depth": null,
+"nv": 840
+},
+"01. 3D_SCHEDPOL_2021\\26. PANEL DAFNE\\obj\\80x80x31,5 R55.obj": {
+"w": 80.8,
+"l": 79.9,
+"h": 30.9,
+"fill": 0.449,
+"depth": null,
+"nv": 336
+},
+"01. 3D_SCHEDPOL_2021\\26. PANEL DAFNE\\obj\\90x90x31,5 R55.obj": {
+"w": 90.7,
+"l": 90.5,
+"h": 30.9,
+"fill": 0.462,
+"depth": null,
+"nv": 336
+},
+"01. 3D_SCHEDPOL_2021\\27. PANEL DANTE - DORIS\\obj\\80x80x37,5 R55.obj": {
+"w": 81.3,
+"l": 81.3,
+"h": 37.3,
+"fill": 0.45,
+"depth": null,
+"nv": 1036
+},
+"01. 3D_SCHEDPOL_2021\\27. PANEL DANTE - DORIS\\obj\\90x90x37,5 R55.obj": {
+"w": 91.3,
+"l": 91.0,
+"h": 37.3,
+"fill": 0.458,
+"depth": null,
+"nv": 1036
+},
+"01. 3D_SCHEDPOL_2021\\30. FERRA\\obj\\140x70.obj": {
+"w": 140.0,
+"l": 70.0,
+"h": 41.9,
+"fill": 1.0,
+"depth": 38.8,
+"nv": 1516
+},
+"01. 3D_SCHEDPOL_2021\\30. FERRA\\obj\\150x70.obj": {
+"w": 150.0,
+"l": 70.0,
+"h": 41.9,
+"fill": 1.0,
+"depth": 38.8,
+"nv": 1516
+},
+"01. 3D_SCHEDPOL_2021\\30. FERRA\\obj\\160x70.obj": {
+"w": 160.0,
+"l": 70.0,
+"h": 41.9,
+"fill": 1.0,
+"depth": null,
+"nv": 1516
+},
+"01. 3D_SCHEDPOL_2021\\30. FERRA\\obj\\170x70.obj": {
+"w": 170.0,
+"l": 70.0,
+"h": 41.9,
+"fill": 1.0,
+"depth": null,
+"nv": 1516
+},
+"01. 3D_SCHEDPOL_2021\\31. SUN\\obj\\150x75.obj": {
+"w": 149.9,
+"l": 75.0,
+"h": 41.9,
+"fill": 1.0,
+"depth": null,
+"nv": 2316
+},
+"01. 3D_SCHEDPOL_2021\\31. SUN\\obj\\160x75.obj": {
+"w": 159.9,
+"l": 75.0,
+"h": 41.9,
+"fill": 1.0,
+"depth": null,
+"nv": 2316
+},
+"01. 3D_SCHEDPOL_2021\\31. SUN\\obj\\170x75.obj": {
+"w": 170.0,
+"l": 75.0,
+"h": 39.4,
+"fill": 1.0,
+"depth": 36.6,
+"nv": 3137
+},
+"01. 3D_SCHEDPOL_2021\\32. VERRA\\obj\\170x75.obj": {
+"w": 170.0,
+"l": 75.0,
+"h": 41.2,
+"fill": 1.0,
+"depth": 39.6,
+"nv": 2531
+},
+"01. 3D_SCHEDPOL_2021\\32. VERRA\\obj\\180x80.obj": {
+"w": 180.0,
+"l": 80.0,
+"h": 41.2,
+"fill": 1.0,
+"depth": 39.6,
+"nv": 2531
+},
+"Odpływ liniowy pod płytki\\OLP60ST.obj": {
+"w": 60.2,
+"l": 15.9,
+"h": 3.3,
+"fill": 1.0,
+"depth": 2.5,
+"nv": 1666
+},
+"Odpływ liniowy pod płytki\\OLP70ST.obj": {
+"w": 70.2,
+"l": 15.9,
+"h": 3.3,
+"fill": 1.0,
+"depth": 2.5,
+"nv": 1666
+},
+"Odpływ liniowy pod płytki\\OLP80ST.obj": {
+"w": 80.2,
+"l": 15.9,
+"h": 3.3,
+"fill": 1.0,
+"depth": 2.5,
+"nv": 1666
+}
+}

@@ -46,5 +46,7 @@ window.SP.videoGroups = [
 /* prezentacje i katalog do Akademii — pliki w assets/akademia/ (ok = gotowe do publikacji) */
 window.SP.academyDocs = [
   { k: 'przeglad', t: 'Przegląd Produktów LM', d: 'Katalog produktów Schedpol i Sensea w ofercie Leroy Merlin — serie, wymiary, kolory, numery ref. LM, gwarancje z zakresem. Wydanie 11.2026 · PDF, 28 stron, 18 MB.',
-    f: 'Przeglad-Produktow-LM_2026.11.pdf', ok: true }
+    f: 'Przeglad-Produktow-LM_2026.11.pdf', ok: true },
+  { k: 'prezentacja', kind: 'Prezentacja PDF', t: 'Prezentacja LM PRO', d: 'Schedpol dla Leroy Merlin: firma, współpraca, technologie brodzików, oferta w LM i rynek PRO. Wydanie 19.11.2026 · PDF, 42 slajdy, 13 MB.',
+    f: 'Prezentacja-LM-PRO_2026.11.pdf', ok: true }
 ];
