@@ -104,6 +104,7 @@
   }
   function dot(hx) { return hx ? '<i class="dot" style="--c:' + esc(hx) + '"></i>' : ''; }
 
+  const BOK_AREA = ['Polska zachodnia', 'Polska wschodnia i północna', 'Polska południowa'];
   function render(p) {
     const s = serieOf(p), sensea = p.brand === 'Sensea';
     const stone = p.cat === 'brodzik' && /kamień/.test(p.c || '');
@@ -139,7 +140,10 @@
       </section>
 
       <section class="main">
-        <figure class="pack">${img(p.im, titleOf(p))}</figure>
+        <figure class="pack">${img(p.im, titleOf(p))}
+          <span class="pk-brand"><img src="../assets/znaki/${sensea ? 'sensea.png' : 'schedpol.svg'}" alt="Marka ${esc(p.brand)}"></span>
+          ${p.g ? '<span class="pk-gama">Gama LM <b>' + esc(p.g) + '</b></span>' : ''}
+        </figure>
         <div class="side">
           <div class="refbox">
             <span class="rb-k">Nr ref. Leroy Merlin</span>
@@ -177,6 +181,15 @@
           ${zest.length ? '<p class="zest"><b>Uzupełnia:</b> ' + zest.map(function (z) {
             return esc(z.name) + ' <span class="num">(' + z.refs.slice(0, 3).map(esc).join(', ') + (z.refs.length > 3 ? '…' : '') + ')</span>';
           }).join(' · ') + '</p>' : ''}
+        </div>
+      </section>
+
+      <section class="kont" aria-label="Kontakt Schedpol">
+        <div class="kont-h"><b>Zamówienia i pytania o produkt</b><span>Biuro Obsługi Klienta Schedpol · ${esc((SP.contacts && SP.contacts.hours) || '')}</span></div>
+        <div class="kont-l">${((SP.contacts && SP.contacts.bok) || []).map(function (b, i) {
+          return '<div title="' + esc(BOK_AREA[i] || '') + '"><b>' + esc(b.n) + ' <span class="num">· ' + esc(b.tel) + '</span></b><span>' + esc(b.mail) + '</span></div>';
+        }).join('')}
+          <div><b>Doradca techniczny <span class="num">· 502 356 267</span></b><span>doradcatechniczny@schedpol.pl</span></div>
         </div>
       </section>
 

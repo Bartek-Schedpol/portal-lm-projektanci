@@ -105,3 +105,36 @@ img.is-mult { mix-blend-mode: multiply; }
 .ft { margin-top: auto; margin-bottom: 9mm; padding-top: 3.2mm; border-top: .3mm solid var(--foot); display: grid; grid-template-columns: 1fr 96mm; gap: 8mm; font-size: 7.3pt; }
 .ft span { display: block; margin-top: .6mm; font-weight: 300; }
 .ft p { font-weight: 300; font-size: 6.3pt; line-height: 1.4; color: var(--fine); text-align: right; }
+
+/* ===== 19.11: znak marki i gama na packshocie, kontakt Schedpol ===== */
+.pack { position: relative; }
+.pk-brand { position: absolute; left: 3mm; top: 3mm; display: flex; align-items: center; height: 7mm; padding: 0 2.6mm; background: #fff; border: .2mm solid var(--frame); border-radius: 1mm; }
+.pk-brand img { height: 3.6mm; width: auto; }
+.pk-gama { position: absolute; right: 3mm; top: 3mm; display: flex; align-items: center; gap: 1.4mm; height: 7mm; padding: 0 2.6mm; background: #fff; border: .2mm solid var(--frame); border-radius: 1mm;
+  font-weight: 300; font-size: 6.8pt; letter-spacing: .08em; text-transform: uppercase; color: var(--g2); }
+.pk-gama b { font-weight: 700; font-size: 10pt; letter-spacing: 0; color: var(--g); }
+.draw { height: 82mm; }
+.kont { margin-top: 4mm; padding: 2.6mm 3.4mm 2.8mm; border: .26mm solid var(--frame); border-radius: 1.3mm; }
+.kont-h { display: flex; align-items: baseline; justify-content: space-between; gap: 4mm; padding-bottom: 1.6mm; margin-bottom: 1.8mm; border-bottom: .2mm solid var(--row); }
+.kont-h b { font-weight: 700; font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; }
+.kont-h span { font-weight: 300; font-size: 7pt; color: var(--g2); }
+.kont-l { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+.kont-l div { display: flex; flex-direction: column; gap: .3mm; font-size: 7.2pt; line-height: 1.3; }
+.kont-l b { font-weight: 700; font-size: 7.6pt; }
+.kont-l small { font-size: 6.4pt; }
+.kont-l span { font-weight: 400; color: var(--g2); }
+
+/* odchudzenie układu pod blok kontaktu (karta nadal 1 × A4) */
+.pack { height: 66mm; }
+.pack img { height: 56mm; }
+.draw { height: 76mm; margin-top: 4mm; }
+.low { margin-top: 4mm; }
+.main { margin-top: 4mm; }
+.ttl { margin-top: 5.5mm; }
+.kont { margin-top: 3.4mm; padding: 2.2mm 3.2mm 2.4mm; }
+.kont-h { padding-bottom: 1.2mm; margin-bottom: 1.4mm; }
+.kont-l b span { font-weight: 400; color: var(--g); }
+.kont-l div { gap: .2mm; }
+.pack .pk-brand img { width: auto; height: 3.6mm; max-width: none; object-fit: contain; mix-blend-mode: normal; }
+.pack .pk-brand img[src$="sensea.png"] { height: 4.4mm; }
+.draw { height: 70mm; }
