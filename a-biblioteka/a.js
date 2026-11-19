@@ -965,9 +965,9 @@
     const k = sizeKey(p); if (!k || p.cat === 'odpływ liniowy') return [];
     const seen = {};
     return SP.products.filter(function (x) {
-      return x.ref !== p.ref && !excl[x.ref] && sizeKey(x) === k && x.cat === p.cat;
+      return x.ref !== p.ref && !excl[x.ref] && sizeKey(x) === k && x.cat === p.cat && (x.shape || '') === (p.shape || '');   // ten sam wymiar i kształt
     }).sort(function (a, b) {
-      return ((a.fam === p.fam ? 1 : 0) - (b.fam === p.fam ? 1 : 0)) || ((a.shape === p.shape ? 0 : 1) - (b.shape === p.shape ? 0 : 1)) || a.s.localeCompare(b.s, 'pl');
+      return ((a.fam === p.fam ? 1 : 0) - (b.fam === p.fam ? 1 : 0)) || a.s.localeCompare(b.s, 'pl');
     }).filter(function (x) { const kk = x.fam + '|' + x.c + '|' + x.shape; if (seen[kk]) return false; seen[kk] = 1; return true; });
   }
   /* filmy z kanału YouTube Schedpol (assets/filmy.js) przypisane do serii / kategorii */
@@ -1146,8 +1146,8 @@
       </section>` : ''}
 
       ${same.length ? `<section class="pd-sec" aria-labelledby="ssT">
-        <div class="sec-h"><div><h2 id="ssT">Inne produkty w tym rozmiarze</h2><p><span class="mono">${esc(sizeKey(p))}</span> — inne serie i kolory o tych samych wymiarach boków.</p></div>
-          <a class="link" href="${H('katalog', { cat: p.cat, rozmiar: sizeKey(p) })}">Wszystkie w katalogu ${ic('arrow-right', 14)}</a></div>
+        <div class="sec-h"><div><h2 id="ssT">Inne produkty w tym rozmiarze</h2><p><span class="mono">${esc(sizeKey(p))}</span> ${p.shape ? ' · ' + esc(p.shape) : ''} — inne serie i kolory o tych samych wymiarach boków i kształcie.</p></div>
+          <a class="link" href="${H('katalog', p.shape ? { cat: p.cat, ksztalt: p.shape, rozmiar: sizeKey(p) } : { cat: p.cat, rozmiar: sizeKey(p) })}">Wszystkie w katalogu ${ic('arrow-right', 14)}</a></div>
         <div class="grid same-grid">${same.map(function (x, i) { return cardHTML(x, i); }).join('')}</div>
       </section>` : ''}
 
