@@ -1048,6 +1048,10 @@
                 <a class="mono" href="tel:+48${esc(b.tel.replace(/\s/g, ''))}">${ic('phone', 15)} ${esc(b.tel)}</a>
                 <a href="mailto:${esc(b.mail)}">${ic('mail', 15)} ${esc(b.mail)}</a></div></div>`;
             }).join('')}</div>
+            <dl class="pd-order-terms">
+              <div><dt>Minimum logistyczne</dt><dd><b>${esc(COOP[2].v)}</b> ${esc(COOP[2].u)}</dd></div>
+              <div><dt>Dropshipping od 1 produktu</dt><dd><b>${esc(COOP[3].v)}</b> ${esc(COOP[3].u)}</dd></div>
+            </dl>
           </div>
         </section>
 

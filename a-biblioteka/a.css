@@ -1063,3 +1063,14 @@ html.pv-lock { overflow: hidden; }
   .pd-order-l { grid-template-columns: 1fr; }
   .pd-order .sb.bok { flex-direction: row; align-items: center; }
 }
+
+
+/* ===== 19.11 (6): znak gwarancji w kształcie loga; warunki zamówienia ===== */
+.gal-gw { width: 128px; padding: 0; border-radius: 0; background: none; box-shadow: none; }
+.gal-gw img { filter: drop-shadow(0 8px 18px rgba(20, 20, 20, .28)); }
+.pd-order-terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+.pd-order-terms > div { padding: 14px 16px; border-radius: 14px; background: var(--bg); box-shadow: inset 4px 0 0 var(--brand); }
+.pd-order-terms dt { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.pd-order-terms dd { margin-top: 6px; font-size: 14px; color: var(--ink-2); }
+.pd-order-terms dd b { font-size: 24px; font-weight: 700; color: var(--ink); }
+@media (max-width: 720px) { .pd-order-terms { grid-template-columns: 1fr; } .gal-gw { width: 88px; } }
