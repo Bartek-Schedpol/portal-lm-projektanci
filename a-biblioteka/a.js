@@ -147,9 +147,38 @@
     mvLoading.src = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
     document.head.appendChild(mvLoading);
   }
-  function mvHTML(src, alt) {
+  /* wykończenie modelu wg wariantu: tekstura kamienia z próbek (assets/img/tex-*), kolor RAL z danych produktu, połysk/mat */
+  const STONE_TEX = { 'biały kamień': 'tex-white-stone', 'czarny kamień': 'tex-black-stone', 'kaszmirowy kamień': 'tex-cashmere', 'szary kamień': 'tex-grey-stone', 'cementowy kamień': 'tex-white-stone' };
+  function finishFor(p) {
+    const c = (p && p.c || '').toLowerCase();
+    const stone = /kamie/.test(c);
+    return {
+      hx: p && p.hx ? p.hx : '#F4F4F2',
+      tex: stone ? (STONE_TEX[c] || 'tex-white-stone') : '',
+      tint: c === 'cementowy kamień',
+      rough: stone ? 0.92 : (/mat/.test(c) ? 0.72 : 0.28)
+    };
+  }
+  async function applyFinish(mv) {
+    const p = SP.byRef(mv.getAttribute('data-ref') || '');
+    if (!p || !mv.model) return;
+    const f = finishFor(p);
+    let tex = null;
+    if (f.tex) { try { tex = await mv.createTexture(SP.src(f.tex)); } catch (e) { tex = null; } }
+    mv.model.materials.forEach(function (m) {
+      const pbr = m.pbrMetallicRoughness;
+      pbr.setMetallicFactor(0);
+      pbr.setRoughnessFactor(f.rough);
+      if (tex) { pbr.baseColorTexture.setTexture(tex); pbr.setBaseColorFactor(f.tint ? f.hx : '#FFFFFF'); }
+      else pbr.setBaseColorFactor(f.hx);
+    });
+  }
+  document.addEventListener('load', function (e) {
+    if (e.target && e.target.tagName === 'MODEL-VIEWER') applyFinish(e.target);
+  }, true);
+  function mvHTML(src, alt, ref) {
     loadMV();
-    return '<model-viewer src="' + esc(src) + '" alt="' + esc(alt) + '" camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="800" rotation-per-second="18deg" ' +
+    return '<model-viewer src="' + esc(src) + '" data-ref="' + esc(ref || '') + '" alt="' + esc(alt) + '" camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="800" rotation-per-second="18deg" ' +
       'shadow-intensity="1.4" shadow-softness="0.6" exposure="0.78" tone-mapping="neutral" environment-image="neutral" camera-orbit="35deg 62deg auto" ar ar-modes="webxr scene-viewer quick-look"></model-viewer>';
   }
   function filesFor(p) {
@@ -164,7 +193,7 @@
       const glb = (cad.files.filter(function (x) { return x.ext === 'GLB'; })[0] || {}).f;
       const CADD = { DWG: 'Model 3D DWG (AutoCAD)', OBJ: 'Model 3D OBJ w archiwum ZIP (SketchUp, Blender, 3ds Max)', '3DS': 'Model 3D 3DS (3ds Max, CAD Decor)' };
       cad.files.filter(function (x) { return x.ext !== 'GLB'; }).forEach(function (x) {
-        f.push({ ext: x.ext, name: x.f, desc: CADD[x.ext] + ' · wymiary w cm', mb: x.kb / 1024, href: CAD_BASE + x.f, glb: glb ? CAD_BASE + glb : '' });
+        f.push({ ext: x.ext, name: x.f, desc: CADD[x.ext] + (cad.approx ? ' · MODEL ZASTĘPCZY: najbliższy dostępny wymiar ' + String(cad.dims[0]).replace('.', ',') + ' × ' + String(cad.dims[1]).replace('.', ',') + ' cm (ten sam kształt)' : ' · wymiary w cm'), mb: x.kb / 1024, href: CAD_BASE + x.f, glb: glb ? CAD_BASE + glb : '' });
       });
     } else if (p.cat !== 'akcesoria') f.push({ ext: 'DWG', name: base + '_rysunek.dwg', desc: 'Rysunek 2D DWG', mb: rnd(p.ref + 'e', 0.15, 0.6) });
     if (['brodzik', 'wanna', 'panel ścienny', 'odpływ liniowy'].indexOf(p.cat) !== -1) {
@@ -206,7 +235,7 @@
       box.addEventListener('click', function (e) { if (e.target === box || e.target.closest('[data-pv-close]')) closePreview(); });
     }
     const v = f.pv;
-    const body = v.t === '3d' ? '<div class="pv-3d">' + mvHTML(v.src, f.desc) + '</div>'
+    const body = v.t === '3d' ? '<div class="pv-3d">' + mvHTML(v.src, f.desc, PD.p && PD.p.ref) + '</div>'
       : v.t === 'pdf' ? '<iframe src="' + esc(v.src) + '" title="Podgląd: ' + esc(f.name) + '"></iframe>'
       : v.t === 'text' ? '<div class="pv-text">' + v.html + '</div>'
       : '<div class="pv-img' + (v.tb ? ' is-pack' : '') + '"><img src="' + esc(v.src) + '" alt="' + esc(f.desc) + '"></div>';
@@ -946,11 +975,13 @@
     let cap = 'Wizualizacja poglądowa';
     if (!own.length && all.length) { own = all; cap = 'Wizualizacja poglądowa · inny wariant kolorystyczny'; }
     const scenes = own.slice(0, Math.max(2, 9 - docs.length - ex.length)).map(function (k) { return { k: k, kind: 'scene', cap: cap }; });
-    const g3 = glbFor(p) ? [{ k: p.im, kind: '3d', cap: 'Model 3D · przeciągnij, aby obrócić', glb: glbFor(p) }] : [];
+    const cad3 = cadFor(p);
+    const g3 = glbFor(p) ? [{ k: p.im, kind: '3d', glb: glbFor(p),
+      cap: cad3.approx ? 'Model 3D zastępczy — najbliższy dostępny wymiar ' + cad3.dims[0] + ' × ' + cad3.dims[1] + ' cm · przeciągnij, aby obrócić' : 'Model 3D · przeciągnij, aby obrócić' }] : [];
     return [{ k: p.im, kind: 'pack', cap: '' }].concat(g3, exPack, scenes, exPhoto, docs).filter(function (x) { return SP.img[x.k]; });
   }
   function stageInner(item, alt) {
-    if (item.kind === '3d') return mvHTML(item.glb, 'Model 3D: ' + alt) + '<span class="gal-cap">' + esc(item.cap) + '</span>';
+    if (item.kind === '3d') return mvHTML(item.glb, 'Model 3D: ' + alt, PD.p && PD.p.ref) + '<span class="gal-cap">' + esc(item.cap) + '</span>';
     const i = SP.img[item.k];
     return '<img' + (item.kind === 'pack' && !i.tb ? ' class="is-mult"' : '') + ' src="' + esc(SP.src(item.k)) + '" alt="' + esc(alt) + '" width="' + i.w + '" height="' + i.h + '">' +
       (item.cap ? '<span class="gal-cap">' + esc(item.cap) + '</span>' : '');

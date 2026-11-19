@@ -121,6 +121,17 @@ def run_blender_part():
             o.scale = (0.01, 0.01, 0.01); o.location *= 0.01          # OBJ w cm -> glTF w metrach (AR 1:1)
         bpy.ops.object.select_all(action='SELECT')
         bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+        import bmesh
+        for o in objs:
+            bm = bmesh.new(); bm.from_mesh(o.data)
+            uv = bm.loops.layers.uv.new('UVMap') if not bm.loops.layers.uv else bm.loops.layers.uv.active
+            for f in bm.faces:
+                n = f.normal; ax = max(range(3), key=lambda i: abs(n[i]))
+                u, v = [i for i in range(3) if i != ax]
+                for l in f.loops:
+                    co = o.matrix_world @ l.vert.co
+                    l[uv].uv = (co[u] / 0.5, co[v] / 0.5)
+            bm.to_mesh(o.data); bm.free()
         bpy.ops.export_scene.gltf(filepath=glb, export_format='GLB', export_draco_mesh_compression_enable=True, export_yup=True, export_apply=True)
         res[key] = {'dims': [round(x, 1) for x in (mx - mn)], 'glb_kb': os.path.getsize(glb) // 1024}
     json.dump(res, open(args[1], 'w', encoding='utf-8'), indent=1)
@@ -137,7 +148,7 @@ def main():
         if folder not in cats: cats[folder] = catalog(folder)
         return cats[folder]
 
-    models, refs, miss = {}, {}, []   # models: klucz pliku -> {obj, ...}; refs: ref -> klucz
+    models, refs, miss, approx = {}, {}, [], {}   # models: klucz pliku -> {obj, ...}; refs: ref -> klucz
     for p in prods:
         if p['fam'] in SERIES and p.get('a') and p.get('b'):
             folders = SERIES[p['fam']]
@@ -152,9 +163,18 @@ def main():
             cand = [m for m in cat(folder) if m['dims'] and abs(m['dims'][0] - want[0]) <= 0.6 and abs(m['dims'][1] - want[1]) <= 0.6 and m['shape'] == shp]
             if p['fam'] not in ('Grawello', 'Dante', 'Go Baby', 'Dafne') and h:
                 cand = [m for m in cand if abs(m['dims'][2] - h) <= H_TOL]
-            if not cand:
-                miss.append('%s %s %s %s×%s×%s' % (p['ref'], p['fam'], p.get('shape'), p['a'], p['b'], p.get('h'))); continue
+            near = False
+            if not cand:                       # brak tego wymiaru -> najbliższy wymiar, ten sam kształt (decyzja użytkownika 19.11.2026)
+                pool = [m for f in ([folder] + [x for x in folders if x != folder]) for m in cat(f) if m['dims'] and m['shape'] == shp]
+                if p['fam'] not in ('Grawello', 'Dante', 'Go Baby', 'Dafne') and h:
+                    pool = [m for m in pool if abs(m['dims'][2] - h) <= H_TOL]
+                if not pool:
+                    miss.append('%s %s %s %s×%s×%s' % (p['ref'], p['fam'], p.get('shape'), p['a'], p['b'], p.get('h'))); continue
+                cand = [min(pool, key=lambda m: ((m['dims'][0] - want[0]) ** 2 + (m['dims'][1] - want[1]) ** 2, folders.index(next(f for f in folders if m['obj'].startswith(os.path.join(SRC, f))))))]
+                near = True
             m = sorted(cand, key=lambda m: abs(m['dims'][2] - h))[0]
+            if near:
+                approx[p['ref']] = 1
         elif p['s'] in PANELS:
             size = '90' if p['ref'] in ('42303401', '43217391', '44178281', '44516283') else '80'
             m = next((m for m in cat(PANELS[p['s']]) if m['stem'].startswith(size)), None)
@@ -199,6 +219,8 @@ def main():
             if f['ext'] == 'GLB':
                 f['kb'] = meas.get(key, {}).get('glb_kb', 0)
         out[ref] = {'src': '2021 · ' + m['src'], 'dims': m['dims'], 'files': m['files']}
+        if ref in approx:
+            out[ref]['approx'] = 1
     js = ('/* Modele 3D przypisane do indeksów LM — generuje _narzedzia/10_modele_3d.py z paczki „008 Modele 3D” (katalog Schedpol 2021).\n'
           '   Serie LM rozpoznane po bryle (nazwy katalogowe inne). Pliki w assets/cad/, wspólne dla wariantów kolorystycznych. */\n'
           'window.SP = window.SP || {};\nwindow.SP.cad = ' + json.dumps(out, ensure_ascii=False) + ';\n')
@@ -207,6 +229,7 @@ def main():
     for ref, key in refs.items():
         fam = next(p['fam'] for p in prods if p['ref'] == ref)
         by[fam] = by.get(fam, 0) + 1
+    print('w tym modeli zastępczych (najbliższy wymiar):', len(approx))
     print('indeksów z modelem:', len(out), ' unikalnych brył:', len(models), ' plików:', len(os.listdir(OUT)))
     print('wg serii:', by)
     print('bez modelu w paczce (%d):' % len(miss))

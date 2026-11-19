@@ -1105,3 +1105,6 @@ html.pv-lock { overflow: hidden; }
 .f-ext.x-obj, .f-ext.x-3ds { color: var(--brand); }
 
 .gal-stage.is-3d, .gal-stage model-viewer, .pv-3d model-viewer { background: linear-gradient(180deg, #d3d5d0 0%, #a4a7a1 100%); }
+
+/* modele zastępcze — podpis na zdjęciu bardziej widoczny */
+.gal-stage.is-3d .gal-cap { max-width: calc(100% - 40px); }
