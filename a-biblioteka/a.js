@@ -452,54 +452,107 @@
     const dMb = dFiles.reduce(function (a, f) { return a + (f.mb || 0); }, 0);
     const news = SP.series.filter(function (s) { return s.new; });
 
+    /* Strona główna wg projektu „Strefa architekta i projektanta” (hero + panel liczb, szybkie akcje, nowości, wsparcie).
+       Treści wyłącznie z danych portalu — bez zmyślonych modeli, osób, terminów i certyfikatów. */
+    const nRys = SP.rys ? Object.keys(SP.rys).length : 0;
+    const nDocs = SP.docMap ? Object.keys(SP.docMap).filter(function (r) { return SP.docMap[r].length > 1; }).length : 0;
+    const gwDoc = SP.docs && SP.docs['gw-stabilsafe'];
+    const newRows = news.map(function (s) {
+      const ps = SP.products.filter(function (p) { return p.fam === s.fam && p.new; });
+      const p0 = ps[0] || SP.products.filter(function (p) { return p.fam === s.fam; })[0];
+      return { s: s, p: p0, n: ps.length };
+    }).filter(function (x) { return x.p; }).slice(0, 4);   // projekt: krótka lista, reszta w katalogu
+    const tiles = [
+      { ic: 'grid', t: 'Katalog z filtrami', d: 'Szukaj po nr. ref. LM, serii, wymiarze, kolorze i kształcie — ' + total + ' indeksów Schedpol i Sensea.', href: H('katalog') },
+      { ic: 'zip', t: 'Paczki plików serii', d: 'Packshoty, aranżacje, rysunki i karty produktów całej serii w jednym pliku ZIP.', href: H('pliki') },
+      { ic: 'cube', t: 'Baza CAD Decor', d: 'Modele 3D „' + CAD.name + '” — aktualizacja ' + CAD.date + ', ' + mbLabel(CAD.mb) + '.', href: H('start', { sek: 'cad', keep: 1 }) },
+      { ic: 'clipboard', t: 'Instrukcje i karty gwarancyjne', d: 'Instrukcja montażu i karta gwarancyjna Stabilsafe przypisane do indeksu — do pobrania w PDF.', href: H('pliki', { typ: 'instrukcja' }) }
+    ];
+
     app.innerHTML = `
-    <div class="wrap">
-      <section class="hero" aria-labelledby="heroT">
-        <div class="hero-copy">
-          <div class="hero-partner rv"><img class="lm-logo" src="../assets/znaki/leroy-merlin.svg" alt="Leroy Merlin" width="79" height="48"><span>Strefa projektanta</span></div>
-          <h1 class="hero-title rv" id="heroT" style="--d:60ms">Znajdź produkt.<span>Pobierz pliki.</span></h1>
-          <p class="hero-lead rv" style="--d:120ms">${total} indeksów z oferty Schedpol i Sensea dostępnej w Leroy Merlin — karty produktów PDF, packshoty, aranżacje, rysunki techniczne i modele 3D w jednym miejscu.</p>
-          <div class="bigsearch rv" id="bigBox" style="--d:180ms" role="search">
-            ${ic('search', 22)}
-            <input id="bigSearch" type="search" placeholder="Nr ref. LM, seria, wymiar, kolor…" autocomplete="off" spellcheck="false" aria-label="Szukaj w bibliotece" aria-controls="bigList">
-            <kbd>/</kbd>
-            <button class="btn btn-primary" type="button" data-act="big-submit">Szukaj <span class="btn-ic">${ic('arrow-right', 16)}</span></button>
-            <div class="sugg" id="bigList"></div>
+    <div class="home">
+      <section class="home-hero" aria-labelledby="heroT">
+        <div class="wrap home-hero-in">
+          <div class="home-copy">
+            <div class="hero-partner rv"><img class="lm-logo" src="../assets/znaki/leroy-merlin.svg" alt="Leroy Merlin" width="79" height="48"><span>Strefa architekta i projektanta</span></div>
+            <h1 class="home-title rv" id="heroT" style="--d:60ms">Projektuj łazienki z produktami Schedpol i Sensea dostępnymi w Leroy Merlin</h1>
+            <p class="hero-lead rv" style="--d:120ms">Karty produktów PDF, rysunki techniczne, packshoty, instrukcje montażu i modele 3D w bazie CAD Decor — dla ${total} indeksów z oferty Leroy Merlin.</p>
+            <div class="bigsearch rv" id="bigBox" style="--d:180ms" role="search">
+              ${ic('search', 22)}
+              <input id="bigSearch" type="search" placeholder="Nr ref. LM, seria, wymiar, kolor…" autocomplete="off" spellcheck="false" aria-label="Szukaj w bibliotece" aria-controls="bigList">
+              <kbd>/</kbd>
+              <button class="btn btn-primary" type="button" data-act="big-submit">Szukaj <span class="btn-ic">${ic('arrow-right', 16)}</span></button>
+              <div class="sugg" id="bigList"></div>
+            </div>
+            <div class="hints rv" style="--d:240ms"><span>Popularne:</span>${HINTS.map(function (h) {
+              return '<button class="hint" type="button" data-act="hint" data-q="' + esc(h) + '">' + esc(h) + '</button>';
+            }).join('')}</div>
           </div>
-          <div class="hints rv" style="--d:240ms"><span>Spróbuj:</span>${HINTS.map(function (h) {
-            return '<button class="hint" type="button" data-act="hint" data-q="' + esc(h) + '">' + esc(h) + '</button>';
-          }).join('')}</div>
+          <div class="home-stats rv" style="--d:200ms" aria-label="Biblioteka w liczbach">
+            <div class="hstat"><b>${total}</b><span>${plural(total, 'indeks', 'indeksy', 'indeksów')} Schedpol i Sensea w ofercie Leroy Merlin</span></div>
+            <div class="hstat"><b>${nRys}</b><span>${plural(nRys, 'indeks', 'indeksy', 'indeksów')} z rysunkiem technicznym na karcie produktu</span></div>
+            <div class="hstat is-muted"><b>${nFiles.toLocaleString('pl-PL')}</b><span>${plural(nFiles, 'plik', 'pliki', 'plików')} w bibliotece · ${nf(mb / 1000, 1)} GB</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap">
+      <section class="home-main">
+        <div class="home-left">
+          <div class="home-sec">
+            <div class="home-h"><span class="home-k">Narzędzia pracy</span><h2>Szybkie akcje projektowe</h2></div>
+            <div class="tiles">${tiles.map(function (t, i) {
+              return `<a class="tile rv" style="--d:${i * 50}ms" href="${t.href}">
+                <span class="tile-top"><span class="tile-ic">${ic(t.ic, 22)}</span><span class="tile-go">${ic('arrow-up-right', 18)}</span></span>
+                <b>${esc(t.t)}</b><p>${esc(t.d)}</p>
+              </a>`;
+            }).join('')}</div>
+          </div>
+
+          <div class="home-sec">
+            <div class="home-h home-h-row"><div><span class="home-k">Nowości 2026</span><h2>Nowe serie w ofercie Leroy Merlin</h2></div>
+              <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
+            <div class="nlist">${newRows.map(function (x) {
+              const href = H('produkt', { ref: x.p.ref });
+              return `<article class="nrow rv">
+                <a class="nrow-thumb" href="${href}" tabindex="-1" aria-hidden="true">${pimg(x.p.im, '')}</a>
+                <div class="nrow-main">
+                  <div class="nrow-tags">${extList(x.p).map(function (e) { return '<span class="ft' + (e === '3D' ? ' ft-3d' : '') + '">' + e + '</span>'; }).join('')}<span class="nrow-n">${indeksy(x.n || 1)}</span></div>
+                  <h3><a href="${href}">${esc(x.s.fam === 'Balans' ? 'Balans — kaszmirowy kamień' : x.s.fam)}</a></h3>
+                  <p>${esc(x.s.lead)}</p>
+                </div>
+                <div class="nrow-act">
+                  <a class="btn btn-sm" href="${esc(kartaView(x.p))}" target="_blank" rel="noopener">${ic('eye', 15)} Podgląd karty</a>
+                  <a class="btn btn-sm btn-primary" href="${esc(kartaPdf(x.p))}" download>${ic('download', 15)} Karta PDF</a>
+                </div>
+              </article>`;
+            }).join('')}</div>
+          </div>
         </div>
 
-        <aside class="bezel demo rv" style="--d:220ms" aria-label="Przykład: komplet plików do jednego indeksu">
-          <div class="core">
-            <div class="demo-cap"><span class="kicker">Komplet plików do indeksu</span><span class="st st-ok">${ic('check', 12, 2)} Zweryfikowano ${VERIFIED}</span></div>
-            <div class="demo-head">
-              <a class="demo-thumb" href="${H('produkt', { ref: dp.ref })}" aria-label="Karta produktu ${esc(dp.ref)}">${pimg(dp.im, '')}</a>
-              <div>
-                <p class="demo-title">${esc(dp.s)}</p>
-                <p class="demo-sub"><span class="mono">${esc(variant(dp))}</span>${dp.c ? ' · ' + dot(dp.hx) + esc(dp.c) : ''}</p>
-              </div>
-              ${refChip(dp)}
-            </div>
-            <ul class="demo-files">${pick.map(function (f) {
-              return '<li>' + extBadge(f.ext) + '<span class="f-name mono">' + esc(f.name) + '</span><span class="f-size mono">' + (f.mb ? mbLabel(f.mb) : 'w bazie') + '</span></li>';
-            }).join('')}</ul>
-            <div class="demo-foot">
-              <span class="mono">${pliki(dFiles.length)} · ${mbLabel(dMb)}</span>
-              <button class="btn btn-sm btn-dark" type="button" data-act="add-product" data-ref="${esc(dp.ref)}">${ic('plus', 15, 1.8)} Dodaj do teczki</button>
-            </div>
+        <aside class="home-side">
+          <div class="side-card rv" id="sek-kontakt">
+            <span class="home-k">Wsparcie techniczne</span>
+            <h3>Brakuje pliku albo wymiaru?</h3>
+            <p>Biuro Obsługi Klienta Schedpol odpowiada na pytania o montaż, dobór produktu i materiały do projektu.</p>
+            <div class="side-bok">${SP.contacts.bok.map(function (b) {
+              return `<div class="sb"><b>${esc(b.n)}</b>
+                <a class="mono" href="tel:+48${esc(b.tel.replace(/\s/g, ''))}">${ic('phone', 14)} ${esc(b.tel)}</a>
+                <a href="mailto:${esc(b.mail)}">${ic('mail', 14)} ${esc(b.mail)}</a></div>`;
+            }).join('')}</div>
+            <span class="chip">${ic('clock', 14)} ${esc(SP.contacts.hours)}</span>
+          </div>
+          <div class="side-card rv" style="--d:80ms">
+            <h3>Dokumenty i parametry</h3>
+            <ul class="side-list">
+              <li>${ic('check', 16, 2)}<span>Antypoślizgowość klasy A wg DIN EN 16165:2023 (zał. A) — brodziki o strukturze kamienia</span></li>
+              <li>${ic('check', 16, 2)}<span>Instrukcja montażu dla ${nDocs} ${plural(nDocs, 'indeksu', 'indeksów', 'indeksów')}</span></li>
+              <li>${ic('check', 16, 2)}<span>Gwarancja producenta wg karty Stabilsafe v15.25 — zakres i warunki w karcie</span></li>
+            </ul>
+            ${gwDoc ? '<a class="btn btn-sm side-btn" href="../assets/dokumenty/' + esc(gwDoc.f) + '" target="_blank" rel="noopener">' + ic('shield', 15) + ' Karta gwarancyjna (PDF)</a>' : ''}
           </div>
         </aside>
       </section>
-
-      <section class="stats rv" aria-label="Biblioteka w liczbach">
-        <div class="stat"><b>${total}</b><span>${plural(total, 'indeks', 'indeksy', 'indeksów')} w ofercie Leroy Merlin</span></div>
-        <div class="stat"><b>${SP.series.length}</b><span>${plural(SP.series.length, 'rodzina', 'rodziny', 'rodzin')} produktów · Schedpol i Sensea</span></div>
-        <div class="stat"><b>${nFiles.toLocaleString('pl-PL')}</b><span>${plural(nFiles, 'plik', 'pliki', 'plików')} w bibliotece</span></div>
-        <div class="stat"><b>${nf(mb / 1000, 1)} GB</b><span>łączny rozmiar materiałów</span></div>
-      </section>
-
       <section class="bento" aria-label="Skróty">
         <div class="panel b-cats rv">
           <div class="panel-h"><h2>Kategorie</h2><a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
@@ -545,39 +598,8 @@
           </div>
         </div>
 
-        <div class="panel b-new rv" style="--d:80ms">
-          <div class="panel-h"><h2>Nowości 2026</h2></div>
-          <div class="newlist">${news.map(function (s) {
-            const nn = SP.products.filter(function (p) { return p.fam === s.fam && p.new; }).length;
-            const label = s.fam === 'Balans' ? 'Balans — kaszmirowy kamień' : s.fam;
-            const pk = s.fam === 'Balans' ? 'p-balans-cas' : s.pack;
-            return `<a class="newrow" href="${H('katalog', s.fam === 'Balans' ? { seria: 'Balans', kolor: 'kaszmirowy kamień' } : { seria: s.fam })}">
-              <span class="newrow-thumb">${pimg(pk, '')}</span>
-              <span><b>${esc(label)}</b><small>${esc(s.type.split(' · ')[0])} · ${indeksy(nn)}</small></span>
-              ${ic('arrow-right', 15)}
-            </a>`;
-          }).join('')}</div>
-        </div>
-
-        <div class="panel b-contact rv" id="sek-kontakt">
-          <div class="contact">
-            <div class="contact-intro">
-              <span class="kicker">Kontakt</span>
-              <h2 style="margin-top:8px">Brakuje pliku albo wymiaru? Zadzwoń lub napisz.</h2>
-              <p>Biuro Obsługi Klienta Schedpol odpowiada na pytania o montaż, dobór produktu i materiały do projektu.</p>
-              <span class="chip">${ic('clock', 14)} ${esc(SP.contacts.hours)}</span>
-            </div>
-            ${SP.contacts.bok.map(function (b, i) {
-              return `<div class="bok${i === 0 ? ' is-mine' : ''}">
-                ${i === 0 ? '<span class="tag">Twój region</span>' : ''}
-                <h3>${esc(b.n)}</h3>
-                <a class="mono" href="tel:+48${esc(b.tel.replace(/\s/g, ''))}">${ic('phone', 15)} ${esc(b.tel)}</a>
-                <a href="mailto:${esc(b.mail)}">${ic('mail', 15)} ${esc(b.mail)}</a>
-              </div>`;
-            }).join('')}
-          </div>
-        </div>
       </section>
+      </div>
     </div>`;
 
     const box = $('#bigBox'), input = $('#bigSearch');
