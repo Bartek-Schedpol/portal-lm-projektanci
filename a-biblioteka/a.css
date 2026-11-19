@@ -1048,3 +1048,18 @@ html.pv-lock { overflow: hidden; }
 .hcats .hcat.is-pack img { inset: 8% 12% 26%; width: 76%; height: 66%; object-fit: contain; }
 .hcats .hcat.is-pack::after { background: linear-gradient(180deg, rgba(10, 12, 14, 0) 58%, rgba(10, 12, 14, .58) 100%); }
 .yt-ai { position: absolute; left: 10px; top: 10px; padding: 4px 8px; border-radius: 6px; background: rgba(0, 0, 0, .7); color: #fff; font-size: 11px; font-weight: 600; }
+
+/* ===== 19.11 (5): karta produktu — zamówienie przez BOK pod galerią ===== */
+.pd-order { margin-top: 24px; padding: 24px; border-radius: var(--r-l); background: var(--surface); box-shadow: inset 0 0 0 1.5px var(--brand); }
+.pd-order h2 { font-size: 24px; font-weight: 700; line-height: 1.2; color: var(--brand); }
+.pd-order-sub { display: flex; align-items: center; gap: 6px; margin: 6px 0 16px; font-size: 13.5px; color: var(--ink-2); }
+.pd-order-l { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.pd-order .sb.bok { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; }
+.pd-order .bok-map { width: 72px; }
+.pd-order .bok-txt b { font-size: 14.5px; }
+.pd-order .bok-txt a { font-size: 13px; word-break: break-all; }
+@media (max-width: 720px) {
+  .pd-order { padding: 18px; }
+  .pd-order-l { grid-template-columns: 1fr; }
+  .pd-order .sb.bok { flex-direction: row; align-items: center; }
+}

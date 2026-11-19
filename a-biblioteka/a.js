@@ -1037,6 +1037,18 @@
             return '<button type="button" class="gal-thumb is-' + g.kind + (i === 0 ? ' is-on' : '') + '" data-act="gal" data-idx="' + i + '" aria-pressed="' + (i === 0) + '" aria-label="' +
               esc(g.kind === 'pack' ? 'Packshot' : g.cap) + ' ' + (i + 1) + ' z ' + gal.length + '"><img' + (g.kind === 'pack' && !SP.img[g.k].tb ? ' class="is-mult"' : '') + ' src="' + esc(SP.src(g.k)) + '" alt=""></button>';
           }).join('') + '</div>' : ''}
+          <div class="pd-order" aria-labelledby="ordT">
+            <h2 id="ordT">Nie ma tego produktu na stanie? Zamów!</h2>
+            <p class="pd-order-sub">${ic('clock', 14)} Biuro Obsługi Klienta Schedpol · ${esc(SP.contacts.hours)}</p>
+            <div class="pd-order-l">${SP.contacts.bok.map(function (b, i) {
+              return `<div class="sb bok">
+                ${bokMapSVG(String(i + 1))}
+                <div class="bok-txt"><b>${esc(b.n)}</b>
+                <small>${esc(BOK_AREA[String(i + 1)] || '')}</small>
+                <a class="mono" href="tel:+48${esc(b.tel.replace(/\s/g, ''))}">${ic('phone', 15)} ${esc(b.tel)}</a>
+                <a href="mailto:${esc(b.mail)}">${ic('mail', 15)} ${esc(b.mail)}</a></div></div>`;
+            }).join('')}</div>
+          </div>
         </section>
 
         <section class="pd-info" aria-labelledby="pdT">
