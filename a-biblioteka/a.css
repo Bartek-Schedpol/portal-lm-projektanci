@@ -813,3 +813,15 @@ tr[data-href] { cursor: pointer; }
   .nrow-act .btn { flex: 1; justify-content: center; }
   .home-h-row { flex-direction: column; align-items: flex-start; }
 }
+/* Centrum plików — biblioteka dokumentów */
+.docs-tbl td { vertical-align: middle; }
+.docs-fams { display: block; max-width: 340px; margin-top: 2px; color: var(--ink-2); line-height: 1.45; }
+.docs-tbl tr.is-off td { opacity: .62; }
+.docs-tbl tfoot td { padding-top: 14px; font-size: 13px; color: var(--ink-2); }
+.docs-tbl { table-layout: fixed; }
+.docs-tbl th:nth-child(1) { width: 52%; }
+.docs-tbl th:nth-child(2) { width: 30%; }
+.docs-tbl th:nth-child(3) { width: 9%; }
+.docs-tbl th:nth-child(4) { width: 9%; }
+.docs-tbl .f-file b, .docs-tbl .f-file small, .docs-fams { white-space: normal; overflow-wrap: anywhere; }
+.docs-tbl .f-file b { font-family: var(--sans); letter-spacing: 0; }

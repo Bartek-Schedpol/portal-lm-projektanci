@@ -466,7 +466,7 @@
       { ic: 'grid', t: 'Katalog z filtrami', d: 'Szukaj po nr. ref. LM, serii, wymiarze, kolorze i kształcie — ' + total + ' indeksów Schedpol i Sensea.', href: H('katalog') },
       { ic: 'zip', t: 'Paczki plików serii', d: 'Packshoty, aranżacje, rysunki i karty produktów całej serii w jednym pliku ZIP.', href: H('pliki') },
       { ic: 'cube', t: 'Baza CAD Decor', d: 'Modele 3D „' + CAD.name + '” — aktualizacja ' + CAD.date + ', ' + mbLabel(CAD.mb) + '.', href: H('start', { sek: 'cad', keep: 1 }) },
-      { ic: 'clipboard', t: 'Instrukcje i karty gwarancyjne', d: 'Instrukcja montażu i karta gwarancyjna Stabilsafe przypisane do indeksu — do pobrania w PDF.', href: H('pliki', { typ: 'instrukcja' }) }
+      { ic: 'clipboard', t: 'Instrukcje i karty gwarancyjne', d: 'Instrukcja montażu i karta gwarancyjna Stabilsafe przypisane do indeksu — do pobrania w PDF.', href: H('pliki', { typ: 'dokumenty' }) }
     ];
 
     app.innerHTML = `
@@ -1037,10 +1037,39 @@
      Ekran: Centrum plików
      ========================================================================== */
   const P = { tab: 'all' };
-  const TABS = [{ k: 'all', l: 'Wszystkie' }].concat(FT.filter(function (t) { return FT_MAIN.indexOf(t.k) !== -1 || t.k === 'instrukcja' || t.k === 'karta'; }));
+  const TABS = [{ k: 'all', l: 'Wszystkie' }].concat(FT.filter(function (t) { return FT_MAIN.indexOf(t.k) !== -1 || t.k === 'karta'; }),
+    [{ k: 'dokumenty', l: 'Instrukcje i karty' }]);
+
+  /* biblioteka dokumentów: wszystkie instrukcje montażu i karty gwarancyjne z materiałów (assets/dokumenty.js) */
+  function docsLibraryHTML() {
+    const D = SP.docs || {};
+    const keys = Object.keys(D).sort(function (a, b) {
+      const x = D[a], y = D[b];
+      return (y.lm - x.lm) || ((x.typ === 'gw' ? 0 : 1) - (y.typ === 'gw' ? 0 : 1)) || x.t.localeCompare(y.t, 'pl');
+    });
+    const mbAll = keys.reduce(function (a, k) { return a + D[k].mb; }, 0);
+    return `<div class="tbl-wrap"><table class="tbl docs-tbl">
+      <thead><tr><th>Dokument</th><th>Dotyczy</th><th style="text-align:right">Rozmiar</th><th><span class="sr">Pobierz</span></th></tr></thead>
+      <tbody>${keys.map(function (k) {
+        const d = D[k], href = DOC_BASE + d.f;
+        const fams = d.lm ? (d.fams.length > 6 && d.typ === 'gw' ? 'Wszystkie indeksy w ofercie LM' : d.fams.join(', ')) : 'Nie dotyczy indeksów LM';
+        return `<tr${d.lm ? '' : ' class="is-off"'}>
+          <td><div class="f-file">${extBadge('PDF')}<div><b>${esc(d.t)}</b><small>${esc(d.f)} · ${d.str} ${plural(d.str, 'strona', 'strony', 'stron')}</small></div></div></td>
+          <td>${d.typ === 'gw' ? '<span class="st st-ok">' + ic('shield', 12, 1.8) + ' Karta gwarancyjna</span> ' : ''}<small class="docs-fams">${esc(fams)}</small></td>
+          <td class="num">${nf(d.mb, 1)} MB</td>
+          <td><div class="t-act">
+            <a class="icon-btn" href="${esc(href)}" target="_blank" rel="noopener" aria-label="Otwórz: ${esc(d.t)}" title="Otwórz">${ic('eye', 16)}</a>
+            <a class="icon-btn" href="${esc(href)}" download aria-label="Pobierz: ${esc(d.t)}" title="Pobierz PDF">${ic('download', 16)}</a>
+          </div></td>
+        </tr>`;
+      }).join('')}</tbody>
+      <tfoot><tr><td colspan="2"><b>${keys.length} ${plural(keys.length, 'dokument', 'dokumenty', 'dokumentów')}</b> · instrukcje montażu przypisane do serii, karta gwarancyjna Stabilsafe v15.25 do wszystkich indeksów LM</td><td class="num"><b>${nf(mbAll, 1)} MB</b></td><td></td></tr></tfoot>
+    </table></div>`;
+  }
 
   function plikiTableHTML() {
     const tab = P.tab, all = tab === 'all';
+    if (tab === 'dokumenty') return docsLibraryHTML();
     const rows = SP.series.filter(function (s) { return all || s.files[tab]; });
     const seriaCell = function (s) {
       return '<a class="t-prod" href="' + H('katalog', { seria: s.fam }) + '"><span class="t-thumb">' + pimg(s.pack, '') + '</span><span><b>' + esc(s.fam) + '</b><small>' + esc(s.type.split(' · ')[0]) + ' · ' + indeksy(s.n) + '</small></span></a>';
@@ -1080,7 +1109,7 @@
   }
   function tabsHTML() {
     return TABS.map(function (t) {
-      const n = t.k === 'all' ? SP.series.reduce(function (a, s) { return a + sumFiles(s); }, 0) : SP.series.reduce(function (a, s) { return a + (s.files[t.k] || 0); }, 0);
+      const n = t.k === 'dokumenty' ? Object.keys(SP.docs || {}).length : t.k === 'all' ? SP.series.reduce(function (a, s) { return a + sumFiles(s); }, 0) : SP.series.reduce(function (a, s) { return a + (s.files[t.k] || 0); }, 0);
       return '<button class="tab' + (P.tab === t.k ? ' is-on' : '') + '" type="button" role="tab" aria-selected="' + (P.tab === t.k) + '" data-act="ftab" data-tab="' + esc(t.k) + '">' + esc(t.l) + '<small>' + n.toLocaleString('pl-PL') + '</small></button>';
     }).join('');
   }

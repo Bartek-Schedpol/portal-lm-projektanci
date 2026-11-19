@@ -529,12 +529,17 @@ DOCS = {
     "frigo": ("FRIGO_Sensea_v3.2022.pdf", "Instrukcja-montazu_Frigo-Sensea_v3.2022.pdf", "Instrukcja montażu — Frigo Sensea", "in"),
     "ipsilon": ("Ipsilon_Sensea_2024_v5 - Druk A4.pdf", "Instrukcja-montazu_Ipsilon-Sensea_2024_v5.pdf", "Instrukcja montażu — Ipsilon Sensea", "in"),
     "ob1040": ("Obudowa podpłytkowa 1.040 (2018).pdf", "Instrukcja-montazu_obudowa-podplytkowa-1.040_2018.pdf", "Instrukcja montażu — obudowa podpłytkowa 1.040", "in"),
+    "no03a": ("03A. Brodzik standard + nośnik No03A v02.2023 A4 DE.pdf", "Instrukcja-montazu_No03A_brodzik-standard-z-nosnikiem_v02.2023.pdf", "Instrukcja montażu No03A — brodzik standard z nośnikiem", "in"),
+    "no05c": ("05C.Odplywy_liniowe_Winyl_instr_mont_No05A_v01.2026(1).pdf", "Instrukcja-montazu_No05C_odplywy-liniowe-posadzka-winylowa_v01.2026.pdf", "Instrukcja montażu No05C — odpływy liniowe, posadzka winylowa", "in"),
+    "gw-stabilsound": ("00. Karta Gwarancyjna_Stabilsound_v14.2025_(8str A3)-all.pdf", "Karta-gwarancyjna_Stabilsound_v14.2025.pdf", "Karta gwarancyjna Stabilsound v14.2025 — marka katalogowa Schedpol, nie dotyczy indeksów LM", "gw"),
 }
-DOC_FAM = {"Balans": "no01", "Magnetic": "no01", "Sinergid": "no02", "Integral": "no02", "Consist": "no02", "Grawello": "no02",
-           "Dante": "no02", "Go Baby": "no02", "Panele do brodzików": "no02", "Tebe": "no03", "Corrina": "no03", "Dafne": "no03",
-           "Comfo": "comfo", "Frigo": "frigo", "Ipsilon": "ipsilon", "Nogi Ipsilon": "ipsilon", "Harmony": "no05", "Torres": "no07",
-           "Nośnik": "no08", "Wall Comfort": "no12", "Najazd": "no27"}
-DOC_REF = {"90151710": "no04", "90151711": "no04", "43416086": "ob1040", "43732703": "ob1040"}   # obudowy LED vs 1040/1.041
+# instrukcje wg serii (pierwsza = podstawowa, kolejne = warianty montażu)
+DOC_FAM = {"Balans": ["no01"], "Magnetic": ["no01"], "Sinergid": ["no02"], "Integral": ["no02"], "Consist": ["no02"], "Grawello": ["no02"],
+           "Dante": ["no02"], "Go Baby": ["no02"], "Panele do brodzików": ["no02"], "Tebe": ["no03", "no03a"], "Corrina": ["no03", "no03a"],
+           "Dafne": ["no03", "no03a"], "Comfo": ["comfo", "no03a"], "Frigo": ["frigo"], "Ipsilon": ["ipsilon"], "Nogi Ipsilon": ["ipsilon"],
+           "Harmony": ["no05", "no05c"], "Torres": ["no07"], "Nośnik": ["no08"], "Wall Comfort": ["no12"], "Najazd": ["no27"]}
+DOC_REF = {"90151710": ["no04"], "90151711": ["no04"], "43416086": ["ob1040"], "43732703": ["ob1040"]}   # obudowy LED vs 1040/1.041
+DOC_NOT_LM = {"gw-stabilsound"}            # w bibliotece dokumentów, ale nie przypisywane do indeksów LM (kanał DIY = Stabilsafe)
 
 
 def dokumenty(P):
@@ -546,19 +551,27 @@ def dokumenty(P):
         shutil.copy2(s, os.path.join(out, dst))
         d = fitz.open(s)
         D[k] = {"f": dst, "t": title, "typ": typ, "mb": round(os.path.getsize(s) / 1048576, 1), "str": d.page_count}
+    fams = {k: [] for k in D}
     for p in P:
-        lst = ["gw-stabilsafe"]
-        ins = DOC_REF.get(p["ref"]) or DOC_FAM.get(p["fam"])
-        if ins:
-            lst.insert(0, ins)
-        M[p["ref"]] = lst
+        ins = DOC_REF.get(p["ref"]) or DOC_FAM.get(p["fam"]) or []
+        M[p["ref"]] = list(ins) + ["gw-stabilsafe"]
+        for k in M[p["ref"]]:
+            if p["fam"] not in fams[k]:
+                fams[k].append(p["fam"])
+    for k in D:
+        D[k]["fams"] = fams[k]
+        D[k]["lm"] = k not in DOC_NOT_LM
     js = ("/* Wygenerowano (8_zasoby_kart.py): karty gwarancyjne i instrukcje montażu przypisane do indeksów.\n"
-          "   Źródło: materiały/Instrukcje i Karty. SP.docs: klucz → plik; SP.docMap: nr ref. → [klucze]. */\n"
+          "   Źródło: materiały/Instrukcje i Karty. SP.docs: klucz → plik (+ fams: serie, lm: czy dotyczy indeksów LM);\n"
+          "   SP.docMap: nr ref. → [klucze]. */\n"
           "window.SP.docs = " + json.dumps(D, ensure_ascii=False) + ";\nwindow.SP.docMap = " + json.dumps(M) + ";\n")
     io.open(os.path.join(ROOT, "assets", "dokumenty.js"), "w", encoding="utf-8").write(js)
     bez = [p["ref"] + " " + p["fam"] for p in P if len(M[p["ref"]]) == 1]
     print("Dokumenty: %d plików, %.1f MB; indeksów z instrukcją: %d, bez instrukcji: %s" %
           (len(D), sum(v["mb"] for v in D.values()), len(P) - len(bez), bez))
+    znane = {v[0] for v in DOCS.values()}
+    nowe = [f for f in os.listdir(DOCS_DIR) if f.lower().endswith(".pdf") and f not in znane]
+    print("UWAGA — pliki w folderze bez przypisania (dopisz do DOCS):" if nowe else "Wszystkie PDF z folderu są w bazie.", nowe or "")
 
 
 if __name__ == "__main__":
