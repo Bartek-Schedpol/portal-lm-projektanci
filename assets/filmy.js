@@ -8,9 +8,8 @@ window.SP = window.SP || {};
 window.SP.ytChannel = 'https://www.youtube.com/@schedpol';
 window.SP.videos = [
   { id: 'Pi-RpbXVFWk', t: 'Docinanie brodzika kompozytowego bez bałaganu! Zobacz, jakie to proste!', kind: 'Montaż', g: 'brodziki', y: 2026, fams: ['Balans'] },
-  { id: 'yLs0NYJzRig', t: 'Montaż brodzika z DIN 18534 1 Schedpol', kind: 'Szkolenie · montaż', g: 'brodziki', y: 2024, cats: ['brodzik'] },
+  { id: 'NgdrtUwx9ic', t: 'Montaż i docinanie brodzika kompozytowego w technologii STABILSOUND PLUS® | Schedpol', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2021, cats: ['brodzik'] },  // zastąpił yLs0NYJzRig (DIN 18534) na prośbę użytkownika 19.11.2026
   /* brodziki kompozytowe w technologii Stabilsound Plus (oferta katalogowa Schedpol, nie seria LM) — dodane na prośbę użytkownika 19.11.2026; tylko w Akademii */
-  { id: 'NgdrtUwx9ic', t: 'Montaż i docinanie brodzika kompozytowego w technologii STABILSOUND PLUS® | Schedpol', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2021 },
   { id: 'H92RaxaBTNI', t: 'Montaż brodzika STABILSOUND PLUS® na nośniku z podcięciem panelu | SCHEDPOL®', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2022 },
   { id: 'X-IB6cWoc5Q', t: 'STABILNE BRODZIKI WYSOKIE – DOCINANE NA WYMIAR! ŁATWY MONTAŻ BEZ PODKUWANIA - SCHEDPOL', kind: 'Prezentacja · brodziki wysokie', g: 'brodziki', y: 2023 },
   { id: 'hZ-liL5so1U', t: 'Brodziki w technologii STABILSOUND® - cechy innowacyjnego brodzika. | Schedpol', kind: 'Prezentacja · technologia Stabilsound', g: 'brodziki', y: 2022 },
