@@ -9,7 +9,7 @@ W a-biblioteka/index.html włącza tryb SPP_SOLO (pasek prezentera bez linków d
 Użycie:  python 9_publikacja_github.py  [folder_repo]
 Domyślny folder repo: "18. Leroy Merlin - Portal\\github-portal-lm". Potem: git add -A, commit, push.
 """
-import os, sys, io, shutil
+import os, sys, io, re, shutil
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -92,7 +92,9 @@ def main():
     a = os.path.join(DST, "a-biblioteka", "index.html")
     s = io.open(a, encoding="utf-8").read()
     if "SPP_SOLO" not in s:
-        s = s.replace('<script src="../assets/proto.js"></script>', '<script>window.SPP_SOLO = 1;</script>\n<script src="../assets/proto.js"></script>')
+        s = re.sub(r'(<script src="\.\./assets/proto\.js[^"]*"></script>)', r'<script>window.SPP_SOLO = 1;</script>\n\1', s, count=1)
+        if "SPP_SOLO" not in s:                         # odnośnik może mieć ?v=… — bez trybu SOLO nie publikujemy
+            sys.exit("BŁĄD: nie znaleziono odnośnika do proto.js — tryb SOLO nie został włączony")
     io.open(a, "w", encoding="utf-8", newline="").write(s)
     io.open(os.path.join(DST, "index.html"), "w", encoding="utf-8", newline="\n").write(INDEX)
     io.open(os.path.join(DST, "README.md"), "w", encoding="utf-8", newline="\n").write(README)
