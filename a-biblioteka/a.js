@@ -147,30 +147,32 @@
     mvLoading.src = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
     document.head.appendChild(mvLoading);
   }
-  /* wykończenie modelu wg wariantu: tekstura kamienia z próbek (assets/img/tex-*), kolor RAL z danych produktu, połysk/mat */
-  const STONE_TEX = { 'biały kamień': 'tex-white-stone', 'czarny kamień': 'tex-black-stone', 'kaszmirowy kamień': 'tex-cashmere', 'szary kamień': 'tex-grey-stone', 'cementowy kamień': 'tex-white-stone' };
+  /* wykończenie modelu wg wariantu: kolor RAL z danych produktu; struktura kamienia = relief (normal map z próbki kamienia)
+     + subtelna faktura barwy; mat/połysk. Zmienia się tylko materiał „akryl” — maskownice i pokrywy odpływu („metal”) zostają stalowe. */
   function finishFor(p) {
     const c = (p && p.c || '').toLowerCase();
     const stone = /kamie/.test(c);
-    return {
-      hx: p && p.hx ? p.hx : '#F4F4F2',
-      tex: stone ? (STONE_TEX[c] || 'tex-white-stone') : '',
-      tint: c === 'cementowy kamień',
-      rough: stone ? 0.92 : (/mat/.test(c) ? 0.72 : 0.28)
-    };
+    /* jasne barwy kamienne w oświetleniu podglądu wypadają zbyt blado — korekta pod packshot (kaszmir) */
+    const HX3D = { 'kaszmirowy kamień': '#D3C3A8', 'cementowy kamień': '#A9ACA7' };
+    return { hx: HX3D[c] || (p && p.hx ? p.hx : '#F4F4F2'), stone: stone, rough: stone ? 0.86 : (/mat/.test(c) ? 0.7 : 0.22) };
   }
+  let stoneTex = null;
   async function applyFinish(mv) {
     const p = SP.byRef(mv.getAttribute('data-ref') || '');
     if (!p || !mv.model) return;
     const f = finishFor(p);
-    let tex = null;
-    if (f.tex) { try { tex = await mv.createTexture(SP.src(f.tex)); } catch (e) { tex = null; } }
+    let nrm = null, det = null;
+    if (f.stone) {
+      try { nrm = await mv.createTexture('../assets/img/stone-normal.jpg'); det = await mv.createTexture('../assets/img/stone-detail.jpg'); } catch (e) { nrm = det = null; }
+    }
     mv.model.materials.forEach(function (m) {
+      if (m.name === 'metal') return;
       const pbr = m.pbrMetallicRoughness;
       pbr.setMetallicFactor(0);
       pbr.setRoughnessFactor(f.rough);
-      if (tex) { pbr.baseColorTexture.setTexture(tex); pbr.setBaseColorFactor(f.tint ? f.hx : '#FFFFFF'); }
-      else pbr.setBaseColorFactor(f.hx);
+      pbr.setBaseColorFactor(f.hx);
+      if (det) pbr.baseColorTexture.setTexture(det);
+      if (nrm && m.normalTexture) { m.normalTexture.setTexture(nrm); try { m.normalTexture.setScale && m.normalTexture.setScale(1); } catch (e) { /* starsze API */ } }
     });
   }
   document.addEventListener('load', function (e) {

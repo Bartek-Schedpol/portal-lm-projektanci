@@ -84,7 +84,7 @@ def run_blender_part():
     args = sys.argv[sys.argv.index('--') + 1:]
     jobs = json.load(open(args[0], encoding='utf-8'))
     res = {}
-    for key, (obj, glb) in jobs.items():
+    for key, (obj, glb, metal) in jobs.items():
         bpy.ops.wm.read_factory_settings(use_empty=True)
         bpy.ops.wm.obj_import(filepath=obj)
         objs = [o for o in bpy.context.scene.objects if o.type == 'MESH']
@@ -113,8 +113,17 @@ def run_blender_part():
         mat = bpy.data.materials.new('akryl'); mat.use_nodes = True
         bsdf = mat.node_tree.nodes.get('Principled BSDF')
         bsdf.inputs['Base Color'].default_value = (0.93, 0.93, 0.92, 1); bsdf.inputs['Roughness'].default_value = 0.45
+        met = bpy.data.materials.new('metal'); met.use_nodes = True
+        mb = met.node_tree.nodes.get('Principled BSDF')
+        mb.inputs['Base Color'].default_value = (0.62, 0.64, 0.66, 1); mb.inputs['Metallic'].default_value = 1.0; mb.inputs['Roughness'].default_value = 0.28
+        # główna bryła = akryl; drobne części wewnątrz (maskownica, pokrywa odpływu) = stal szczotkowana.
+        # Wyjątek: Magnetic — pokrywa odpływu w kolorze brodzika.
+        big2 = max(objs, key=lambda o: (lambda a, b: sorted(b - a)[1] * sorted(b - a)[2])(*bb(o)))
+        ba, bb2 = bb(big2); barea = sorted(bb2 - ba)[1] * sorted(bb2 - ba)[2]
         for o in objs:
-            o.data.materials.clear(); o.data.materials.append(mat)
+            a, b = bb(o); area = sorted(b - a)[1] * sorted(b - a)[2]
+            o.data.materials.clear()
+            o.data.materials.append(met if (metal and o is not big2 and area < barea * 0.06) else mat)
         c = (mn + mx) / 2
         for o in objs:
             o.location -= mathutils.Vector((c.x, c.y, mn.z))
@@ -125,12 +134,13 @@ def run_blender_part():
         for o in objs:
             bm = bmesh.new(); bm.from_mesh(o.data)
             uv = bm.loops.layers.uv.new('UVMap') if not bm.loops.layers.uv else bm.loops.layers.uv.active
+            rot = o.matrix_world.to_3x3()
             for f in bm.faces:
-                n = f.normal; ax = max(range(3), key=lambda i: abs(n[i]))
+                n = rot @ f.normal; ax = max(range(3), key=lambda i: abs(n[i]))   # normalna w układzie świata (OBJ jest obrócony o 90°)
                 u, v = [i for i in range(3) if i != ax]
                 for l in f.loops:
                     co = o.matrix_world @ l.vert.co
-                    l[uv].uv = (co[u] / 0.5, co[v] / 0.5)
+                    l[uv].uv = (co[u] / 0.3, co[v] / 0.3)
             bm.to_mesh(o.data); bm.free()
         bpy.ops.export_scene.gltf(filepath=glb, export_format='GLB', export_draco_mesh_compression_enable=True, export_yup=True, export_apply=True)
         res[key] = {'dims': [round(x, 1) for x in (mx - mn)], 'glb_kb': os.path.getsize(glb) // 1024}
@@ -206,7 +216,7 @@ def main():
                 files.append({'ext': ext.upper(), 'f': key + '.' + ext, 'kb': os.path.getsize(src) // 1024})
         files.append({'ext': 'GLB', 'f': key + '.glb', 'kb': 0, 'view': 1})
         m['files'] = files
-        jobs[key] = (m['obj'], os.path.join(OUT, key + '.glb'))
+        jobs[key] = (m['obj'], os.path.join(OUT, key + '.glb'), key.split('_')[1] != 'Magnetic')
     jf = os.path.join(OUT, '_jobs.json'); rf = os.path.join(OUT, '_pomiar.json')
     json.dump(jobs, open(jf, 'w', encoding='utf-8'))
     subprocess.run([BLENDER, '-b', '--factory-startup', '--python', os.path.abspath(__file__), '--', jf, rf], check=True,
