@@ -235,6 +235,10 @@
   }
   /* flaga marki na zdjęciu w katalogu: oryginalne logo Sensea (z etykiety) lub Schedpol (logotyp korporacyjny 2016) */
   const BRAND_LOGO = { 'Sensea': '../assets/znaki/sensea.png', 'Schedpol': '../assets/znaki/schedpol.svg' };
+  /* gama LM z eksportu referencji (26.03.2026) — flaga na zdjęciu, jak logo marki */
+  function gamaFlag(p, cls) {
+    return p.g ? '<span class="flag flag-gama' + (cls ? ' ' + cls : '') + '" title="Gama Leroy Merlin wg eksportu referencji z 26.03.2026">Gama <b>' + esc(p.g) + '</b></span>' : '';
+  }
   function brandFlag(p) {
     const src = BRAND_LOGO[p.brand];
     return src ? '<span class="flag flag-' + esc(p.brand.toLowerCase()) + '"><img src="' + src + '" alt="' + esc(p.brand) + '"></span>' : '';
@@ -245,7 +249,7 @@
       <a class="card-media" href="${href}" tabindex="-1" aria-hidden="true">
         ${pimg(p.im, '')}
         ${p.new ? '<span class="tag">Nowość</span>' : ''}
-        ${brandFlag(p)}
+        ${brandFlag(p)}${gamaFlag(p)}
       </a>
       <button type="button" class="card-add${inT ? ' is-in' : ''}" data-act="add-product" data-ref="${esc(p.ref)}" aria-label="Dodaj pliki produktu ${esc(p.ref)} do teczki" title="Dodaj pliki do teczki">${ic(inT ? 'check' : 'plus', 16, 1.8)}</button>
       <div class="card-body">
@@ -1032,7 +1036,11 @@
       <div class="pd-top">
         <section class="gal" aria-label="Galeria produktu">
           <div class="bezel gal-bezel"><div class="core gal-stage is-pack" id="galStage">${stageInner(gal[0], galAlt(gal[0], p))}</div>
-            ${gw.badge ? '<a class="gal-gw" href="#gT" title="Gwarancja producenta — zakres niżej"><img src="../assets/znaki/' + gw.badge + '.png" alt="Znak gwarancji producenta: ' + esc(gw.lines[0] ? gw.lines[0].split(' — ')[0] : '') + '"></a>' : ''}</div>
+            <div class="gal-marks">
+              ${gw.badge ? '<a class="gal-gw" href="#gT" title="Gwarancja producenta — zakres niżej"><img src="../assets/znaki/' + gw.badge + '.png" alt="Znak gwarancji producenta: ' + esc(gw.lines[0] ? gw.lines[0].split(' — ')[0] : '') + '"></a>' : ''}
+              ${BRAND_LOGO[p.brand] ? '<span class="gal-brand gal-brand-' + esc(p.brand.toLowerCase()) + '"><img src="' + BRAND_LOGO[p.brand] + '" alt="Marka ' + esc(p.brand) + '"></span>' : ''}
+              ${gamaFlag(p, 'gal-gama')}
+            </div></div>
           ${gal.length > 1 ? '<div class="gal-thumbs">' + gal.map(function (g, i) {
             return '<button type="button" class="gal-thumb is-' + g.kind + (i === 0 ? ' is-on' : '') + '" data-act="gal" data-idx="' + i + '" aria-pressed="' + (i === 0) + '" aria-label="' +
               esc(g.kind === 'pack' ? 'Packshot' : g.cap) + ' ' + (i + 1) + ' z ' + gal.length + '"><img' + (g.kind === 'pack' && !SP.img[g.k].tb ? ' class="is-mult"' : '') + ' src="' + esc(SP.src(g.k)) + '" alt=""></button>';
