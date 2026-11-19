@@ -21,7 +21,8 @@ Centrum plików z paczkami serii, teczka plików oraz karty produktów PDF (A4) 
 | `assets/rysunki.js`, `assets/img/rys/` | rysunki techniczne do kart |
 | `assets/dokumenty.js`, `assets/dokumenty/` | karty gwarancyjne i instrukcje montażu przypisane do indeksów |
 | `assets/karty/` | wygenerowane karty produktów PDF — **wersja robocza, do przebudowy** |
-| `assets/fonts/` | Roboto i Roboto Condensed (licencja Apache 2.0) |
+| `assets/fonts/` | Leroy Merlin Sans (krój strony; © Leroy Merlin, wszelkie prawa zastrzeżone — nie objęty licencją repozytorium), Roboto i Roboto Condensed (Apache 2.0, karty PDF) |
+| `assets/znaki/` | logo Schedpol, znak Leroy Merlin, logo Sensea, znaki gwarancji |
 | `_narzedzia/` | skrypty Pythona do odświeżenia danych, zasobów i kart (wymagają materiałów źródłowych spoza repozytorium) |
 
 ## Uruchomienie lokalne
@@ -34,4 +35,4 @@ i otwórz http://localhost:8766/ (makieta działa też po otwarciu `a-biblioteka
 Skrót klawiszowy `H` chowa pasek prezentera, strzałki ← → przełączają ekrany.
 
 © SCHEDPOL Sp. z o.o. Materiały produktowe (zdjęcia, rysunki, opisy) są własnością Schedpol i nie podlegają licencji open source.
-Znaki Sensea i Leroy Merlin należą do ich właścicieli.
+Znaki Sensea i Leroy Merlin oraz krój Leroy Merlin Sans należą do ich właścicieli i zostały użyte wyłącznie na potrzeby makiety.

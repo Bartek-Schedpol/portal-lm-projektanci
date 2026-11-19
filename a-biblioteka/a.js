@@ -456,7 +456,7 @@
     <div class="wrap">
       <section class="hero" aria-labelledby="heroT">
         <div class="hero-copy">
-          <span class="eyebrow rv">Strefa projektanta · Leroy Merlin</span>
+          <div class="hero-partner rv"><img class="lm-logo" src="../assets/znaki/leroy-merlin.svg" alt="Leroy Merlin" width="79" height="48"><span>Strefa projektanta</span></div>
           <h1 class="hero-title rv" id="heroT" style="--d:60ms">Znajdź produkt.<span>Pobierz pliki.</span></h1>
           <p class="hero-lead rv" style="--d:120ms">${total} indeksów z oferty Schedpol i Sensea dostępnej w Leroy Merlin — karty produktów PDF, packshoty, aranżacje, rysunki techniczne i modele 3D w jednym miejscu.</p>
           <div class="bigsearch rv" id="bigBox" style="--d:180ms" role="search">

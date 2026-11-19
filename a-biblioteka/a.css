@@ -29,8 +29,8 @@
   --sh-2: 0 1px 0 rgba(20, 20, 20, .04), 0 28px 64px -28px rgba(20, 20, 20, .30);
   --sh-pop: 0 0 0 1px var(--line), 0 32px 80px -32px rgba(20, 20, 20, .38);
 
-  --sans: "Roboto", "Segoe UI", system-ui, sans-serif;
-  --mono: "Roboto", "Segoe UI", system-ui, sans-serif; /* liczby: Roboto z cyframi tabelarycznymi (.mono) */
+  --sans: "Leroy Merlin Sans", "Roboto", "Segoe UI", system-ui, sans-serif;
+  --mono: "Leroy Merlin Sans", "Roboto", "Segoe UI", system-ui, sans-serif; /* liczby: cyfry tabelaryczne (.mono) */
   --nav-h: 60px;
   --gut: 32px;
 }
@@ -191,7 +191,11 @@ input:focus-visible + .fbox { outline: 2px solid var(--brand); outline-offset: 2
 .nav-in { display: flex; align-items: center; gap: 20px; height: 100%; padding: 0 10px 0 20px; }
 .brand { display: flex; align-items: center; gap: 14px; flex: none; }
 .brand img { height: 18px; width: auto; }
-.brand-sub { padding-left: 14px; border-left: 1px solid var(--line-2); font-size: 12.5px; color: var(--ink-2); white-space: nowrap; }
+.brand .brand-logo { height: 30px; }                 /* logotyp Schedpol 2016 (z „SINCE 1981”) — powiększony */
+.brand-sub { display: inline-flex; align-items: center; gap: 10px; padding-left: 14px; border-left: 1px solid var(--line-2); font-size: 12.5px; color: var(--ink-2); white-space: nowrap; }
+.brand-sub .lm-logo { height: 34px; width: auto; }
+.lm-logo { display: block; height: 30px; width: auto; }
+.eyebrow .lm-logo { height: 22px; margin: -4px 0; }
 .brand-sub i { font-style: normal; color: var(--ink-3); margin: 0 2px; }
 .nav-links { display: flex; align-items: center; gap: 2px; margin: 0 auto; }
 .nav-links a { position: relative; display: grid; place-items: center; height: 36px; padding: 0 14px; border-radius: 999px; font-size: 13.5px; font-weight: 500; color: var(--ink-2); transition: color .3s var(--ease), background-color .3s var(--ease); }
@@ -609,6 +613,11 @@ tr[data-href] { cursor: pointer; }
 .foot { border-top: 1px solid var(--line-2); padding: 36px 0 104px; }
 .foot-in { display: grid; grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 1.4fr); gap: 40px; align-items: start; font-size: 12.5px; color: var(--ink-2); }
 .foot-brand img { height: 16px; width: auto; margin-bottom: 12px; }
+.foot-brand .foot-logo { height: 28px; }
+/* strona główna: znak Leroy Merlin zamiast napisu */
+.hero-partner { display: inline-flex; align-items: center; gap: 16px; }
+.hero-partner .lm-logo { height: 48px; }
+.hero-partner span { padding-left: 16px; border-left: 1px solid var(--line-2); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); line-height: 1.2; }
 .foot-links { display: grid; gap: 8px; }
 .foot-links a { transition: color .3s var(--ease); }
 .foot-links a:hover { color: var(--ink); }

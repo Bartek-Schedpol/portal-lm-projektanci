@@ -1,4 +1,11 @@
-/* Roboto i Roboto Condensed — pliki lokalne (licencja Apache 2.0), działają także offline i z file:// */
+/* Leroy Merlin Sans — krój firmowy Leroy Merlin („All rights reserved”), krój strony portalu.
+   Uwaga: licencja nie obejmuje publicznego rozpowszechniania plików fontu. */
+@font-face { font-family: "Leroy Merlin Sans"; src: url("LeroyMerlinSans-Light.otf") format("opentype"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Leroy Merlin Sans"; src: url("LeroyMerlinSans-Regular.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Leroy Merlin Sans"; src: url("LeroyMerlinSans-SemiBold.otf") format("opentype"); font-weight: 500 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Leroy Merlin Sans"; src: url("LeroyMerlinSans-Bold.otf") format("opentype"); font-weight: 700 900; font-style: normal; font-display: swap; }
+
+/* Roboto i Roboto Condensed — pliki lokalne (licencja Apache 2.0); Roboto zostaje jako zapas, Condensed dla kart PDF */
 @font-face { font-family: "Roboto"; src: url("Roboto-Light.ttf") format("truetype"); font-weight: 300; font-style: normal; font-display: swap; }
 @font-face { font-family: "Roboto"; src: url("Roboto-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Roboto"; src: url("Roboto-Medium.ttf") format("truetype"); font-weight: 500 600; font-style: normal; font-display: swap; }
