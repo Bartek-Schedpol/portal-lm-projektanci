@@ -566,14 +566,12 @@
           <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
         <div class="hcats">${SP.cats.map(function (c, i) {
           const n = SP.products.filter(function (p) { return p.cat === c.id; }).length;
-          const sc = CAT_SCENE[c.id] || [CAT_REP[c.id], 50, 50];
-          return `<a class="hcat hcat-${i} rv" style="--d:${i * 40}ms" href="${H('katalog', { cat: c.id })}">
-            <img src="${esc(SP.src(sc[0]))}" alt="" decoding="async" style="object-position:${sc[1]}% ${sc[2]}%">
+          return `<a class="hcat is-pack hcat-${i} rv" style="--d:${i * 40}ms" href="${H('katalog', { cat: c.id })}">
+            <img src="${esc(SP.src(CAT_REP[c.id]))}" alt="" decoding="async">
             <span class="hcat-go">${ic('arrow-up-right', 18)}</span>
             <span class="hcat-txt"><b>${esc(c.label)}</b><span>${indeksy(n)}</span></span>
           </a>`;
         }).join('')}</div>
-        <p class="hcats-note">Zdjęcia aranżacyjne są wizualizacjami poglądowymi.</p>
       </section>
 
       <section class="home-block panel hcad rv" id="sek-cad">
@@ -979,11 +977,18 @@
       return own(v) || (v.cats || []).indexOf(p.cat) !== -1;
     }).sort(function (a, b) { return own(b) - own(a); });
   }
+  /* film: YouTube Schedpol albo odtwarzacz Brightcove Leroy Merlin (v.bc = [konto, id filmu]) */
+  function videoSrc(v) {
+    return v.bc ? 'https://players.brightcove.net/' + v.bc[0] + '/default_default/index.html?videoId=' + v.bc[1] + '&autoplay=true'
+      : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.id) + '?autoplay=1&rel=0';
+  }
   function ytHTML(v, lazy) {
+    const poster = v.poster || ('https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg');
     return '<figure class="yt"><div class="yt-frame">' +
-      '<button type="button" class="yt-poster" data-act="yt" data-id="' + esc(v.id) + '" aria-label="Odtwórz film: ' + esc(v.t) + '">' +
-      '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="' + (lazy ? 'lazy' : 'eager') + '"><span class="yt-play">' + ic('play', 26) + '</span></button></div>' +
-      '<figcaption><b>' + esc(v.t) + '</b><small>' + esc(v.kind || 'Film') + ' · YouTube Schedpol</small></figcaption></figure>';
+      '<button type="button" class="yt-poster" data-act="yt" data-src="' + esc(videoSrc(v)) + '" aria-label="Odtwórz film: ' + esc(v.t) + '">' +
+      '<img src="' + esc(poster) + '" alt="" loading="' + (lazy ? 'lazy' : 'eager') + '"><span class="yt-play">' + ic('play', 26) + '</span>' +
+      (v.ai ? '<span class="yt-ai">Treść wygenerowana przez AI</span>' : '') + '</button></div>' +
+      '<figcaption><b>' + esc(v.t) + '</b><small>' + esc(v.kind || 'Film') + ' · ' + esc(v.bc ? 'film Leroy Merlin' : 'YouTube Schedpol') + '</small></figcaption></figure>';
   }
   function renderProdukt(params) {
     const p = SP.byRef((params && params.ref) || DEFAULT_REF) || SP.byRef(DEFAULT_REF) || SP.products[0];
@@ -1135,7 +1140,7 @@
       </section>` : ''}
 
       ${vids.length ? `<section class="pd-sec" aria-labelledby="vT">
-        <div class="sec-h"><div><h2 id="vT">Filmy</h2><p>Montaż i prezentacja produktu — z kanału YouTube Schedpol.</p></div>
+        <div class="sec-h"><div><h2 id="vT">Filmy</h2><p>Montaż i prezentacja produktu.</p></div>
           <a class="link" href="${H('akademia')}">Wszystkie w Akademii ${ic('arrow-right', 14)}</a></div>
         <div class="yt-grid">${vids.slice(0, 6).map(function (v) { return ytHTML(v, true); }).join('')}</div>
       </section>` : ''}
@@ -1285,7 +1290,7 @@
           const vs = shown.filter(function (v) { return v.g === g.k; });
           return `<div class="ak-grp"><h3>${esc(g.l)}</h3><div class="yt-grid${g.k === '360' ? ' is-short' : ''}">${vs.map(function (v) { return ytHTML(v, true); }).join('')}</div></div>`;
         }).join('')}
-        <p class="hcats-note">Filmy są osadzone z serwisu YouTube (tryb bez plików cookie do chwili odtworzenia).</p>
+        <p class="hcats-note">Filmy są osadzone z serwisu YouTube (tryb bez plików cookie do chwili odtworzenia) oraz z odtwarzacza Leroy Merlin.</p>
       </section>
     </div>`;
   }
@@ -1464,7 +1469,7 @@
     else if (act === 'preview') openPreview(PD.files && PD.files[+t.getAttribute('data-file')]);
     else if (act === 'preview-all') openPreview(PD.all && PD.all[+t.getAttribute('data-file')]);
     else if (act === 'preview-url') openPreview({ ext: t.getAttribute('data-ext') || 'PDF', name: t.getAttribute('data-name') || '', desc: t.getAttribute('data-desc') || '', href: t.getAttribute('data-src'), pv: { t: 'pdf', src: t.getAttribute('data-src') } });
-    else if (act === 'yt') { const fr = t.closest('.yt-frame'); if (fr) fr.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(t.getAttribute('data-id')) + '?autoplay=1&rel=0" title="Film YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }
+    else if (act === 'yt') { const fr = t.closest('.yt-frame'), src = t.getAttribute('data-src') || ''; if (fr && /^https:\/\/(www\.youtube-nocookie\.com|players\.brightcove\.net)\//.test(src)) fr.innerHTML = '<iframe src="' + esc(src) + '" title="Film" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }
     else if (act === 'more') { C.limit += 24; paintCatalog(); }
     else if (act === 'view') { C.view = t.getAttribute('data-view'); paintCatalog(); syncUrl(); }
     else if (act === 'facet-more') { const id = t.getAttribute('data-facet'); C.open[id] = !C.open[id]; paintCatalog(); }

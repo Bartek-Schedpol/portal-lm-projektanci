@@ -8,12 +8,15 @@ window.SP = window.SP || {};
 window.SP.ytChannel = 'https://www.youtube.com/@schedpol';
 window.SP.videos = [
   { id: 'Pi-RpbXVFWk', t: 'Docinanie brodzika kompozytowego bez bałaganu! Zobacz, jakie to proste!', kind: 'Montaż', g: 'brodziki', y: 2026, fams: ['Balans'] },
-  { id: 'NgdrtUwx9ic', t: 'Montaż i docinanie brodzika kompozytowego w technologii STABILSOUND PLUS® | Schedpol', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2021, cats: ['brodzik'] },  // zastąpił yLs0NYJzRig (DIN 18534) na prośbę użytkownika 19.11.2026
+  { id: 'NgdrtUwx9ic', t: 'Montaż i docinanie brodzika kompozytowego w technologii STABILSOUND PLUS® | Schedpol', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2021, fams: ['Balans', 'Magnetic'] },  // tylko brodziki kompozytowe (wskazanie użytkownika 19.11.2026)
   /* brodziki kompozytowe w technologii Stabilsound Plus (oferta katalogowa Schedpol, nie seria LM) — dodane na prośbę użytkownika 19.11.2026; tylko w Akademii */
-  { id: 'H92RaxaBTNI', t: 'Montaż brodzika STABILSOUND PLUS® na nośniku z podcięciem panelu | SCHEDPOL®', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2022 },
+  { id: 'H92RaxaBTNI', t: 'Montaż brodzika STABILSOUND PLUS® na nośniku z podcięciem panelu | SCHEDPOL®', kind: 'Montaż · technologia Stabilsound Plus', g: 'brodziki', y: 2022, fams: ['Frigo', 'Sinergid', 'Integral', 'Consist', 'Grawello', 'Dante', 'Go Baby'] },  // brodziki zintegrowane
   { id: 'X-IB6cWoc5Q', t: 'STABILNE BRODZIKI WYSOKIE – DOCINANE NA WYMIAR! ŁATWY MONTAŻ BEZ PODKUWANIA - SCHEDPOL', kind: 'Prezentacja · brodziki wysokie', g: 'brodziki', y: 2023 },
   { id: 'hZ-liL5so1U', t: 'Brodziki w technologii STABILSOUND® - cechy innowacyjnego brodzika. | Schedpol', kind: 'Prezentacja · technologia Stabilsound', g: 'brodziki', y: 2022 },
   { id: '7ZoJDkV-WTA', t: 'Brodziki kompozytowe do nowoczesnych łazienek | SCHEDPOL® | Stabilsound Plus®', kind: 'Prezentacja · technologia Stabilsound Plus', g: 'brodziki', y: 2021 },
+  /* Ipsilon (brodziki standardowe Sensea): film z karty produktu leroymerlin.pl (Brightcove LM, oznaczony przez LM jako treść wygenerowana przez AI) */
+  { id: 'bc-6375481871112', bc: ['5588818558001', '6375481871112'], poster: 'https://cf-images.eu-west-1.prod.boltdns.net/v1/jit/5588818558001/81dbde50-c3ee-4086-b3bf-040a462b9883/main/1280x720/1m47s114ms/match/image.jpg',
+    t: 'Brodzik Sensea Ipsilon — montaż', kind: 'Montaż · treść wygenerowana przez AI', ai: 1, g: 'brodziki', y: 2026, fams: ['Ipsilon'] },
   { id: 'IJ9kaWSjZfI', t: 'Najazd do brodzików podpłytkowych przeznaczony do zabudowy płytkami - montaż', kind: 'Montaż', g: 'brodziki', y: 2026, fams: ['Najazd'] },
   { id: 'QQsoJ7NhcVY', t: '[360] Grawello półokrągły', kind: 'Prezentacja 360°', g: '360', y: 2026, fams: ['Grawello'], short: 1 },
   { id: 'fbefVh2UcT4', t: '[360] Grawello - kwadrat', kind: 'Prezentacja 360°', g: '360', y: 2026, fams: ['Grawello'], short: 1 },
