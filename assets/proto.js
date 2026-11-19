@@ -70,6 +70,7 @@
   }
   function build() {
     if (/[?&]clean=1/.test(location.search)) return;
+    if (w.SPP_SOLO) return;                       // publikacja: bez dolnego paska (górne menu jest zawsze widoczne)
     var st = d.createElement('style'); st.textContent = CSS; d.head.appendChild(st);
     dock = d.createElement('nav'); dock.className = 'spp'; dock.setAttribute('aria-label', 'Pasek prezentera makiety');
     var solo = !!w.SPP_SOLO;                      // publikacja samej makiety (bez opracowania i koncepcji B/C)

@@ -37,6 +37,11 @@
     'brodzik': 'p-balans-ws', 'wanna': 'p-torres-w', 'odpływ liniowy': 'p-harmony', 'panel ścienny': 'p-wall6-sw',
     'nośnik': 'p-nosnik-wanna', 'obudowa': 'p-obudowa', 'akcesoria': 'p-maskownica-zlota'
   };
+  /* Start → Kategorie: przykładowe aranżacje produktów zamiast packshotów */
+  const CAT_SCENE = {
+    'brodzik': ['balans-ws-a', 30, 80], 'wanna': ['torres-w', 40, 55], 'odpływ liniowy': ['odplyw-detal', 60, 80],
+    'panel ścienny': ['wc-po', 25, 55], 'nośnik': ['nosnik', 50, 70], 'obudowa': ['obudowa-led', 50, 70], 'akcesoria': ['balans-zoom-bs', 50, 50]
+  };
   const TITLE = {
     'Nośnik': 'Nośnik uniwersalny do wanien',
     'Obudowa uniwersalna': 'Obudowa uniwersalna do wanien',
@@ -490,7 +495,7 @@
           </div>
           <div class="home-stats rv" style="--d:200ms" aria-label="Biblioteka w liczbach">
             <div class="hstat"><b>${total}</b><span>${plural(total, 'indeks', 'indeksy', 'indeksów')} Schedpol i Sensea w ofercie Leroy Merlin</span></div>
-            <div class="hstat"><b>${nRys}</b><span>${plural(nRys, 'indeks', 'indeksy', 'indeksów')} z rysunkiem technicznym na karcie produktu</span></div>
+            <div class="hstat"><b>${total}</b><span>${plural(total, 'karta', 'karty', 'kart')} produktów dostępnych natychmiast</span></div>
             <div class="hstat is-muted"><b>${nFiles.toLocaleString('pl-PL')}</b><span>${plural(nFiles, 'plik', 'pliki', 'plików')} w bibliotece · ${nf(mb / 1000, 1)} GB</span></div>
           </div>
         </div>
@@ -499,16 +504,6 @@
       <div class="wrap">
       <section class="home-main">
         <div class="home-left">
-          <div class="home-sec">
-            <div class="home-h"><span class="home-k">Narzędzia pracy</span><h2>Szybkie akcje projektowe</h2></div>
-            <div class="tiles">${tiles.map(function (t, i) {
-              return `<a class="tile rv" style="--d:${i * 50}ms" href="${t.href}">
-                <span class="tile-top"><span class="tile-ic">${ic(t.ic, 22)}</span><span class="tile-go">${ic('arrow-up-right', 18)}</span></span>
-                <b>${esc(t.t)}</b><p>${esc(t.d)}</p>
-              </a>`;
-            }).join('')}</div>
-          </div>
-
           <div class="home-sec">
             <div class="home-h home-h-row"><div><span class="home-k">Nowości 2026</span><h2>Nowe serie w ofercie Leroy Merlin</h2></div>
               <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
@@ -531,18 +526,7 @@
         </div>
 
         <aside class="home-side">
-          <div class="side-card rv" id="sek-kontakt">
-            <span class="home-k">Wsparcie techniczne</span>
-            <h3>Brakuje pliku albo wymiaru?</h3>
-            <p>Biuro Obsługi Klienta Schedpol odpowiada na pytania o montaż, dobór produktu i materiały do projektu.</p>
-            <div class="side-bok">${SP.contacts.bok.map(function (b) {
-              return `<div class="sb"><b>${esc(b.n)}</b>
-                <a class="mono" href="tel:+48${esc(b.tel.replace(/\s/g, ''))}">${ic('phone', 14)} ${esc(b.tel)}</a>
-                <a href="mailto:${esc(b.mail)}">${ic('mail', 14)} ${esc(b.mail)}</a></div>`;
-            }).join('')}</div>
-            <span class="chip">${ic('clock', 14)} ${esc(SP.contacts.hours)}</span>
-          </div>
-          <div class="side-card rv" style="--d:80ms">
+          <div class="side-card rv">
             <h3>Dokumenty i parametry</h3>
             <ul class="side-list">
               <li>${ic('check', 16, 2)}<span>Antypoślizgowość klasy A wg DIN EN 16165:2023 (zał. A) — brodziki o strukturze kamienia</span></li>
@@ -553,51 +537,63 @@
           </div>
         </aside>
       </section>
-      <section class="bento" aria-label="Skróty">
-        <div class="panel b-cats rv">
-          <div class="panel-h"><h2>Kategorie</h2><a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
-          <div class="cats">${SP.cats.map(function (c, i) {
-            const n = SP.products.filter(function (p) { return p.cat === c.id; }).length;
-            const k = CAT_REP[c.id], im = SP.img[k];
-            return `<a class="cat${i === 0 ? ' cat--lg' : ''}" href="${H('katalog', { cat: c.id })}">
-              <span class="cat-go">${ic('arrow-up-right', 14)}</span>
-              ${im ? '<img class="cat-img' + (im.tb ? '' : ' is-mult') + '" src="' + esc(SP.src(k)) + '" alt="" decoding="async">' : ''}
-              <span class="cat-l">${esc(c.label)}</span><span class="cat-n">${indeksy(n)}</span>
-            </a>`;
-          }).join('')}</div>
-        </div>
 
-        <div class="bezel b-pack rv" style="--d:80ms">
-          <div class="core">
-            <div class="panel-h" style="margin-bottom:0"><h2>Paczka serii</h2><span class="kicker">ZIP</span></div>
-            <label class="select pack-sel"><span class="sr">Wybierz serię</span>
-              <select id="packSel" aria-label="Wybierz serię">${SP.series.map(function (s) {
-                return '<option value="' + esc(s.fam) + '"' + (s.fam === packFam ? ' selected' : '') + '>' + esc(s.fam) + '</option>';
-              }).join('')}</select>${ic('chevron-down', 16)}
-            </label>
-            <div id="packBox" style="display:flex;flex-direction:column;flex:1">${packHTML(packFam)}</div>
+      <section class="home-block" aria-labelledby="catT">
+        <div class="home-h home-h-row"><div><span class="home-k">Oferta w Leroy Merlin</span><h2 id="catT">Kategorie</h2></div>
+          <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
+        <div class="hcats">${SP.cats.map(function (c, i) {
+          const n = SP.products.filter(function (p) { return p.cat === c.id; }).length;
+          const sc = CAT_SCENE[c.id] || [CAT_REP[c.id], 50, 50];
+          return `<a class="hcat hcat-${i} rv" style="--d:${i * 40}ms" href="${H('katalog', { cat: c.id })}">
+            <img src="${esc(SP.src(sc[0]))}" alt="" decoding="async" style="object-position:${sc[1]}% ${sc[2]}%">
+            <span class="hcat-go">${ic('arrow-up-right', 18)}</span>
+            <span class="hcat-txt"><b>${esc(c.label)}</b><span>${indeksy(n)}</span></span>
+          </a>`;
+        }).join('')}</div>
+        <p class="hcats-note">Zdjęcia aranżacyjne są wizualizacjami poglądowymi.</p>
+      </section>
+
+      <section class="home-block panel hcad rv" id="sek-cad">
+        <div class="hcad-l">
+          <span class="cad-ic">${ic('cube', 24)}</span>
+          <div>
+            <h2>Baza CAD Decor</h2>
+            <div class="cad-chips"><span class="chip">${esc(CAD.name)}</span><span class="chip mono">aktualizacja ${CAD.date}</span><span class="chip mono">${mbLabel(CAD.mb)}</span></div>
           </div>
         </div>
-
-        <div class="panel b-cad rv" id="sek-cad" style="display:flex;flex-direction:column">
-          <div class="cad-top">
-            <span class="cad-ic">${ic('cube', 24)}</span>
-            <div>
-              <h2>Baza CAD Decor</h2>
-              <div class="cad-chips"><span class="chip">${esc(CAD.name)}</span><span class="chip mono">aktualizacja ${CAD.date}</span><span class="chip mono">${mbLabel(CAD.mb)}</span></div>
-            </div>
-          </div>
-          <ol class="steps">
-            <li>Pobierz bazę „${esc(CAD.name)}” — stąd albo przez aktualizator baz w programie.</li>
-            <li>Zainstaluj bazę w CAD Decor lub CAD Decor PRO.</li>
-            <li>Wstaw model do projektu i potwierdź nr ref. LM na karcie produktu w portalu.</li>
-          </ol>
-          <div class="cad-foot" style="margin-top:auto">
-            <button class="btn btn-dark" type="button" data-act="add-cad">${ic('download', 16)} Pobierz bazę</button>
-            <button class="btn" type="button" data-act="demo" data-msg="Makieta: pobieranie pliku" data-detail="Instrukcja-aktualizacji-bazy.pdf">${ic('file', 16)} Instrukcja aktualizacji</button>
-          </div>
+        <ol class="steps">
+          <li>Pobierz bazę „${esc(CAD.name)}” — stąd albo przez aktualizator baz w programie.</li>
+          <li>Zainstaluj bazę w CAD Decor lub CAD Decor PRO.</li>
+          <li>Wstaw model do projektu i potwierdź nr ref. LM na karcie produktu w portalu.</li>
+        </ol>
+        <div class="cad-foot">
+          <button class="btn btn-dark" type="button" data-act="add-cad">${ic('download', 16)} Pobierz bazę</button>
+          <button class="btn" type="button" data-act="demo" data-msg="Makieta: pobieranie pliku" data-detail="Instrukcja-aktualizacji-bazy.pdf">${ic('file', 16)} Instrukcja aktualizacji</button>
         </div>
+      </section>
 
+      <section class="home-block hsupport rv" id="sek-kontakt" aria-labelledby="supT">
+        <div class="hsupport-intro">
+          <span class="home-k">Wsparcie techniczne</span>
+          <h2 id="supT">Brakuje pliku albo wymiaru?</h2>
+          <p>Biuro Obsługi Klienta Schedpol odpowiada na pytania o montaż, dobór produktu i materiały do projektu.</p>
+          <span class="chip">${ic('clock', 14)} ${esc(SP.contacts.hours)}</span>
+        </div>
+        ${SP.contacts.bok.map(function (b) {
+          return `<div class="sb"><b>${esc(b.n)}</b>
+            <a class="mono" href="tel:+48${esc(b.tel.replace(/\s/g, ''))}">${ic('phone', 15)} ${esc(b.tel)}</a>
+            <a href="mailto:${esc(b.mail)}">${ic('mail', 15)} ${esc(b.mail)}</a></div>`;
+        }).join('')}
+      </section>
+
+      <section class="home-block" aria-labelledby="toolT">
+        <div class="home-h"><span class="home-k">Narzędzia pracy</span><h2 id="toolT">Szybkie akcje projektowe</h2></div>
+        <div class="tiles tiles-4">${tiles.map(function (t, i) {
+          return `<a class="tile rv" style="--d:${i * 50}ms" href="${t.href}">
+            <span class="tile-top"><span class="tile-ic">${ic(t.ic, 22)}</span><span class="tile-go">${ic('arrow-up-right', 18)}</span></span>
+            <b>${esc(t.t)}</b><p>${esc(t.d)}</p>
+          </a>`;
+        }).join('')}</div>
       </section>
       </div>
     </div>`;
@@ -610,7 +606,6 @@
     box.addEventListener('focusout', function (e) {
       if (!box.contains(e.relatedTarget)) setTimeout(function () { if (!box.contains(document.activeElement)) box.classList.remove('is-open'); }, 140);
     });
-    $('#packSel').addEventListener('change', function (e) { packFam = e.target.value; $('#packBox').innerHTML = packHTML(packFam); });
     if (params && params.sek) scrollToSek(params.sek);
   }
   function scrollToSek(sek) {
@@ -625,22 +620,40 @@
   /* ==========================================================================
      Ekran: Katalog
      ========================================================================== */
-  const PARAM = { cat: 'cat', fam: 'seria', shape: 'ksztalt', color: 'kolor', brand: 'marka', gama: 'gama' };
-  const C = { q: '', f: { cat: [], fam: [], shape: [], color: [], brand: [], gama: [] }, sort: 'seria', view: 'grid', limit: 24, open: {} };
+  const PARAM = { cat: 'cat', fam: 'seria', shape: 'ksztalt', size: 'rozmiar', color: 'kolor', brand: 'marka', gama: 'gama' };
+  const C = { q: '', f: { cat: [], fam: [], shape: [], size: [], color: [], brand: [], gama: [] }, sort: 'seria', view: 'grid', limit: 24, open: {} };
   const COLORS = (function () {
     const m = {};
     SP.products.forEach(function (p) { if (p.c) { m[p.c] = m[p.c] || { v: p.c, l: p.c, hx: p.hx, n: 0 }; m[p.c].n++; } });
     return Object.keys(m).map(function (k) { return m[k]; }).sort(function (a, b) { return b.n - a.n; });
+  })();
+  /* rozmiar: długość × szerokość (większy wymiar pierwszy), np. „100 × 80 cm”; odpływy — sama długość */
+  function sizeKey(p) {
+    const a = typeof p.a === 'number' ? p.a : null, b = typeof p.b === 'number' ? p.b : null;
+    if (a != null && b != null) return Math.max(a, b) + ' × ' + Math.min(a, b) + ' cm';
+    if (p.a != null && p.b != null) return String(p.a).replace(/-/g, '–') + ' × ' + p.b + ' cm';
+    if (p.a != null) return String(p.a).replace(/-/g, '–') + ' cm';
+    return '';
+  }
+  const SIZES = (function () {
+    const m = {};
+    SP.products.forEach(function (p) { const k = sizeKey(p); if (k) { m[k] = m[k] || { v: k, l: k, n: 0, s: 0 }; m[k].n++; } });
+    return Object.keys(m).map(function (k) {
+      const nums = k.match(/\d+/g).map(Number);
+      m[k].s = nums[0] * 1000 + (nums[1] || 0);
+      return m[k];
+    }).sort(function (a, b) { return a.s - b.s; });
   })();
   const GAMY = ['A', 'B', 'C', 'L', 'X', 'brak'];   // wg eksportu referencji LM z 26.03.2026 (assets/lm.js)
   const FACETS = [
     { id: 'cat', label: 'Kategoria', get: function (p) { return p.cat; }, opts: SP.cats.map(function (c) { return { v: c.id, l: c.label }; }) },
     { id: 'fam', label: 'Seria', get: function (p) { return p.fam; }, opts: SP.series.map(function (s) { return { v: s.fam, l: s.fam }; }), collapse: 8 },
     { id: 'shape', label: 'Kształt', get: function (p) { return p.shape; }, opts: ['kwadratowy', 'prostokątny', 'półokrągły', 'pięciokątny'].map(function (v) { return { v: v, l: cap(v) }; }) },
+    { id: 'size', label: 'Rozmiar (długość × szerokość)', get: function (p) { return sizeKey(p); }, opts: SIZES, collapse: 10, mono: true, hideZero: true },
     { id: 'color', label: 'Kolor', get: function (p) { return p.c; }, opts: COLORS, collapse: 7 },
     { id: 'brand', label: 'Marka', get: function (p) { return p.brand; }, opts: [{ v: 'Schedpol', l: 'Schedpol' }, { v: 'Sensea', l: 'Sensea' }] },
     { id: 'gama', label: 'Gama LM', get: function (p) { return p.g || 'brak'; }, opts: GAMY.map(function (g) { return { v: g, l: g === 'brak' ? 'nie podano' : g, mono: g !== 'brak' }; }),
-      hint: 'Oznaczenia gam wg przeglądu oferty LM 2025.09.' }
+      hint: 'Gama wg eksportu referencji LM z 26.03.2026.' }
   ];
   function facetById(id) { return FACETS.filter(function (F) { return F.id === id; })[0]; }
   function optLabel(F, v) { const o = F.opts.filter(function (x) { return x.v === v; })[0]; return o ? o.l : v; }
@@ -700,17 +713,21 @@
       base.forEach(function (p) { if (pass(p, F.id)) { const v = F.get(p); cnt[v] = (cnt[v] || 0) + 1; } });
       const sel = C.f[F.id], open = !!C.open[F.id];
       let shown = 0, hidden = 0, body = '';
-      F.opts.forEach(function (o, i) {
+      let vis = 0;
+      F.opts.forEach(function (o) {
         const on = sel.indexOf(o.v) !== -1, n = cnt[o.v] || 0;
+        if (F.hideZero && n === 0 && !on) return;      // rozmiar: tylko wymiary obecne w bieżącym wyborze
+        const i = vis++;
         if (F.collapse && !open && i >= F.collapse && !on) { hidden++; return; }
         shown++;
         body += '<label class="fopt' + (n === 0 && !on ? ' is-zero' : '') + '"><input type="checkbox" data-facet="' + F.id + '" value="' + esc(o.v) + '"' + (on ? ' checked' : '') + '>' +
           '<span class="fbox">' + ic('check', 12, 2.2) + '</span><span class="fl' + (o.mono ? ' mono' : '') + '">' + (o.hx ? dot(o.hx) : '') + esc(o.l) + '</span><span class="fc">' + n + '</span></label>';
       });
       h += '<div class="fg" role="group" aria-label="' + esc(F.label) + '"><div class="fg-h">' + esc(F.label) + (sel.length ? '<span>' + sel.length + '</span>' : '') + '</div>' + body;
-      if (F.collapse && F.opts.length > F.collapse) {
+      const total = F.hideZero ? vis : F.opts.length;
+      if (F.collapse && total > F.collapse) {
         h += '<button class="fmore" type="button" data-act="facet-more" data-facet="' + F.id + '" aria-expanded="' + open + '">' +
-          (open ? 'Pokaż mniej' : 'Pokaż wszystkie (' + F.opts.length + ')') + ic('chevron-down', 14) + '</button>';
+          (open ? 'Pokaż mniej' : 'Pokaż wszystkie (' + total + ')') + ic('chevron-down', 14) + '</button>';
       }
       if (F.hint) h += '<p class="fhint">' + esc(F.hint) + '</p>';
       h += '</div>';
@@ -896,6 +913,24 @@
     $$('.files-tbl tbody tr').forEach(function (tr) { const inp = $('input[data-file]', tr); tr.classList.toggle('is-off', !inp.checked); });
   }
 
+  /* gwarancja producenta wg karty Stabilsafe v15.25 (kanał DIY); znaki: oryginały z etykiet Sensea i przeglądu oferty Schedpol */
+  const GW_TAIL = 'Warunek: montaż zgodnie z instrukcją, przez osobę o odpowiednich kwalifikacjach. Zakres i terytorium — karta gwarancyjna Stabilsafe v15.25. Gwarancja nie ogranicza ustawowych praw kupującego.';
+  function gwFor(p) {
+    const sensea = p.brand === 'Sensea';
+    if (p.tn === 'Stabilsafe') return { badge: sensea ? 'gw-sensea-10' : 'gw-10', lines: ['10 lat — wytrzymałość na nacisk wg PN-EN 14527', '5 lat — stałość barwy'] };
+    if (p.tn === 'Standard Plus') return { badge: sensea ? 'gw-sensea-7' : 'gw-7', lines: ['7 lat — stałość barwy'] };
+    if (p.fam === 'Nośnik') return { badge: 'gw-31', lines: ['31 lat — trwałość materiału nośnika EPS'] };
+    if (p.fam === 'Harmony') return { badge: '', lines: ['5 lat — wg PN-EN 1253-1'] };
+    return { badge: '', lines: [] };
+  }
+  /* ten sam wymiar i kształt, inny kolor — w tej samej serii */
+  function colorVariants(p) {
+    const k = sizeKey(p);
+    if (!k || !p.c) return [];
+    return SP.products.filter(function (x) {
+      return x.ref !== p.ref && x.fam === p.fam && x.s === p.s && x.c && x.c !== p.c && sizeKey(x) === k && (x.shape || '') === (p.shape || '');
+    }).sort(function (a, b) { return a.c.localeCompare(b.c, 'pl'); });
+  }
   function renderProdukt(params) {
     const p = SP.byRef((params && params.ref) || DEFAULT_REF) || SP.byRef(DEFAULT_REF) || SP.products[0];
     const s = serieOf(p), files = filesFor(p), gal = galleryFor(p);
@@ -915,7 +950,7 @@
     ].filter(Boolean);
     const sibs = SP.products.filter(function (x) { return x.fam === p.fam && x.s === p.s && x.c === p.c && x.ref !== p.ref; })
       .sort(function (a, b) { return area(a) - area(b); });
-    const zest = zestawFor(p);
+    const zest = zestawFor(p), gw = gwFor(p), cvar = colorVariants(p);
     const pdBits = [];
     if (SP.dims(p)) pdBits.push('<span class="mono">' + esc(variant(p)) + '</span>');
     if (p.c) pdBits.push('<span>' + dot(p.hx, 'lg') + esc(p.c) + '</span>');
@@ -946,7 +981,11 @@
           <h1 class="pd-title" id="pdT">${esc(titleOf(p))}</h1>
           ${pdVar ? '<p class="pd-var">' + pdVar + '</p>' : ''}
           <div class="pd-ref">${refChip(p, true)}<span>Numer referencyjny Leroy Merlin</span></div>
+          ${cvar.length ? '<div class="pd-colors"><span class="pd-colors-h">Inne kolory w tym wymiarze</span><div class="pd-colors-l">' + cvar.map(function (x) {
+            return '<a class="cvar" href="' + H('produkt', { ref: x.ref }) + '" title="' + esc(cap(x.c)) + ' · LM ' + esc(x.ref) + '">' + dot(x.hx, 'lg') + '<span>' + esc(cap(x.c)) + '</span><small class="mono">' + esc(x.ref) + '</small></a>';
+          }).join('') + '</div></div>' : ''}
           <dl class="attrs">${attrs.map(function (a) { return '<div><dt>' + a[0] + '</dt><dd>' + a[1] + '</dd></div>'; }).join('')}</dl>
+          ${gw.lines.length ? '<div class="pd-gw">' + (gw.badge ? '<img src="../assets/znaki/' + gw.badge + '.png" alt="Znak gwarancji">' : '') + '<div><b>Gwarancja producenta</b><ul>' + gw.lines.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul><small>Zakres i warunki — karta gwarancyjna Stabilsafe v15.25</small></div></div>' : ''}
           <div class="pd-cta">
             <button class="btn btn-primary" type="button" data-act="add-product-sel">Dodaj pliki do teczki <span class="btn-ic">${ic('arrow-right', 16)}</span></button>
             <a class="btn" href="${esc(kartaPdf(p))}" download>${ic('file', 16)} Karta produktu PDF</a>
@@ -988,7 +1027,8 @@
         </section>
         <section class="panel gw" aria-labelledby="gT">
           <h2 class="gw-h" id="gT">${ic('shield', 20)} Gwarancja</h2>
-          <p>${esc(s.gw)}</p>
+          ${gw.lines.length ? '<ul class="gw-lines">' + gw.lines.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul>' : ''}
+          <p>${esc(GW_TAIL)}</p>
           ${docsFor(p).map(function (d) {
             return '<a class="link" href="' + esc(DOC_BASE + d.f) + '" target="_blank" rel="noopener">' + ic('file', 15) + ' ' + esc(d.t) + ' <small>(PDF, ' + esc(nf(d.mb, 1)) + ' MB)</small></a>';
           }).join('')}
@@ -1013,7 +1053,7 @@
       </section>` : ''}
 
       ${zest.length ? `<section class="pd-sec" aria-labelledby="zT">
-        <div class="sec-h"><div><h2 id="zT">Elementy zestawu</h2><p>Produkty z oferty w Leroy Merlin, które uzupełniają tę serię w projekcie.</p></div></div>
+        <div class="sec-h"><div><h2 id="zT">Produkty możliwe do dobrania</h2><p>Produkty z oferty w Leroy Merlin, które można dobrać do tej serii w projekcie.</p></div></div>
         <div class="zestaw">${zest.map(function (z) {
           const zs = SP.serie(z.fam);
           const zp = z.q ? SP.products.filter(function (x) { return x.fam === z.fam && norm(x.s).indexOf(norm(z.q)) !== -1; })[0] : null;
