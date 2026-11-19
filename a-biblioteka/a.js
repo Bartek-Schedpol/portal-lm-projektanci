@@ -135,6 +135,23 @@
   function docsFor(p) {
     return ((SP.docMap && SP.docMap[p.ref]) || []).map(function (k) { return SP.docs[k]; }).filter(Boolean);
   }
+  /* modele 3D (assets/modele3d.js) i podgląd w przeglądarce (<model-viewer>, ładowany przy pierwszym użyciu) */
+  const CAD_BASE = '../assets/cad/';
+  function cadFor(p) { return SP.cad && SP.cad[p.ref]; }
+  function glbFor(p) { const c = cadFor(p); const g = c && c.files.filter(function (x) { return x.ext === 'GLB'; })[0]; return g ? CAD_BASE + g.f : ''; }
+  let mvLoading = null;
+  function loadMV() {
+    if (window.customElements && customElements.get('model-viewer')) return;
+    if (mvLoading) return;
+    mvLoading = document.createElement('script'); mvLoading.type = 'module';
+    mvLoading.src = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
+    document.head.appendChild(mvLoading);
+  }
+  function mvHTML(src, alt) {
+    loadMV();
+    return '<model-viewer src="' + esc(src) + '" alt="' + esc(alt) + '" camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="800" rotation-per-second="18deg" ' +
+      'shadow-intensity="1.4" shadow-softness="0.6" exposure="0.78" tone-mapping="neutral" environment-image="neutral" camera-orbit="35deg 62deg auto" ar ar-modes="webxr scene-viewer quick-look"></model-viewer>';
+  }
   function filesFor(p) {
     const s = serieOf(p), f = [], base = fileBase(p), has = s.files || {};
     f.push({ ext: 'PDF', name: 'Karta-produktu_LM' + p.ref + '.pdf', desc: 'Karta produktu PDF, A4 — parametry, nr ref., EAN, rysunek techniczny, gwarancja', mb: 0.2, href: kartaPdf(p), view: kartaView(p), karta: true });
@@ -142,7 +159,14 @@
     f.push({ ext: 'PNG', name: base + '_packshot.png', desc: 'Packshot PNG, przezroczyste tło', mb: rnd(p.ref + 'b', 2.2, 4.8) });
     if (has['aranżacja']) f.push({ ext: 'JPG', name: base + '_aranzacja.jpg', desc: 'Aranżacja JPG, 2500 px', mb: rnd(p.ref + 'c', 1.8, 3.9) });
     if (has['rysunek']) f.push({ ext: 'PDF', name: base + '_rysunek-techniczny.pdf', desc: 'Rysunek techniczny PDF', mb: rnd(p.ref + 'd', 0.2, 3.2) });
-    if (p.cat !== 'akcesoria') f.push({ ext: 'DWG', name: base + '_rysunek.dwg', desc: 'Rysunek 2D DWG', mb: rnd(p.ref + 'e', 0.15, 0.6) });
+    const cad = cadFor(p);
+    if (cad) {                                      // prawdziwe modele: assets/cad (10_modele_3d.py)
+      const glb = (cad.files.filter(function (x) { return x.ext === 'GLB'; })[0] || {}).f;
+      const CADD = { DWG: 'Model 3D DWG (AutoCAD)', OBJ: 'Model 3D OBJ (SketchUp, Blender, 3ds Max)', '3DS': 'Model 3D 3DS (3ds Max, CAD Decor)' };
+      cad.files.filter(function (x) { return x.ext !== 'GLB'; }).forEach(function (x) {
+        f.push({ ext: x.ext, name: x.f, desc: CADD[x.ext] + ' · wymiary w cm', mb: x.kb / 1024, href: CAD_BASE + x.f, glb: glb ? CAD_BASE + glb : '' });
+      });
+    } else if (p.cat !== 'akcesoria') f.push({ ext: 'DWG', name: base + '_rysunek.dwg', desc: 'Rysunek 2D DWG', mb: rnd(p.ref + 'e', 0.15, 0.6) });
     if (['brodzik', 'wanna', 'panel ścienny', 'odpływ liniowy'].indexOf(p.cat) !== -1) {
       f.push({ ext: '3D', name: 'Baza CAD Decor — ' + CAD.name, desc: 'Model 3D w bazie CAD Decor (aktualizacja ' + CAD.date + ')', mb: 0, cad: true });
     }
@@ -159,6 +183,7 @@
     const s = serieOf(p), n = f.name || '';
     const rys = SP.rys && SP.rys[p.ref];
     const rysSrc = rys ? SP.base + 'rys/' + rys.f : (p.fam === 'Balans' ? SP.src(p.shape === 'prostokątny' ? 'draw-balans-rect' : 'draw-balans-sq') : '');
+    if (f.glb) return { t: '3d', src: f.glb, note: 'Podgląd 3D — przeciągnij, aby obrócić; kółko myszy przybliża' };
     if (f.karta) return { t: 'pdf', src: f.view };
     if (f.doc) return { t: 'pdf', src: f.href };
     if (/_packshot\./.test(n)) return { t: 'img', src: SP.src(p.im), tb: true };
@@ -181,7 +206,8 @@
       box.addEventListener('click', function (e) { if (e.target === box || e.target.closest('[data-pv-close]')) closePreview(); });
     }
     const v = f.pv;
-    const body = v.t === 'pdf' ? '<iframe src="' + esc(v.src) + '" title="Podgląd: ' + esc(f.name) + '"></iframe>'
+    const body = v.t === '3d' ? '<div class="pv-3d">' + mvHTML(v.src, f.desc) + '</div>'
+      : v.t === 'pdf' ? '<iframe src="' + esc(v.src) + '" title="Podgląd: ' + esc(f.name) + '"></iframe>'
       : v.t === 'text' ? '<div class="pv-text">' + v.html + '</div>'
       : '<div class="pv-img' + (v.tb ? ' is-pack' : '') + '"><img src="' + esc(v.src) + '" alt="' + esc(f.desc) + '"></div>';
     const dl = f.href ? '<a class="btn btn-sm btn-primary" href="' + esc(f.href) + '" download>' + ic('download', 15) + ' Pobierz</a>'
@@ -920,9 +946,11 @@
     let cap = 'Wizualizacja poglądowa';
     if (!own.length && all.length) { own = all; cap = 'Wizualizacja poglądowa · inny wariant kolorystyczny'; }
     const scenes = own.slice(0, Math.max(2, 9 - docs.length - ex.length)).map(function (k) { return { k: k, kind: 'scene', cap: cap }; });
-    return [{ k: p.im, kind: 'pack', cap: '' }].concat(exPack, scenes, exPhoto, docs).filter(function (x) { return SP.img[x.k]; });
+    const g3 = glbFor(p) ? [{ k: p.im, kind: '3d', cap: 'Model 3D · przeciągnij, aby obrócić', glb: glbFor(p) }] : [];
+    return [{ k: p.im, kind: 'pack', cap: '' }].concat(g3, exPack, scenes, exPhoto, docs).filter(function (x) { return SP.img[x.k]; });
   }
   function stageInner(item, alt) {
+    if (item.kind === '3d') return mvHTML(item.glb, 'Model 3D: ' + alt) + '<span class="gal-cap">' + esc(item.cap) + '</span>';
     const i = SP.img[item.k];
     return '<img' + (item.kind === 'pack' && !i.tb ? ' class="is-mult"' : '') + ' src="' + esc(SP.src(item.k)) + '" alt="' + esc(alt) + '" width="' + i.w + '" height="' + i.h + '">' +
       (item.cap ? '<span class="gal-cap">' + esc(item.cap) + '</span>' : '');

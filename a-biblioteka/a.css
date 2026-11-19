@@ -29,8 +29,8 @@
   --sh-2: 0 1px 0 rgba(20, 20, 20, .04), 0 28px 64px -28px rgba(20, 20, 20, .30);
   --sh-pop: 0 0 0 1px var(--line), 0 32px 80px -32px rgba(20, 20, 20, .38);
 
-  --sans: "Leroy Merlin Sans", "Roboto", "Segoe UI", system-ui, sans-serif;
-  --mono: "Leroy Merlin Sans", "Roboto", "Segoe UI", system-ui, sans-serif; /* liczby: cyfry tabelaryczne (.mono) */
+  --sans: "Roboto", "Segoe UI", system-ui, sans-serif;
+  --mono: "Roboto", "Segoe UI", system-ui, sans-serif; /* liczby: cyfry tabelaryczne (.mono) */
   --nav-h: 60px;
   --gut: 32px;
 }
@@ -1088,3 +1088,20 @@ html.pv-lock { overflow: hidden; }
 .gal-marks .flag-gama { position: static; height: 30px; padding: 0 14px; font-size: 13px; }
 .gal-marks .flag-gama b { font-size: 15px; }
 @media (max-width: 720px) { .gal-marks { right: 12px; top: 12px; gap: 6px; } .gal-brand { height: 30px; padding: 0 10px; } .gal-brand img { height: 14px; } .gal-brand-sensea img { height: 17px; } }
+
+
+/* ===== 19.11 (8): kąty proste w całym portalu (decyzja użytkownika). Koła zostają tylko tam, gdzie są znaczeniem, nie narożnikiem:
+   próbki kolorów (.dot) i drobne kropki dekoracyjne. Znaki gwarancji są obrazami PNG — ich kształt się nie zmienia. ===== */
+*, *::before, *::after { border-radius: 0 !important; }
+.dot, .eyebrow::before, .nav-links a.is-on::after { border-radius: 50% !important; }
+
+
+/* ===== 19.11 (9): modele 3D — podgląd w galerii i w oknie podglądu pliku ===== */
+.gal-stage.is-3d { background: var(--tile); }
+.gal-stage model-viewer, .pv-3d model-viewer { position: absolute; inset: 0; width: 100%; height: 100%; --poster-color: transparent; background: var(--tile); }
+.pv-3d { position: absolute; inset: 0; }
+.gal-thumb.is-3d { position: relative; }
+.gal-thumb.is-3d::after { content: "3D"; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(20, 20, 20, .55); color: #fff; font-weight: 700; font-size: 15px; letter-spacing: .06em; }
+.f-ext.x-obj, .f-ext.x-3ds { color: var(--brand); }
+
+.gal-stage.is-3d, .gal-stage model-viewer, .pv-3d model-viewer { background: linear-gradient(180deg, #d3d5d0 0%, #a4a7a1 100%); }
