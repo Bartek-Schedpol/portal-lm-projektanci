@@ -654,6 +654,7 @@
               const pack = !SP.img[x[1]] || SP.img[x[1]].k === 'pack' || /^p-|^pk-/.test(x[1]);
               return `<a class="hcat hnew rv hnew-${i}${pack ? ' is-pack' : ''}" href="${H('katalog', { seria: x[0] })}">
                 <img src="${esc(SP.src(x[1]))}" alt="" decoding="async" style="object-position:${x[2]}% ${x[3]}%">
+                ${pack ? '' : '<span class="hnew-tag">Nowość</span>'}
                 <span class="hcat-go">${ic('arrow-up-right', 16)}</span>
                 <span class="hcat-txt"><b>${esc(x[4] || x[0])}</b><span>${esc(typeShort({ fam: x[0] }))} · ${indeksy(n)}</span></span>
               </a>`;

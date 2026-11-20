@@ -1294,3 +1294,7 @@ h1, h2, h3 { letter-spacing: -.02em; }
 
 .hcats-v2 .hcat.is-scene img { transform-origin: 50% 50%; transform: scale(var(--z, 1)) translate(var(--tx, 0), var(--ty, 0)); }
 .hcats-v2 .hcat.is-scene:hover img { transform: scale(calc(var(--z, 1) * 1.04)) translate(var(--tx, 0), var(--ty, 0)); }
+
+/* ===== 20.11.2026 (4): naklejka NOWOŚĆ na aranżacjach w sekcji Nowości ===== */
+.hnew-tag { position: absolute; left: 16px; top: 16px; z-index: 2; padding: 6px 12px 5px; background: var(--brand); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; line-height: 1; border-radius: 4px; box-shadow: 0 6px 16px -8px rgba(60, 10, 10, .55); pointer-events: none; }
+.hnews-box .hnew-0 .hnew-tag { left: 24px; top: 24px; padding: 8px 16px 7px; font-size: 14px; }
