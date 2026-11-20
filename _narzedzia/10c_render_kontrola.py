@@ -21,7 +21,7 @@ for glb in args[1:]:
     ctr = (mn + mx) / 2; R = (mx - mn).length
     cam = bpy.data.objects.new('cam', bpy.data.cameras.new('cam')); sc.collection.objects.link(cam); sc.camera = cam
     cam.data.type = 'ORTHO'; cam.data.ortho_scale = R * 1.15
-    for tag, d in (('gora', mathutils.Vector((0.55, -0.9, 1.1))), ('spod', mathutils.Vector((0.35, -0.6, -1.3))), ('plan', mathutils.Vector((0.0, -0.001, 1.0)))):
+    for tag, d in (('gora', mathutils.Vector((0.55, -0.9, 1.1))), ('spod', mathutils.Vector((0.35, -0.6, -1.3))), ('plan', mathutils.Vector((0.0, -0.001, 1.0))), ('przod', mathutils.Vector((0.35, -1.0, 0.12)))):
         cam.location = ctr + d.normalized() * R * 2
         cam.rotation_euler = (ctr - cam.location).to_track_quat('-Z', 'Y').to_euler()
         sc.render.filepath = os.path.join(outd, os.path.basename(glb)[:-4] + '_' + tag + '.png')

@@ -45,7 +45,11 @@ def img_for(o):
         if has(o, "szary"): return "p-wall-gs"
         if has(o, "biały kamień"): return "p-wall-ws"
         return "p-wall6-sw" if str(o["h"]) == "6" else "p-wall-sw"
-    if s == "Nośnik": return "p-nosnik-wanna"
+    if s == "Nośnik":                       # trzy różne produkty (paczka e-commerce: NOŚNIK DO WANNY 1.1 / 1.2 / 2.)
+        t = (o.get("t") or "").lower()
+        if "półokr" in t or "polokr" in t or "1/4" in t: return "p-nosnik-polokr"
+        if "61/48" in t or "podcię" in t: return "p-nosnik-wanna"
+        return "p-nosnik-prost"
     if s == "Obudowa uniwersalna": return "p-obudowa"
     if s == "Maskownica Balans/Integral":
         return "p-maskownica-szczot" if has(o, "szczotk") else "p-maskownica-miedz" if has(o, "miedz") else "p-maskownica-zlota"

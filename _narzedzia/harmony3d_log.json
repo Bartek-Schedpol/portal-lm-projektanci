@@ -1,0 +1,258 @@
+{
+ "Schedpol_Harmony_900": {
+  "dims_mm": [
+   930.0,
+   193.9,
+   95.0
+  ],
+  "log": [
+   "syfon x=350 mm, wylot boczny"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Black_800": {
+  "dims_mm": [
+   830.0,
+   193.9,
+   95.0
+  ],
+  "log": [
+   "syfon x=300 mm, wylot boczny"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Black_700": {
+  "dims_mm": [
+   730.0,
+   193.9,
+   95.0
+  ],
+  "log": [
+   "syfon x=250 mm, wylot boczny"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Prime-Black_700": {
+  "dims_mm": [
+   730.0,
+   151.9,
+   95.0
+  ],
+  "log": [
+   "syfon pośrodku, wylot wzdłuż"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Black_600": {
+  "dims_mm": [
+   630.0,
+   193.9,
+   95.0
+  ],
+  "log": [
+   "syfon x=200 mm, wylot boczny"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Prime_800": {
+  "dims_mm": [
+   830.0,
+   151.9,
+   95.0
+  ],
+  "log": [
+   "syfon pośrodku, wylot wzdłuż"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Prime_600": {
+  "dims_mm": [
+   630.0,
+   151.9,
+   95.0
+  ],
+  "log": [
+   "syfon pośrodku, wylot wzdłuż"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Prime-Black_900": {
+  "dims_mm": [
+   930.0,
+   151.9,
+   95.0
+  ],
+  "log": [
+   "syfon pośrodku, wylot wzdłuż"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony_800": {
+  "dims_mm": [
+   830.0,
+   193.9,
+   95.0
+  ],
+  "log": [
+   "syfon x=300 mm, wylot boczny"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Prime-Black_600": {
+  "dims_mm": [
+   630.0,
+   151.9,
+   95.0
+  ],
+  "log": [
+   "syfon pośrodku, wylot wzdłuż"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Prime-Black_800": {
+  "dims_mm": [
+   830.0,
+   151.9,
+   95.0
+  ],
+  "log": [
+   "syfon pośrodku, wylot wzdłuż"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Black_900": {
+  "dims_mm": [
+   930.0,
+   193.9,
+   95.0
+  ],
+  "log": [
+   "syfon x=350 mm, wylot boczny"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Prime_900": {
+  "dims_mm": [
+   930.0,
+   151.9,
+   95.0
+  ],
+  "log": [
+   "syfon pośrodku, wylot wzdłuż"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony-Prime_700": {
+  "dims_mm": [
+   730.0,
+   151.9,
+   95.0
+  ],
+  "log": [
+   "syfon pośrodku, wylot wzdłuż"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony_700": {
+  "dims_mm": [
+   730.0,
+   193.9,
+   95.0
+  ],
+  "log": [
+   "syfon x=250 mm, wylot boczny"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ },
+ "Schedpol_Harmony_600": {
+  "dims_mm": [
+   630.0,
+   193.9,
+   95.0
+  ],
+  "log": [
+   "syfon x=200 mm, wylot boczny"
+  ],
+  "parts": {
+   "syfon": 3,
+   "ruszt": 1,
+   "koncowki": 2,
+   "nozki": 23
+  }
+ }
+}

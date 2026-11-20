@@ -195,7 +195,7 @@
       const glb = (cad.files.filter(function (x) { return x.ext === 'GLB'; })[0] || {}).f;
       const CADD = { DWG: 'Model 3D DWG (AutoCAD)', OBJ: 'Model 3D OBJ w archiwum ZIP (SketchUp, Blender, 3ds Max)', '3DS': 'Model 3D 3DS (3ds Max, CAD Decor)' };
       cad.files.filter(function (x) { return x.ext !== 'GLB'; }).forEach(function (x) {
-        f.push({ ext: x.ext, name: x.f, desc: CADD[x.ext] + ' · wymiary w cm' + (cad.approx && cad.from ? ' · bryła serii dopasowana do wymiaru produktu (wzorzec ' + String(cad.from[0]).replace('.', ',') + ' × ' + String(cad.from[1]).replace('.', ',') + ' cm)' : '') + (cad.fix ? ' · odpływ wg rysunku technicznego' : ''), mb: x.kb / 1024, href: CAD_BASE + x.f, glb: glb ? CAD_BASE + glb : '' });
+        f.push({ ext: x.ext, name: x.f, desc: CADD[x.ext] + ' · wymiary w cm' + (cad.approx && cad.from ? ' · bryła serii dopasowana do wymiaru produktu (wzorzec ' + String(cad.from[0]).replace('.', ',') + ' × ' + String(cad.from[1]).replace('.', ',') + ' cm)' : '') + (cad.fix ? ' · odpływ wg rysunku technicznego' : '') + (cad.note ? ' · ' + cad.note : ''), mb: x.kb / 1024, href: CAD_BASE + x.f, glb: glb ? CAD_BASE + glb : '' });
       });
     } else if (p.cat !== 'akcesoria') f.push({ ext: 'DWG', name: base + '_rysunek.dwg', desc: 'Rysunek 2D DWG', mb: rnd(p.ref + 'e', 0.15, 0.6) });
     if (['brodzik', 'wanna', 'panel ścienny', 'odpływ liniowy'].indexOf(p.cat) !== -1) {
@@ -1050,11 +1050,13 @@
     return { badge: '', lines: [] };
   }
   /* ten sam wymiar i kształt, inny kolor — w tej samej serii */
+  /* „Harmony” i „Harmony Black” to ta sama seria w dwóch kolorach (nazwa koloru w nazwie serii) */
+  function serieBase(s) { return String(s || '').replace(/\s+Black$/i, ''); }
   function colorVariants(p) {
     const k = sizeKey(p);
     if (!k || !p.c) return [];
     return SP.products.filter(function (x) {
-      return x.ref !== p.ref && x.fam === p.fam && x.s === p.s && x.c && x.c !== p.c && sizeKey(x) === k && (x.shape || '') === (p.shape || '');
+      return x.ref !== p.ref && x.fam === p.fam && serieBase(x.s) === serieBase(p.s) && x.c && x.c !== p.c && sizeKey(x) === k && (x.shape || '') === (p.shape || '');
     }).sort(function (a, b) { return a.c.localeCompare(b.c, 'pl'); });
   }
   /* inne produkty o tych samych wymiarach boków (inne serie / kolory), ta sama kategoria */

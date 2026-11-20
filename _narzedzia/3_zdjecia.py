@@ -143,6 +143,7 @@ SPEC = [
     ("p-wall6-sw", "p", ["ścianka\\2. thick (6cm)\\1. smooth white", "pack"], "pack", None),
     ("p-nosnik-wanna", "p", ["nośnik do wanny\\1.2", "pack"], "pack", None),
     ("p-nosnik-polokr", "p", ["nośnik do wanny\\2.", "pack"], "pack", None),
+    ("p-nosnik-prost", "p", ["nośnik do wanny\\1.1", "pack"], "pack", None),
     ("p-nosnik-brodzik", "p", ["nośnik dla brodzika", "pack"], "pack", None),
     ("p-obudowa", "p", ["zabudowa wanny\\1.", "1. z podcięciem", "pack"], "pack", None),
     ("p-najazd", "p", ["najazd do brodzików - smooth white", "pack"], "pack", None),

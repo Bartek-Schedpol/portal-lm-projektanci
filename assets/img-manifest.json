@@ -1524,5 +1524,19 @@
    2500
   ],
   "tb": true
+ },
+ "p-nosnik-prost": {
+  "file": "p-nosnik-prost.webp",
+  "w": 760,
+  "h": 535,
+  "kind": "pack",
+  "alpha": true,
+  "src": "NOŚNIK DO WANNY\\1.1  Nosnik PROSTOKĄTNY do wanien\\2. Paackshot\\Packshot_Nosnik_do_wanien_prostokątnych_2500x2500px_300dpi_PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
  }
 }

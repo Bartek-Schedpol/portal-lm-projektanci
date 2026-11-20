@@ -108,6 +108,49 @@ CONS = {'kompozytowy': 'kompozyt', 'zintegrowany': 'zintegr'}
 RULE_TAG = {'corner': 'N', 'corner_opp': 'N', 'corner_adj': 'N', 'short_mid': 'K', 'long_mid': 'D'}
 
 
+RF_OBJ = os.path.join(os.path.dirname(ROOT), 'materiały', '008 Modele 3D', 'Regular Flow 3D (Schedline 2025)', 'Regular Flow 3D.obj')
+
+
+def harmony(prods, out):
+    """Odpływy liniowe Harmony: bryła Schedline 2025 „Regular Flow” -> długość, syfon i wykończenie wg rysunków Harmony."""
+    import zipfile
+    hp = [p for p in prods if p['cat'] == 'odpływ liniowy' and p['fam'] == 'Harmony' and p.get('a')]
+    if not hp or not os.path.exists(RF_OBJ):
+        print('Harmony: brak produktów albo pliku Regular Flow'); return
+    jobs, refs = {}, {}
+    for p in hp:
+        prime = 'Prime' in p['s']; black = (p.get('c') == 'czarny')
+        L = int(round(float(p['a']) * 10))
+        key = 'Schedpol_Harmony%s%s_%d' % ('-Prime' if prime else '', '-Black' if black else '', L)
+        jobs[key] = {'obj': RF_OBJ, 'glb': os.path.join(OUT, key + '.glb'), 'objout': os.path.join(OUT, key + '.obj'),
+                     'L': L, 'prime': prime, 'black': black}
+        refs[p['ref']] = key
+    jf = os.path.join(OUT, '_jobs_h.json'); rf = os.path.join(OUT, '_pomiar_h.json')
+    json.dump(jobs, open(jf, 'w', encoding='utf-8'))
+    subprocess.run([BLENDER, '-b', '--factory-startup', '--python', os.path.join(HERE, '10d_blender_odplyw.py'), '--', jf, rf], check=True,
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    meas = json.load(open(rf, encoding='utf-8')); os.remove(jf)
+    shutil.copy2(rf, os.path.join(HERE, 'harmony3d_log.json')); os.remove(rf)
+    files = {}
+    for key, J in jobs.items():
+        if 'err' in meas.get(key, {'err': 1}) or not os.path.exists(J['glb']):
+            print('  BŁĄD Harmony', key, meas.get(key)); continue
+        zp = os.path.join(OUT, key + '.obj.zip')
+        with zipfile.ZipFile(zp, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+            z.write(J['objout'], key + '.obj')
+        os.remove(J['objout'])
+        files[key] = [{'ext': 'OBJ', 'f': key + '.obj.zip', 'kb': os.path.getsize(zp) // 1024, 'zip': 1},
+                      {'ext': 'GLB', 'f': key + '.glb', 'kb': os.path.getsize(J['glb']) // 1024, 'view': 1}]
+    for ref, key in refs.items():
+        if key not in files: continue
+        dm = meas[key]['dims_mm']
+        out[ref] = {'src': 'Schedline 2025 · Regular Flow', 'dims': [round(dm[0] / 10, 1), round(dm[1] / 10, 1), round(dm[2] / 10, 1)],
+                    'files': files[key],
+                    'note': 'bryła Regular Flow (Schedline 2025): długość, położenie syfonu i wykończenie wg rysunku technicznego Harmony'}
+    print('Harmony: modeli', len(files), 'indeksów', len([r for r in refs if refs[r] in files]))
+
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     for f in os.listdir(OUT):                     # czyść zawartość (katalog bywa zablokowany przez inny proces)
@@ -216,6 +259,7 @@ def main():
             out[ref]['approx'] = 1; out[ref]['from'] = approx[ref]
         if m.get('fixed'):
             out[ref]['fix'] = 1
+    harmony(prods, out)
     js = ('/* Modele 3D przypisane do indeksów LM — generuje _narzedzia/10_modele_3d.py (+10b_blender_brodzik.py) z paczki „008 Modele 3D”.\n'
           '   Bryły z katalogu Schedpol 2021, poprawione: wymiar produktu, położenie odpływu wg rysunku technicznego, spód wg konstrukcji. */\n'
           'window.SP = window.SP || {};\nwindow.SP.cad = ' + json.dumps(out, ensure_ascii=False) + ';\n')
