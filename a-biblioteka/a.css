@@ -1370,3 +1370,11 @@ h1, h2, h3 { letter-spacing: -.02em; }
 .pd-docs-wide .pd-doc { margin: 0; padding: 14px 16px; border-radius: var(--r-m); background: #F6F5F4; }
 .pd-docs-wide .pd-doc-t b { white-space: normal; }
 @media (max-width: 720px) { .pd-docs-wide .pd-docs-l { grid-template-columns: 1fr; } }
+
+
+/* ===== 20.11.2026 (8): przyciski karty nad kafelkami rozmiarów ===== */
+.pd-act { margin: 18px 0 4px; }
+.pd-act .pd-cta { margin-top: 0; }
+.pd-act .pd-karta, .pd-act .pd-note { margin-top: 10px; }
+.pd-act + .pds { margin-top: 14px; }
+.btn.btn-karta { display: inline-flex; align-items: center; gap: 8px; }

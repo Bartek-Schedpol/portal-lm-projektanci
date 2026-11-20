@@ -246,7 +246,7 @@
     const lab = function (x) {
       return (x.b != null ? x.a + ' × ' + x.b + ' cm' : x.a + ' cm') + (x.shape === 'półokrągły' ? ' · półokr.' : x.shape === 'pięciokątny' ? ' · pięciok.' : '');
     };
-    return '<div class="pds"><div class="pds-h"><span>' + ic('ruler', 15) + ' Format wymiarowy</span><b class="mono">' + esc(SP.dims(p).replace(/-/g, '–')) + '</b></div><div class="pds-sizes">' +
+    return '<div class="pds"><div class="pds-sizes" aria-label="Format wymiarowy">' +
       opts.map(function (x) {
         const on = x.ref === p.ref;
         return '<a class="pds-o' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="LM ' + esc(x.ref) + '">' + esc(lab(x)) + '</a>';
@@ -1234,26 +1234,23 @@
             const on = x.ref === p.ref;
             return '<a class="cvar' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="' + esc(cap(x.c)) + ' · LM ' + esc(x.ref) + '"><span class="cvar-img">' + pimg(x.im, '') + '</span><span class="cvar-n">' + dot(x.hx) + esc(cap(x.c)) + '</span><small class="mono">LM ' + esc(x.ref) + '</small>' + (on ? '<span class="cvar-tag">Oglądasz</span>' : '') + '</a>';
           }).join('') + '</div></div>' : ''}
+          <div class="pd-act">
+          <div class="pd-cta">
+            <button class="btn btn-primary" type="button" data-act="add-product-sel">Dodaj pliki do teczki <span class="btn-ic">${ic('arrow-right', 16)}</span></button>
+            <a class="btn btn-primary btn-karta" href="${esc(kartaPdf(p))}" download>${ic('file', 16)} Karta produktu PDF</a>
+          </div>
+          <p class="pd-karta"><a class="link" href="${esc(kartaView(p))}" target="_blank" rel="noopener">${ic('eye', 15)} Podgląd karty A4 przed pobraniem</a></p>
+          <p class="pd-note">${ic('info', 16)} Cena i dostępność: w systemie sklepu Leroy Merlin.</p>
+          </div>
           ${pdSizes(p)}
           ${vvar.length ? '<div class="pd-colors"><div class="pd-colors-h">' + ic('layers', 16) + '<b>Dostępne wersje</b><span>' + (vvar.length + 1) + ' ' + plural(vvar.length + 1, 'wersja', 'wersje', 'wersji') + '</span></div><div class="pd-colors-l">' + [p].concat(vvar).map(function (x) {
             const on = x.ref === p.ref;
             return '<a class="cvar' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="' + esc(cap(x.ver)) + ' · LM ' + esc(x.ref) + '"><span class="cvar-img">' + pimg(x.im, '') + '</span><span class="cvar-n">' + esc(cap(x.ver)) + '</span><small class="mono">LM ' + esc(x.ref) + '</small>' + (on ? '<span class="cvar-tag">Oglądasz</span>' : '') + '</a>';
           }).join('') + '</div></div>' : ''}
           <dl class="attrs">${attrs.map(function (a) { return '<div><dt>' + a[0] + '</dt><dd>' + a[1] + '</dd></div>'; }).join('')}</dl>
-          <div class="pd-cta">
-            <button class="btn btn-primary" type="button" data-act="add-product-sel">Dodaj pliki do teczki <span class="btn-ic">${ic('arrow-right', 16)}</span></button>
-            <a class="btn" href="${esc(kartaPdf(p))}" download>${ic('file', 16)} Karta produktu PDF</a>
-          </div>
-          <p class="pd-karta"><a class="link" href="${esc(kartaView(p))}" target="_blank" rel="noopener">${ic('eye', 15)} Podgląd karty A4 przed pobraniem</a></p>
-          <p class="pd-note">${ic('info', 16)} Cena i dostępność: w systemie sklepu Leroy Merlin.</p>
         </section>
       </div>
 
-      ${docFiles.length ? '<section class="pd-docs pd-docs-wide" aria-label="Instrukcja montażu i karta gwarancyjna"><div class="pd-docs-h">' + ic('clipboard', 16) + '<b>Instrukcja montażu i karta gwarancyjna</b></div><div class="pd-docs-l">' + docFiles.map(function (f) {
-            const i = allFiles.indexOf(f), gwd = /gwaranc/i.test(f.t || f.doc || '');
-            return '<div class="pd-doc"><span class="pd-doc-ic' + (gwd ? ' is-gw' : '') + '">' + ic(gwd ? 'shield' : 'book', 18) + '</span><div class="pd-doc-t"><b>' + esc(f.t || f.name) + '</b><small>PDF · ' + esc(nf(f.mb, 1)) + ' MB</small></div>' +
-              '<button class="btn btn-sm" type="button" data-act="preview-all" data-file="' + i + '">' + ic('eye', 15) + ' Podgląd</button><a class="btn btn-sm btn-dark" href="' + esc(f.href) + '" download>' + ic('download', 15) + ' Pobierz</a></div>';
-          }).join('') + '</div></section>' : ''}
 
       <div class="pd-two">
         <section class="panel" aria-labelledby="cT">
