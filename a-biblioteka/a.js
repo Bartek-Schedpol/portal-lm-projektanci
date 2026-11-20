@@ -229,6 +229,42 @@
     if (/_opis/.test(n)) return { t: 'text', html: '<p>' + esc(s.lead) + '</p>' + ((s.feats || []).length ? '<ul>' + s.feats.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '') };
     return { t: 'img', src: SP.src(p.im), tb: true };
   }
+
+  /* Karta produktu → „Centrum plików cyfrowych”: trzy kolumny (modele 3D i CAD / dokumentacja / packshoty i prezentacje) */
+  function pfCols(p, all) {
+    const groups = [
+      { k: 'cad', t: 'Modele 3D i CAD', ic: 'cube', test: function (f) { return f.cad || ['DWG', 'OBJ', '3DS', 'GLB'].indexOf(f.ext) !== -1; } },
+      { k: 'doc', t: 'Dokumentacja', ic: 'file', test: function (f) { return f.ext === 'PDF'; } },
+      { k: 'img', t: 'Packshoty i prezentacje', ic: 'image', test: function (f) { return f.ext === 'JPG' || f.ext === 'PNG'; } }
+    ];
+    const used = {};
+    return groups.map(function (g) {
+      const fs = all.map(function (f, i) { return { f: f, i: i }; }).filter(function (x) { return !used[x.i] && g.test(x.f) && (used[x.i] = 1); });
+      const rows = fs.map(function (x) {
+        const f = x.f, parts = String(f.desc || '').split(' · ');
+        const CADT = { DWG: 'AutoCAD 2D / 3D', OBJ: 'SketchUp · Blender · 3ds Max', '3DS': '3ds Max · CAD Decor' };
+        let head = f.t || parts[0], more = '';
+        const cm = head.indexOf(', '), pa = head.indexOf('(');
+        if (!f.t && cm !== -1 && !(pa !== -1 && pa < cm)) { more = head.slice(cm + 2); head = head.slice(0, cm); }   // „Packshot JPG, 2500 px”
+        if (CADT[f.ext] && !f.t) { more = 'Model 3D ' + f.ext + (f.ext === 'OBJ' ? ' w archiwum ZIP' : ''); head = CADT[f.ext]; }
+        const sub = [f.cad ? 'Gotowe w programie (baza ' + CAD.date + ')' : [more].concat(f.t ? [] : parts.slice(1)).filter(Boolean).join(' · '),
+                     f.mb ? mbLabel(f.mb) : ''].filter(Boolean).join(' · ');
+        if (f.cad) {
+          return '<div class="pf-row is-cad">' + extBadge('CD3D') + '<div class="pf-t"><b>CAD Decor PRO · ' + esc(CAD.name) + '</b><small>' + esc(sub) + '</small></div>' +
+            '<a class="btn btn-sm" href="' + H('start', { sek: 'cad', keep: 1 }) + '">Wstaw</a></div>';
+        }
+        return '<div class="pf-row">' + extBadge(f.ext) + '<div class="pf-t"><b>' + esc(head) + '</b><small title="' + esc(f.name) + '">' + esc(sub || f.name) + '</small></div>' +
+          '<div class="pf-act"><button class="icon-btn" type="button" data-act="preview-all" data-file="' + x.i + '" aria-label="Podgląd: ' + esc(f.name) + '" title="Podgląd przed pobraniem">' + ic('eye', 16) + '</button>' +
+          (f.href ? '<a class="icon-btn" href="' + esc(f.href) + '" download aria-label="Pobierz: ' + esc(f.name) + '" title="Pobierz">' + ic('download', 16) + '</a>'
+                  : '<button class="icon-btn" type="button" data-act="demo" data-msg="Makieta: pobieranie pliku" data-detail="' + esc(f.name) + '" aria-label="Pobierz: ' + esc(f.name) + '">' + ic('download', 16) + '</button>') + '</div></div>';
+      }).join('');
+      const extra = g.k === 'img' ? '<div class="pf-share"><b>' + ic('send', 16) + ' Udostępnij zestaw inwestorowi</b><p>Skopiuj link do tej karty produktu — pliki i dokumentacja są dostępne bez logowania.</p>' +
+        '<button class="btn btn-sm pf-copy" type="button" data-act="pf-copy">' + ic('copy', 15) + ' Kopiuj link do karty</button></div>' : '';
+      const n = fs.length;
+      return '<div class="pf-col"><div class="pf-col-h"><span class="pf-ic">' + ic(g.ic, 18) + '</span><b>' + g.t + '</b><span class="pf-n">' + (n ? pliki(n) : 'brak plików') + '</span></div>' +
+        (rows || '<p class="pf-empty">Brak plików tego typu dla tego indeksu.</p>') + extra + '</div>';
+    }).join('');
+  }
   function pvBtn(i, name) {
     return '<button class="icon-btn" type="button" data-act="preview" data-file="' + i + '" aria-label="Podgląd: ' + esc(name) + '" title="Podgląd przed pobraniem">' + ic('eye', 16) + '</button>';
   }
@@ -1211,29 +1247,14 @@
         </section>
       </div>
 
-      <section class="pd-sec" aria-labelledby="fT">
-        <div class="sec-h">
-          <div><h2 id="fT">Pliki do tego indeksu</h2><p>Zaznacz, czego potrzebujesz do projektu. Każdy plik można obejrzeć przed pobraniem. Instrukcja i karta gwarancyjna są wyżej, przy opisie produktu.</p></div>
-          <div class="files-tools">
-            <label class="check" style="position:relative"><input type="checkbox" id="fAll" checked><span class="fbox">${ic('check', 12, 2.2)}</span>Zaznacz wszystkie</label>
-            <span class="mono" id="fSum">${pliki(files.length)} · ${mbLabel(mbAll)}</span>
-            <button class="btn btn-sm btn-dark" type="button" data-act="add-product-sel">${ic('plus', 15, 1.8)} Dodaj zaznaczone</button>
-          </div>
+      <section class="pd-sec pf" aria-labelledby="fT">
+        <div class="pf-h">
+          <div><span class="home-k">${ic('folder', 14)} Centrum plików cyfrowych</span>
+            <h2 id="fT">Materiały do pobrania dla architekta i projektanta</h2>
+            <p>Komplet plików do projektu: ${esc(titleOf(p))}${SP.dims(p) ? ', ' + esc(variant(p)) : ''}. Każdy plik można obejrzeć przed pobraniem.</p></div>
+          <button class="btn pf-zip" type="button" data-act="add-product-sel">${ic('download', 16)} Pobierz całą paczkę (.ZIP · ${mbLabel(allFiles.reduce(function (a, f) { return a + (f.mb || 0); }, 0))})</button>
         </div>
-        <div class="tbl-wrap"><table class="tbl files-tbl">
-          <thead><tr><th><span class="sr">Zaznacz</span></th><th>Plik</th><th style="text-align:right">Rozmiar</th><th>Status</th><th><span class="sr">Pobierz</span></th></tr></thead>
-          <tbody>${files.map(function (f, i) {
-            return `<tr>
-              <td><label class="f-check"><input type="checkbox" data-file="${i}" checked aria-label="Zaznacz plik: ${esc(f.desc)}"><span class="fbox">${ic('check', 12, 2.2)}</span></label></td>
-              <td><div class="f-file">${extBadge(f.ext)}<div><b>${esc(f.name)}</b><small>${esc(f.desc)}</small></div></div></td>
-              <td class="num">${f.mb ? mbLabel(f.mb) : '<span class="muted">—</span>'}</td>
-              <td>${f.cad ? '<span class="st st-cad">' + ic('cube', 12, 1.8) + ' Baza ' + CAD.date + '</span>' : '<span class="st st-ok">' + ic('check', 12, 2) + ' Zweryfikowano ' + VERIFIED + '</span>'}</td>
-              <td><div class="t-act">${pvBtn(i, f.name)}${f.href
-                ? '<a class="icon-btn" href="' + esc(f.href) + '" download aria-label="Pobierz: ' + esc(f.name) + '" title="Pobierz PDF">' + ic('download', 16) + '</a>'
-                : '<button class="icon-btn" type="button" data-act="demo" data-msg="Makieta: pobieranie pliku" data-detail="' + esc(f.name) + '" aria-label="Pobierz: ' + esc(f.name) + '">' + ic('download', 16) + '</button>'}</div></td>
-            </tr>`;
-          }).join('')}</tbody>
-        </table></div>
+        <div class="pf-cols">${pfCols(p, allFiles)}</div>
       </section>
 
 
@@ -1280,11 +1301,13 @@
     </div>`;
 
     const tbl = $('.files-tbl');
-    tbl.addEventListener('change', function (e) { if (e.target.matches('input[data-file]')) filesSummary(); });
-    $('#fAll').addEventListener('change', function (e) {
-      $$('.files-tbl input[data-file]').forEach(function (i) { i.checked = e.target.checked; });
-      filesSummary();
-    });
+    if (tbl) {
+      tbl.addEventListener('change', function (e) { if (e.target.matches('input[data-file]')) filesSummary(); });
+      $('#fAll').addEventListener('change', function (e) {
+        $$('.files-tbl input[data-file]').forEach(function (i) { i.checked = e.target.checked; });
+        filesSummary();
+      });
+    }
   }
 
   /* ==========================================================================
@@ -1582,7 +1605,8 @@
     else if (act === 'add-product') addProduct(t.getAttribute('data-ref'));
     else if (act === 'add-product-sel') {
       if (!PD.p) return;
-      const sel = $$('.files-tbl input[data-file]').filter(function (i) { return i.checked; }).map(function (i) { return PD.files[+i.getAttribute('data-file')]; });
+      const cb = $$('.files-tbl input[data-file]');            // bez tabeli z zaznaczaniem: cała paczka
+      const sel = cb.length ? cb.filter(function (i) { return i.checked; }).map(function (i) { return PD.files[+i.getAttribute('data-file')]; }) : PD.files.slice();
       addProduct(PD.p.ref, sel.concat(PD.docs || []));
     }
     else if (act === 'add-series') addSeries(t.getAttribute('data-fam'));
@@ -1596,6 +1620,11 @@
     else if (act === 'gal') setStage(+t.getAttribute('data-idx'));
     else if (act === 'preview') openPreview(PD.files && PD.files[+t.getAttribute('data-file')]);
     else if (act === 'preview-all') openPreview(PD.all && PD.all[+t.getAttribute('data-file')]);
+    else if (act === 'pf-copy') {
+      const url = location.href.split('#')[0] + '#/produkt?ref=' + (PD.p ? PD.p.ref : '');
+      (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function () { toast('Link do karty skopiowany', url, 'copy'); },
+        function () { window.prompt('Skopiuj link do karty produktu:', url); });
+    }
     else if (act === 'preview-url') openPreview({ ext: t.getAttribute('data-ext') || 'PDF', name: t.getAttribute('data-name') || '', desc: t.getAttribute('data-desc') || '', href: t.getAttribute('data-src'), pv: { t: 'pdf', src: t.getAttribute('data-src') } });
     else if (act === 'yt') { const fr = t.closest('.yt-frame'), src = t.getAttribute('data-src') || ''; if (fr && /^https:\/\/(www\.youtube-nocookie\.com|players\.brightcove\.net)\//.test(src)) fr.innerHTML = '<iframe src="' + esc(src) + '" title="Film" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }
     else if (act === 'more') { C.limit += 24; paintCatalog(); }
