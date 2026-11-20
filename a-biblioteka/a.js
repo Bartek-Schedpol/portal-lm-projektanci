@@ -101,13 +101,16 @@
     return SP.serie(p.fam) || { fam: p.fam, type: SP.catLabel(p.cat), files: {}, scenes: [], feats: [], gw: '', lead: '', n: 0 };
   }
   function typeShort(p) { return serieOf(p).type.split(' · ')[0]; }
+  function dimsTxt(p) { const d = SP.dims(p); return d ? d.replace(/-/g, '–') : ''; }
   function variant(p) {
     const d = SP.dims(p);
+    if (p.ver) return (d ? d.replace(/-/g, '–') + ' · ' : '') + p.ver;      // obudowy: wersja z podcięciem / bez
     if (d) return d.replace(/-/g, '–');
     return p.c || p.shape || lcFirst(typeShort(p));
   }
   function titleOf(p) {
     if (p.fam === 'Panele do brodzików') return 'Panel do brodzika ' + p.s.replace(/^Panel\s+/, '');
+    if (p.fam === 'Obudowa uniwersalna') return 'Obudowa podpłytkowa do wanien ' + (p.shape === 'półokrągły' ? 'półokrągłych' : 'prostokątnych');
     if (TITLE[p.fam]) return TITLE[p.fam];
     return typeShort(p) + ' ' + p.brand + ' ' + p.s;
   }
@@ -125,7 +128,8 @@
     if (p.a != null && p.b != null) dim = p.a + 'x' + p.b + (p.cat === 'panel ścienny' && p.h ? 'x' + p.h : '');
     else if (p.a != null) dim = p.a + 'cm';
     else if (p.c) dim = clean(p.c).replace(/\s+/g, '-');
-    return p.brand + '_' + ser + (dim ? '_' + dim : '');
+    const ver = p.ver ? (/LED/.test(p.ver) ? '_podciecie-LED' : '_bez-podciecia') : '';     // obudowy: dwie wersje tego samego wymiaru
+    return p.brand + '_' + ser + (dim ? '_' + dim : '') + ver;
   }
   /* karta produktu PDF: prawdziwe pliki z _narzedzia/7_karty_pdf.py (szablon ../karta/index.html) */
   function kartaPdf(p) { return '../assets/karty/Karta-produktu_LM' + p.ref + '.pdf'; }
@@ -218,7 +222,7 @@
     if (f.karta) return { t: 'pdf', src: f.view };
     if (f.doc) return { t: 'pdf', src: f.href };
     if (/_packshot\./.test(n)) return { t: 'img', src: SP.src(p.im), tb: true };
-    if (/_aranzacja/.test(n)) { const k = (s.scenes || []).filter(function (x) { return SP.img[x]; })[0]; return k ? { t: 'img', src: SP.src(k), note: 'Wizualizacja poglądowa' } : { t: 'img', src: SP.src(p.im), tb: true }; }
+    if (/_aranzacja/.test(n)) { const k = (galleryFor(p).filter(function (x) { return x.kind === 'scene'; })[0] || {}).k; return k ? { t: 'img', src: SP.src(k), note: 'Wizualizacja poglądowa' } : { t: 'img', src: SP.src(p.im), tb: true }; }
     if (/_rysunek/.test(n)) return rysSrc ? { t: 'img', src: rysSrc, note: f.ext === 'DWG' ? 'Podgląd rysunku — plik DWG zawiera ten sam widok w wektorze' : 'Wymiary w mm' } : { t: 'img', src: SP.src(p.im), tb: true, note: 'Rysunek w przygotowaniu — podgląd produktu' };
     if (f.cad) return { t: 'img', src: SP.src(p.im), tb: true, note: 'Model 3D jest w bazie CAD Decor „' + CAD.name + '” — podgląd produktu' };
     if (/_cechy/.test(n)) return p.fam === 'Balans' && SP.img['info-balans'] ? { t: 'img', src: SP.src('info-balans') } : { t: 'text', html: '<ol>' + (s.feats || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol>' };
@@ -1003,7 +1007,11 @@
     const exPack = ex.filter(function (x) { return x.kind === 'pack'; }).map(function (x) { return { k: x.k, kind: 'pack', cap: x.cap }; });
     const exPhoto = ex.filter(function (x) { return x.kind !== 'pack'; }).map(function (x) { return { k: x.k, kind: 'scene', cap: x.cap }; });
     const dup = ex.length ? { 'balans-zoom-ws': 1, 'balans-zoom-bs': 1, 'balans-cut': 1 } : {};
-    const all = (s.scenes || []).concat(EXTRA_SCENES[p.fam] || []).filter(function (k) { return SP.img[k] && !dup[k]; });
+    let all = (s.scenes || []).concat(EXTRA_SCENES[p.fam] || []).filter(function (k) { return SP.img[k] && !dup[k]; });
+    if (p.fam === 'Obudowa uniwersalna') {               // aranżacja tej wersji (kształt + podcięcie), nie pozostałych
+      const ob = (p.shape === 'półokrągły' ? 'pol' : 'pr') + (/LED/.test(p.ver || '') ? '-led' : '');
+      all = all.filter(function (k) { return k === { 'pr-led': 'obudowa-led', 'pol-led': 'obudowa-pol', 'pr': 'obudowa-pr', 'pol': 'obudowa-pol-bez' }[ob]; });
+    }
     let own = all.filter(function (k) { const sc = sceneCol(k); return sc === '' || sc === pc; });
     own.sort(function (a, b) { return (sceneCol(b) === pc ? 1 : 0) - (sceneCol(a) === pc ? 1 : 0); });
     let cap = 'Wizualizacja poglądowa';
@@ -1101,7 +1109,8 @@
       ['Marka', esc(p.brand)],
       ['Seria', '<a class="link" style="font-size:inherit;color:inherit" href="' + H('katalog', { seria: p.fam }) + '">' + esc(p.s) + ' ' + ic('arrow-right', 13) + '</a>'],
       p.shape ? ['Kształt', esc(cap(p.shape))] : null,
-      SP.dims(p) ? ['Wymiar', '<span class="mono">' + esc(variant(p)) + '</span>'] : null,
+      SP.dims(p) ? ['Wymiar', '<span class="mono">' + esc(dimsTxt(p)) + '</span>' + (p.fam === 'Obudowa uniwersalna' ? ' <small>' + (p.shape === 'półokrągły' ? 'rozwinięcie panelu × wysokość' : 'front + bok × wysokość') + '</small>' : '')] : null,
+      p.ver ? ['Wersja', esc(cap(p.ver)) + ' <small>' + (/LED/.test(p.ver) ? 'wnęka przy posadzce — miejsce na stopy i taśmę LED' : 'panele do samej posadzki, bez wnęki') + '</small>'] : null,
       p.c ? ['Kolor', dot(p.hx, 'lg') + esc(cap(p.c)) + (p.ce || p.ral ? ' <small>' + esc([p.ce, p.ral].filter(Boolean).join(' · ')) + '</small>' : '')] : null,
       tech ? ['Technologia', esc(tech)] : null,
       ['Gama LM', p.g ? '<span class="mono">' + esc(p.g) + '</span>' : '<small>brak w eksporcie LM</small>'],
@@ -1111,6 +1120,7 @@
     const sibs = SP.products.filter(function (x) { return x.fam === p.fam && x.s === p.s && x.c === p.c && x.ref !== p.ref; })
       .sort(function (a, b) { return area(a) - area(b); });
     const zest = zestawFor(p), gw = gwFor(p), cvar = colorVariants(p), vids = videosFor(p);
+    const vvar = p.ver ? SP.products.filter(function (x) { return x.ref !== p.ref && x.fam === p.fam && x.shape === p.shape && x.ver && x.ver !== p.ver; }) : [];
     const same = sameSize(p, cvar.reduce(function (a, x) { a[x.ref] = 1; return a; }, {})).slice(0, 12);
     const pdBits = [];
     if (SP.dims(p)) pdBits.push('<span class="mono">' + esc(variant(p)) + '</span>');
@@ -1166,6 +1176,10 @@
           ${cvar.length ? '<div class="pd-colors"><div class="pd-colors-h">' + ic('drop', 16) + '<b>Dostępne kolory w tym wymiarze</b><span>' + (cvar.length + 1) + ' ' + plural(cvar.length + 1, 'wariant', 'warianty', 'wariantów') + '</span></div><div class="pd-colors-l">' + [p].concat(cvar).map(function (x) {
             const on = x.ref === p.ref;
             return '<a class="cvar' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="' + esc(cap(x.c)) + ' · LM ' + esc(x.ref) + '"><span class="cvar-img">' + pimg(x.im, '') + '</span><span class="cvar-n">' + dot(x.hx) + esc(cap(x.c)) + '</span><small class="mono">LM ' + esc(x.ref) + '</small>' + (on ? '<span class="cvar-tag">Oglądasz</span>' : '') + '</a>';
+          }).join('') + '</div></div>' : ''}
+          ${vvar.length ? '<div class="pd-colors"><div class="pd-colors-h">' + ic('layers', 16) + '<b>Dostępne wersje</b><span>' + (vvar.length + 1) + ' ' + plural(vvar.length + 1, 'wersja', 'wersje', 'wersji') + '</span></div><div class="pd-colors-l">' + [p].concat(vvar).map(function (x) {
+            const on = x.ref === p.ref;
+            return '<a class="cvar' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="' + esc(cap(x.ver)) + ' · LM ' + esc(x.ref) + '"><span class="cvar-img">' + pimg(x.im, '') + '</span><span class="cvar-n">' + esc(cap(x.ver)) + '</span><small class="mono">LM ' + esc(x.ref) + '</small>' + (on ? '<span class="cvar-tag">Oglądasz</span>' : '') + '</a>';
           }).join('') + '</div></div>' : ''}
           <dl class="attrs">${attrs.map(function (a) { return '<div><dt>' + a[0] + '</dt><dd>' + a[1] + '</dd></div>'; }).join('')}</dl>
           ${docFiles.length ? '<div class="pd-docs"><div class="pd-docs-h">' + ic('clipboard', 16) + '<b>Instrukcja montażu i karta gwarancyjna</b></div>' + docFiles.map(function (f) {

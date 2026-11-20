@@ -50,7 +50,8 @@ def img_for(o):
         if "półokr" in t or "polokr" in t or "1/4" in t: return "p-nosnik-polokr"
         if "61/48" in t or "podcię" in t: return "p-nosnik-wanna"
         return "p-nosnik-prost"
-    if s == "Obudowa uniwersalna": return "p-obudowa"
+    if s == "Obudowa uniwersalna":          # 4 indeksy: prostokątna/półokrągła × z podcięciem (LED, 2023) / bez podcięcia
+        return {"90151710": "p-obudowa", "90151711": "p-obudowa-pol-led", "43416086": "p-obudowa-pol", "43732703": "p-obudowa-pr"}.get(o["ref"], "p-obudowa")
     if s == "Maskownica Balans/Integral":
         return "p-maskownica-szczot" if has(o, "szczotk") else "p-maskownica-miedz" if has(o, "miedz") else "p-maskownica-zlota"
     if s.startswith("Panel"): return "p-panel-dante" if s in ("Panel Dante", "Panel Grawello") else "p-panel-gobaby"
@@ -71,6 +72,9 @@ for o in prods:
     P.append({"ref": o["ref"], "s": o["s"], "fam": fam, "cat": o["cat"], "tech": o["tech"], "tn": o["tn"], "brand": o["brand"],
               "shape": o["shape"], "a": o["a"], "b": o["b"], "h": hv, "c": o["c"], "ce": o["ce"], "ral": o["ral"], "hx": o["hx"],
               "g": o["g"], "new": isnew, "im": img_for(o), "t": o["t"]})
+    if o["s"] == "Obudowa uniwersalna":         # wersja wg nazwy LM: „… LED” = z podcięciem na stopy; „ZABUDOWA ELAST” = bez
+        P[-1]["ver"] = "z podcięciem na stopy (LED)" if o["ref"] in ("90151710", "90151711") else "bez podcięcia na stopy"
+        if o["ref"] == "43732703": P[-1].update(a=170, b=90, h="58")   # tytuł LM: 170+90x58
 
 # ---------- serie ----------
 G10 = ("Gwarancja producenta: 10 lat na wytrzymałość na nacisk wg PN-EN 14527 oraz 5 lat na stałość barwy. "
@@ -147,12 +151,12 @@ SER = [
   ["Duży format 210 × 100 cm ogranicza liczbę łączeń.", "Dwie grubości: 1 cm oraz 6 cm — wariant 6 cm pozwala ukryć instalację.",
    "Panele można docinać i montować na klej.", "Cztery wykończenia, w tym o strukturze kamienia."], GGEN),
  ("Nośnik", "nośnik", "Nośnik EPS do wanien",
-  "Nośnik uniwersalny do wanien akrylowych i stalowych, 120–170 cm. Wersja z podcięciem na stopy / LED.",
+  "Nośnik do wanien prostokątnych 120–170 cm (także w wersji z podcięciem na stopy / LED) i półokrągłych.",
   ["nosnik"], ["Podparcie wanny na całej powierzchni.", "Możliwość bezpośredniego oklejenia płytkami.",
                "Łączone elementy pozwalają dopasować nośnik do rozmiaru wanny."], GEPS),
  ("Obudowa uniwersalna", "obudowa", "Obudowa do wanien",
-  "Obudowa do wanien prostokątnych i półokrągłych, do oklejenia płytkami. Wersja z podcięciem na stopy / LED.",
-  ["obudowa-led", "obudowa-pol"], ["Do wanien akrylowych i stalowych.", "Możliwość bezpośredniego oklejenia płytkami.",
+  "Obudowa podpłytkowa do wanien prostokątnych i półokrągłych, do oklejenia płytkami. Dwie wersje: z podcięciem na stopy (wnęka przy posadzce, miejsce na taśmę LED) albo bez podcięcia — panele do samej posadzki.",
+  ["obudowa-led", "obudowa-pol", "obudowa-pr", "obudowa-pol-bez"], ["Do wanien akrylowych i stalowych.", "Możliwość bezpośredniego oklejenia płytkami.",
                                     "Montaż z możliwością późniejszego demontażu."], GGEN),
  ("Maskownica Balans/Integral", "akcesoria", "Maskownica odpływu",
   "Maskownice do brodzików Balans i Integral: złota polerowana, złota szczotkowana i miedziana.", [], [], GGEN),

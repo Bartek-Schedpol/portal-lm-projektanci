@@ -55,6 +55,7 @@
   }
   function titleOf(p) {
     if (p.fam === 'Panele do brodzików') return 'Panel do brodzika ' + p.s.replace(/^Panel\s+/, '');
+    if (p.fam === 'Obudowa uniwersalna') return 'Obudowa podpłytkowa do wanien ' + (p.shape === 'półokrągły' ? 'półokrągłych' : 'prostokątnych');
     if (TITLE[p.fam]) return TITLE[p.fam];
     return typeShort(p) + ' ' + p.brand + ' ' + p.s;
   }
@@ -78,7 +79,11 @@
   }
   function sceneFor(p) {
     const s = serieOf(p), pc = prodCol(p);
-    const all = (s.scenes || []).concat(EXTRA_SCENES[p.fam] || []).filter(function (k) { return SP.img[k] && !SKIP_SCENES[k]; });
+    let all = (s.scenes || []).concat(EXTRA_SCENES[p.fam] || []).filter(function (k) { return SP.img[k] && !SKIP_SCENES[k]; });
+    if (p.fam === 'Obudowa uniwersalna') {               // aranżacja tej wersji obudowy (kształt + podcięcie)
+      const ob = (p.shape === 'półokrągły' ? 'pol' : 'pr') + (/LED/.test(p.ver || '') ? '-led' : '');
+      all = all.filter(function (k) { return k === { 'pr-led': 'obudowa-led', 'pol-led': 'obudowa-pol', 'pr': 'obudowa-pr', 'pol': 'obudowa-pol-bez' }[ob]; });
+    }
     let own = all.filter(function (k) { const sc = sceneCol(k); return sc === '' || sc === pc; });
     own.sort(function (a, b) { return (sceneCol(b) === pc ? 1 : 0) - (sceneCol(a) === pc ? 1 : 0); });
     if (own.length) return { k: own[0], cap: 'Wizualizacja poglądowa' };
@@ -114,6 +119,7 @@
       ['Seria', esc(p.s)],
       p.shape ? ['Kształt', esc(cap(p.shape))] : null,
       SP.dims(p) ? ['Wymiar', '<span class="num">' + esc(variant(p)) + '</span>'] : null,
+      p.ver ? ['Wersja', esc(p.ver.charAt(0).toUpperCase() + p.ver.slice(1)) + (/LED/.test(p.ver) ? ' — wnęka przy posadzce na stopy i taśmę LED' : ' — panele do samej posadzki')] : null,
       p.c ? ['Kolor', dot(p.hx) + esc(cap(p.c)) + (p.ce || p.ral ? ' <small>' + esc([p.ce, p.ral].filter(Boolean).join(' · ')) + '</small>' : '')] : null,
       tech ? ['Technologia', esc(tech)] : null,
       stone ? ['Antypoślizgowość', 'klasa A <small>DIN EN 16165:2023, zał. A</small>'] : null,
