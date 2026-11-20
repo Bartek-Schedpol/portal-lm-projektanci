@@ -1240,11 +1240,6 @@
             return '<a class="cvar' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="' + esc(cap(x.ver)) + ' · LM ' + esc(x.ref) + '"><span class="cvar-img">' + pimg(x.im, '') + '</span><span class="cvar-n">' + esc(cap(x.ver)) + '</span><small class="mono">LM ' + esc(x.ref) + '</small>' + (on ? '<span class="cvar-tag">Oglądasz</span>' : '') + '</a>';
           }).join('') + '</div></div>' : ''}
           <dl class="attrs">${attrs.map(function (a) { return '<div><dt>' + a[0] + '</dt><dd>' + a[1] + '</dd></div>'; }).join('')}</dl>
-          ${docFiles.length ? '<div class="pd-docs"><div class="pd-docs-h">' + ic('clipboard', 16) + '<b>Instrukcja montażu i karta gwarancyjna</b></div>' + docFiles.map(function (f) {
-            const i = allFiles.indexOf(f), gwd = /gwaranc/i.test(f.t || f.doc || '');
-            return '<div class="pd-doc"><span class="pd-doc-ic' + (gwd ? ' is-gw' : '') + '">' + ic(gwd ? 'shield' : 'book', 18) + '</span><div class="pd-doc-t"><b>' + esc(f.t || f.name) + '</b><small>PDF · ' + esc(nf(f.mb, 1)) + ' MB</small></div>' +
-              '<button class="btn btn-sm" type="button" data-act="preview-all" data-file="' + i + '">' + ic('eye', 15) + ' Podgląd</button><a class="btn btn-sm btn-dark" href="' + esc(f.href) + '" download>' + ic('download', 15) + ' Pobierz</a></div>';
-          }).join('') + '</div>' : ''}
           <div class="pd-cta">
             <button class="btn btn-primary" type="button" data-act="add-product-sel">Dodaj pliki do teczki <span class="btn-ic">${ic('arrow-right', 16)}</span></button>
             <a class="btn" href="${esc(kartaPdf(p))}" download>${ic('file', 16)} Karta produktu PDF</a>
@@ -1253,6 +1248,12 @@
           <p class="pd-note">${ic('info', 16)} Cena i dostępność: w systemie sklepu Leroy Merlin.</p>
         </section>
       </div>
+
+      ${docFiles.length ? '<section class="pd-docs pd-docs-wide" aria-label="Instrukcja montażu i karta gwarancyjna"><div class="pd-docs-h">' + ic('clipboard', 16) + '<b>Instrukcja montażu i karta gwarancyjna</b></div><div class="pd-docs-l">' + docFiles.map(function (f) {
+            const i = allFiles.indexOf(f), gwd = /gwaranc/i.test(f.t || f.doc || '');
+            return '<div class="pd-doc"><span class="pd-doc-ic' + (gwd ? ' is-gw' : '') + '">' + ic(gwd ? 'shield' : 'book', 18) + '</span><div class="pd-doc-t"><b>' + esc(f.t || f.name) + '</b><small>PDF · ' + esc(nf(f.mb, 1)) + ' MB</small></div>' +
+              '<button class="btn btn-sm" type="button" data-act="preview-all" data-file="' + i + '">' + ic('eye', 15) + ' Podgląd</button><a class="btn btn-sm btn-dark" href="' + esc(f.href) + '" download>' + ic('download', 15) + ' Pobierz</a></div>';
+          }).join('') + '</div></section>' : ''}
 
       <div class="pd-two">
         <section class="panel" aria-labelledby="cT">

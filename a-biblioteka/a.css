@@ -1362,3 +1362,11 @@ h1, h2, h3 { letter-spacing: -.02em; }
 .pds-o:hover { box-shadow: inset 0 0 0 1px var(--brand); }
 .pds-o.is-on { background: var(--brand); color: #fff; box-shadow: none; font-weight: 600; }
 @media (max-width: 720px) { .pds-sizes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+
+/* ===== 20.11.2026 (7): instrukcja i karta gwarancyjna na pełną szerokość ===== */
+.pd-docs.pd-docs-wide { margin-top: 28px; }
+.pd-docs-wide .pd-docs-l { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 12px; }
+.pd-docs-wide .pd-doc { margin: 0; padding: 14px 16px; border-radius: var(--r-m); background: #F6F5F4; }
+.pd-docs-wide .pd-doc-t b { white-space: normal; }
+@media (max-width: 720px) { .pd-docs-wide .pd-docs-l { grid-template-columns: 1fr; } }
