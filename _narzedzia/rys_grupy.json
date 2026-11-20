@@ -1,0 +1,555 @@
+{
+"et-sns2398": {
+"f": "et-sns2398.png",
+"refs": [
+"45256512",
+"88758947",
+"82763748",
+"82763752"
+],
+"dims": [
+"Ipsilon kwadr 90x90x5"
+]
+},
+"et-sns261": {
+"f": "et-sns261-c-st.png",
+"refs": [
+"83648361",
+"45591735",
+"83648347",
+"86448661"
+],
+"dims": [
+"Ipsilon kwadr 90x90x5",
+"Ipsilon kwadr 90x90x5/3"
+]
+},
+"et-sns260": {
+"f": "et-sns260.png",
+"refs": [
+"45591721",
+"83648346",
+"86448660",
+"83648360"
+],
+"dims": [
+"Ipsilon kwadr 80x80x5",
+"Ipsilon kwadr 80x80x5/3"
+]
+},
+"et-sns268": {
+"f": "et-sns268-c-st.png",
+"refs": [
+"83648366",
+"83648352",
+"86448670",
+"45591840"
+],
+"dims": [
+"Ipsilon prost 90x100x5"
+]
+},
+"et-sns2397": {
+"f": "et-sns2397-b-st.png",
+"refs": [
+"82763750",
+"88758948",
+"82620027",
+"82763756"
+],
+"dims": [
+"Ipsilon kwadr 80x80x5",
+"Ipsilon pięci 80x80x5"
+]
+},
+"et-sns269": {
+"f": "et-sns269.png",
+"refs": [
+"45591756",
+"83648351",
+"83648365",
+"86448671"
+],
+"dims": [
+"Ipsilon prost 80x120x5"
+]
+},
+"et-sns266": {
+"f": "et-sns266.png",
+"refs": [
+"45591742",
+"86448669",
+"83648364",
+"83648350"
+],
+"dims": [
+"Ipsilon prost 80x100x5",
+"Ipsilon półok 80x100x5"
+]
+},
+"ec-ipsilon-ipsilon-rys-tech-okragly-2020-png": {
+"f": "ec-ipsilon-ipsilon-rys-tech-okragly-2020-png.png",
+"refs": [
+"83648355"
+],
+"dims": [
+"Ipsilon półok 80x80x5/3"
+]
+},
+"et-sns245": {
+"f": "et-sns245.png",
+"refs": [
+"45591833",
+"92530011",
+"92529789",
+"92530787"
+],
+"dims": [
+"Ipsilon prost 160x80x5",
+"Ipsilon prost 80x160x5"
+]
+},
+"et-sns264": {
+"f": "et-sns264.png",
+"refs": [
+"45591714",
+"83648349",
+"86448665",
+"83648363"
+],
+"dims": [
+"Ipsilon półok 90x90x5",
+"Ipsilon półok 90x90x5/3"
+]
+},
+"et-sns263": {
+"f": "et-sns263-c-st.png",
+"refs": [
+"83648362",
+"45591700",
+"86448664",
+"83648348"
+],
+"dims": [
+"Ipsilon półok 80x80x5",
+"Ipsilon półok 80x80x5/3"
+]
+},
+"et-sns2251": {
+"f": "et-sns2251.png",
+"refs": [
+"45591791",
+"92530782",
+"92530006",
+"92529779"
+],
+"dims": [
+"Ipsilon prost 120x70x5",
+"Ipsilon prost 70x120x5"
+]
+},
+"et-sns267": {
+"f": "et-sns267.png",
+"refs": [
+"45591763",
+"92530813",
+"92530012",
+"92529790"
+],
+"dims": [
+"Ipsilon prost 120x90x5",
+"Ipsilon prost 90x120x5"
+]
+},
+"et-sns244": {
+"f": "et-sns244.png",
+"refs": [
+"45591826",
+"92530010",
+"92529788",
+"92530786"
+],
+"dims": [
+"Ipsilon prost 140x80x5",
+"Ipsilon prost 80x140x5"
+]
+},
+"et-sns2252": {
+"f": "et-sns2252.png",
+"refs": [
+"45591805",
+"92530783",
+"92530007",
+"92529780"
+],
+"dims": [
+"Ipsilon prost 140x70x5",
+"Ipsilon prost 70x140x5"
+]
+},
+"et-sns2248": {
+"f": "et-sns2248.png",
+"refs": [
+"45591784",
+"92530781",
+"92530005",
+"92529778"
+],
+"dims": [
+"Ipsilon prost 100x70x5",
+"Ipsilon prost 70x100x5"
+]
+},
+"et-sns248": {
+"f": "et-sns248-c-st.png",
+"refs": [
+"92531228",
+"45591861",
+"92530022"
+],
+"dims": [
+"Ipsilon prost 160x90x5",
+"Ipsilon prost 160x90x5/3",
+"Ipsilon prost 90x160x5"
+]
+},
+"et-sns2256": {
+"f": "et-sns2256.png",
+"refs": [
+"45591812",
+"92530008",
+"92529781",
+"92530784"
+],
+"dims": [
+"Ipsilon prost 160x70x5",
+"Ipsilon prost 70x160x5"
+]
+},
+"et-sns247": {
+"f": "et-sns247.png",
+"refs": [
+"45591854",
+"92530021",
+"92529791",
+"92531030"
+],
+"dims": [
+"Ipsilon prost 140x90x5",
+"Ipsilon prost 90x140x5"
+]
+},
+"et-sns2254": {
+"f": "et-sns2254.png",
+"refs": [
+"45591770",
+"92530780",
+"92530004",
+"92529777"
+],
+"dims": [
+"Ipsilon prost 70x90x5",
+"Ipsilon prost 90x70x5"
+]
+},
+"et-sns243": {
+"f": "et-sns243-s-st.png",
+"refs": [
+"92530009",
+"92529809",
+"92529787",
+"92530785"
+],
+"dims": [
+"Ipsilon prost 90x80x5"
+]
+},
+"et-sns262": {
+"f": "et-sns262.png",
+"refs": [
+"92529808"
+],
+"dims": [
+"Ipsilon kwadr 100x100x5"
+]
+},
+"et-sns4631": {
+"f": "et-sns4631-b-st.png",
+"refs": [
+"83648368",
+"83648387",
+"86448663",
+"45579800"
+],
+"dims": [
+"Frigo kwadr 90x90x12"
+]
+},
+"et-sns4863": {
+"f": "et-sns4863-s-st.png",
+"refs": [
+"92530023",
+"92529793",
+"92531302",
+"45579821"
+],
+"dims": [
+"Frigo prost 70x90x12",
+"Frigo prost 90x70x12"
+]
+},
+"et-sns4864": {
+"f": "et-sns4864-s-st.png",
+"refs": [
+"92530024",
+"92529794",
+"92531405",
+"45579835"
+],
+"dims": [
+"Frigo prost 100x70x12",
+"Frigo prost 70x100x12"
+]
+},
+"et-sns4840": {
+"f": "et-sns4840-c-st.png",
+"refs": [
+"92531497",
+"92529799",
+"92529783",
+"45580185"
+],
+"dims": [
+"Frigo prost 140x80x12",
+"Frigo prost 80x140x12"
+]
+},
+"et-sns4866": {
+"f": "et-sns4866-c-st.png",
+"refs": [
+"92531456",
+"92529795",
+"92530025",
+"45579842"
+],
+"dims": [
+"Frigo prost 120x70x12",
+"Frigo prost 70x120x12"
+]
+},
+"et-sns4849": {
+"f": "et-sns4849-c-st.png",
+"refs": [
+"92530002",
+"92529806",
+"45580234",
+"92529785"
+],
+"dims": [
+"Frigo prost 140x90x12",
+"Frigo prost 90x140x12"
+]
+},
+"et-sns4851": {
+"f": "et-sns4851-c-st.png",
+"refs": [
+"92530003",
+"92529807",
+"92529786",
+"45580255"
+],
+"dims": [
+"Frigo prost 160x90x12",
+"Frigo prost 90x160x12"
+]
+},
+"et-sns4847": {
+"f": "et-sns4847-c-st.png",
+"refs": [
+"92530001",
+"92529804",
+"92529801",
+"45580213"
+],
+"dims": [
+"Frigo prost 120x90x12",
+"Frigo prost 90x120x12"
+]
+},
+"et-sns4632": {
+"f": "et-sns4632.png",
+"refs": [
+"92529810"
+],
+"dims": [
+"Frigo kwadr 100x100x12"
+]
+},
+"et-sns4846": {
+"f": "et-sns4846.png",
+"refs": [
+"92529813"
+],
+"dims": [
+"Frigo prost 110x90x12"
+]
+},
+"et-sns4885": {
+"f": "et-sns4885.png",
+"refs": [
+"92529812",
+"92529782",
+"92531496",
+"92529798"
+],
+"dims": [
+"Frigo prost 90x80x12"
+]
+},
+"et-sns4842": {
+"f": "et-sns4842-s-st.png",
+"refs": [
+"92529803",
+"92529800",
+"92529784",
+"45580192"
+],
+"dims": [
+"Frigo prost 160x80x12",
+"Frigo prost 80x160x12"
+]
+},
+"et-sns4870": {
+"f": "et-sns4870-b-st.png",
+"refs": [
+"92529797",
+"92530027",
+"92531495",
+"45579863"
+],
+"dims": [
+"Frigo prost 160x70x12",
+"Frigo prost 70x160x12"
+]
+},
+"et-sns4868": {
+"f": "et-sns4868-b-st.png",
+"refs": [
+"92529796",
+"92531493",
+"92530026",
+"45579856"
+],
+"dims": [
+"Frigo prost 140x70x12",
+"Frigo prost 70x140x12"
+]
+},
+"et-sns4836": {
+"f": "et-sns4836.png",
+"refs": [
+"45580164",
+"83648398",
+"86448672",
+"83648371"
+],
+"dims": [
+"Frigo prost 80x100x12"
+]
+},
+"et-sns4634": {
+"f": "et-sns4634.png",
+"refs": [
+"45579814",
+"83648394",
+"86448668",
+"83648370"
+],
+"dims": [
+"Frigo półok 90x90x12"
+]
+},
+"et-sns4630": {
+"f": "et-sns4630-c-st.png",
+"refs": [
+"83648384",
+"83648367",
+"86448662",
+"45579786"
+],
+"dims": [
+"Frigo kwadr 80x80x12"
+]
+},
+"et-sns4697": {
+"f": "et-sns4697.png",
+"refs": [
+"82620026",
+"82763747",
+"88758952",
+"82763761"
+],
+"dims": [
+"Frigo pięci 80x80x12"
+]
+},
+"et-sns4633": {
+"f": "et-sns4633-s-st.png",
+"refs": [
+"86448667",
+"83648369",
+"45579793",
+"83648391"
+],
+"dims": [
+"Frigo półok 80x80x12"
+]
+},
+"et-sns4845": {
+"f": "et-sns4845-b-st.png",
+"refs": [
+"83648373",
+"86448673",
+"83648405",
+"45580206"
+],
+"dims": [
+"Frigo prost 90x100x12"
+]
+},
+"et-sns4698": {
+"f": "et-sns4698-c-st.png",
+"refs": [
+"82763757",
+"88758950",
+"82763746",
+"45256540"
+],
+"dims": [
+"Frigo pięci 90x90x12"
+]
+},
+"ec-frigo-rys-tech-frigo-pokrgy-2026-jpg-jpg": {
+"f": "ec-frigo-rys-tech-frigo-pokrgy-2026-jpg-jpg.png",
+"refs": [
+"83648377",
+"83648376"
+],
+"dims": [
+"Frigo półok 80x80x12",
+"Frigo półok 90x90x12"
+]
+},
+"et-sns4838": {
+"f": "et-sns4838-s-st.png",
+"refs": [
+"86448674",
+"45580171",
+"83648401",
+"83648372"
+],
+"dims": [
+"Frigo prost 80x120x12"
+]
+}
+}

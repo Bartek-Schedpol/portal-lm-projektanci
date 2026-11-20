@@ -1,0 +1,1645 @@
+{
+ "Schedpol_Balans_90x90x3,5-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -24.0,
+   24.0
+  ]
+ },
+ "Schedpol_Balans_120x80x3,5-oK": {
+  "dims": [
+   80.0,
+   120.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -0.0,
+   27.0
+  ]
+ },
+ "Schedpol_Balans_100x80x3,5-oK": {
+  "dims": [
+   80.0,
+   100.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   0.0,
+   17.0
+  ]
+ },
+ "Schedpol_Balans_110x90x3,5-oK": {
+  "dims": [
+   90.0,
+   110.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -0.0,
+   17.0
+  ]
+ },
+ "Schedpol_Balans_120x90x3,5-oK": {
+  "dims": [
+   90.0,
+   120.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -0.0,
+   22.0
+  ]
+ },
+ "Schedpol_Balans_160x80x3,5-oK": {
+  "dims": [
+   80.0,
+   160.0,
+   3.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (0.0, 37.0) -> (0.0, 47.0)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   0.0,
+   47.0
+  ]
+ },
+ "Schedpol_Balans_140x90x3,5-oK": {
+  "dims": [
+   90.0,
+   140.0,
+   3.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (-0.0, 32.0) -> (0.0, 37.0)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   0.0,
+   37.0
+  ]
+ },
+ "Schedpol_Balans_80x80x3,5-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -19.0,
+   19.0
+  ]
+ },
+ "Schedpol_Balans_100x90x3,5-oK": {
+  "dims": [
+   90.0,
+   100.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -0.0,
+   17.0
+  ]
+ },
+ "Schedpol_Balans_90x70x3,5-oK": {
+  "dims": [
+   70.0,
+   90.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   0.0,
+   12.0
+  ]
+ },
+ "Schedpol_Balans_160x90x3,5-oK": {
+  "dims": [
+   90.0,
+   160.0,
+   3.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (-0.0, 37.0) -> (0.0, 47.0)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   0.0,
+   47.0
+  ]
+ },
+ "Schedpol_Balans_100x70x3,5-oK": {
+  "dims": [
+   70.0,
+   100.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   0.0,
+   17.0
+  ]
+ },
+ "Schedpol_Balans_90x80x3,5-oK": {
+  "dims": [
+   80.0,
+   90.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   0.0,
+   12.0
+  ]
+ },
+ "Schedpol_Balans_120x70x3,5-oK": {
+  "dims": [
+   70.0,
+   120.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   0.0,
+   27.0
+  ]
+ },
+ "Schedpol_Balans_140x80x3,5-oK": {
+  "dims": [
+   80.0,
+   140.0,
+   3.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": null
+ },
+ "Sensea_Ipsilon_90x90x4,5-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   4.5
+  ],
+  "modified": false,
+  "log": [],
+  "drain": [
+   32.0,
+   32.0
+  ]
+ },
+ "Sensea_Ipsilon_80x80x4,5-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   4.5
+  ],
+  "modified": false,
+  "log": [],
+  "drain": [
+   27.0,
+   27.0
+  ]
+ },
+ "Sensea_Ipsilon_100x90x4,5-oD": {
+  "dims": [
+   90.0,
+   100.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (32.0, 37.0) -> (31.0, 0.0)"
+  ],
+  "drain": [
+   31.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_80x80x5-5k-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   5.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x90 -> 80x80",
+   "odpływ (26.7, 26.7) -> (-25.0, 25.0)"
+  ],
+  "drain": [
+   -25.0,
+   25.0
+  ]
+ },
+ "Sensea_Ipsilon_120x80x4,5-oD": {
+  "dims": [
+   80.0,
+   120.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (27.0, 47.0) -> (26.0, 0.0)"
+  ],
+  "drain": [
+   26.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_100x80x4,5-oD": {
+  "dims": [
+   80.0,
+   100.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (27.0, 37.0) -> (26.0, 0.0)"
+  ],
+  "drain": [
+   26.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_80x80x4,5-R55-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (27.0, 27.0) -> (24.4, -24.4)"
+  ],
+  "drain": [
+   24.4,
+   -24.4
+  ]
+ },
+ "Sensea_Ipsilon_160x80x5,5-oD": {
+  "dims": [
+   80.0,
+   160.0,
+   5.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (27.0, 67.0) -> (26.0, 0.0)"
+  ],
+  "drain": [
+   26.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_90x90x4,5-R55-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (32.0, 32.0) -> (29.4, -29.4)"
+  ],
+  "drain": [
+   29.4,
+   -29.4
+  ]
+ },
+ "Sensea_Ipsilon_120x70x4,5-oD": {
+  "dims": [
+   70.0,
+   120.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 75x120 -> 70x120",
+   "odpływ (22.8, 47.0) -> (21.0, 0.0)"
+  ],
+  "drain": [
+   21.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_120x90x4,5-oD": {
+  "dims": [
+   90.0,
+   120.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (32.0, 47.0) -> (31.0, 0.0)"
+  ],
+  "drain": [
+   31.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_140x80x4,5-oD": {
+  "dims": [
+   80.0,
+   140.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (27.0, 57.0) -> (26.0, 0.0)"
+  ],
+  "drain": [
+   26.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_140x70x4,5-oD": {
+  "dims": [
+   70.0,
+   140.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 75x140 -> 70x140",
+   "odpływ (22.8, 57.0) -> (21.0, 0.0)"
+  ],
+  "drain": [
+   21.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_100x70x4,5-oD": {
+  "dims": [
+   70.0,
+   100.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 75x100 -> 70x100",
+   "odpływ (22.8, 37.0) -> (21.0, 0.0)"
+  ],
+  "drain": [
+   21.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_160x90x5,5-oD": {
+  "dims": [
+   90.0,
+   160.0,
+   5.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (32.0, 67.0) -> (31.0, 0.0)"
+  ],
+  "drain": [
+   31.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_100x80x4,5-R55-oN": {
+  "dims": [
+   100.0,
+   80.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x90 -> 100x80",
+   "odpływ (35.6, 28.4) -> (34.4, -24.4)"
+  ],
+  "drain": [
+   34.4,
+   -24.4
+  ]
+ },
+ "Sensea_Ipsilon_160x70x5,5-oD": {
+  "dims": [
+   70.0,
+   160.0,
+   5.5
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 75x160 -> 70x160",
+   "odpływ (22.8, 67.0) -> (21.0, 0.0)"
+  ],
+  "drain": [
+   21.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_140x90x4,5-oD": {
+  "dims": [
+   90.0,
+   140.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (32.0, 57.0) -> (31.0, 0.0)"
+  ],
+  "drain": [
+   31.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_90x70x4,5-oN": {
+  "dims": [
+   70.0,
+   90.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 75x90 -> 70x90",
+   "odpływ (22.8, 32.0) -> (19.8, 29.8)"
+  ],
+  "drain": [
+   19.8,
+   29.8
+  ]
+ },
+ "Sensea_Ipsilon_90x80x4,5-oD": {
+  "dims": [
+   80.0,
+   90.0,
+   4.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (27.0, 32.0) -> (26.0, 0.0)"
+  ],
+  "drain": [
+   26.0,
+   0.0
+  ]
+ },
+ "Sensea_Ipsilon_100x100x4,5-oN": {
+  "dims": [
+   100.0,
+   100.0,
+   4.5
+  ],
+  "modified": false,
+  "log": [],
+  "drain": [
+   37.0,
+   37.0
+  ]
+ },
+ "Sensea_Frigo_90x90x12-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   32.0,
+   32.0
+  ]
+ },
+ "Sensea_Frigo_90x70x12-oK": {
+  "dims": [
+   90.0,
+   70.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x75 -> 90x70",
+   "odpływ (32.0, 22.8) -> (30.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   30.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_100x70x12-oK": {
+  "dims": [
+   100.0,
+   70.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (37.0, 22.0) -> (35.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   35.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_140x80x12-oK": {
+  "dims": [
+   140.0,
+   80.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 140x70 -> 140x80",
+   "odpływ (57.0, 25.1) -> (55.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   55.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_120x70x12-oK": {
+  "dims": [
+   120.0,
+   70.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (47.0, 22.0) -> (45.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   45.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_140x90x12-oK": {
+  "dims": [
+   140.0,
+   90.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 140x70 -> 140x90",
+   "odpływ (57.0, 28.2) -> (55.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   55.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_160x90x12-oK": {
+  "dims": [
+   160.0,
+   90.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 160x80 -> 160x90",
+   "odpływ (67.0, 30.4) -> (65.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   65.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_120x90x12-oK": {
+  "dims": [
+   120.0,
+   90.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 120x70 -> 120x90",
+   "odpływ (47.0, 28.2) -> (45.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   45.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_100x100x12-oN": {
+  "dims": [
+   100.0,
+   100.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   37.0,
+   37.0
+  ]
+ },
+ "Sensea_Frigo_110x90x12-oK": {
+  "dims": [
+   90.0,
+   110.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 100x100 -> 90x110",
+   "odpływ (33.3, 40.7) -> (0.0, 40.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   0.0,
+   40.0
+  ]
+ },
+ "Sensea_Frigo_90x80x12-oK": {
+  "dims": [
+   90.0,
+   80.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x75 -> 90x80",
+   "odpływ (32.0, 26.1) -> (30.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   30.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_160x80x12-oK": {
+  "dims": [
+   160.0,
+   80.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (67.0, 27.0) -> (65.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   65.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_160x70x12-oK": {
+  "dims": [
+   160.0,
+   70.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 170x75 -> 160x70",
+   "odpływ (67.8, 22.8) -> (65.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   65.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_140x70x12-oK": {
+  "dims": [
+   140.0,
+   70.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (57.0, 22.0) -> (55.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   55.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_100x80x12-oK": {
+  "dims": [
+   100.0,
+   80.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 100x70 -> 100x80",
+   "odpływ (37.0, 25.1) -> (35.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   35.0,
+   0.0
+  ]
+ },
+ "Sensea_Frigo_90x90x12-R55-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   32.0,
+   32.0
+  ]
+ },
+ "Sensea_Frigo_80x80x12-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   27.0,
+   27.0
+  ]
+ },
+ "Sensea_Frigo_80x80x12-5k-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x90 -> 80x80",
+   "odpływ (26.7, 26.7) -> (-25.0, 25.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   -25.0,
+   25.0
+  ]
+ },
+ "Sensea_Frigo_80x80x12-R55-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   27.0,
+   27.0
+  ]
+ },
+ "Sensea_Frigo_100x90x12-oK": {
+  "dims": [
+   90.0,
+   100.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 100x100 -> 90x100",
+   "odpływ (33.3, 37.0) -> (0.0, 35.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   0.0,
+   35.0
+  ]
+ },
+ "Sensea_Frigo_90x90x12-5k-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (30.0, 30.0) -> (-30.0, 30.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   -30.0,
+   30.0
+  ]
+ },
+ "Sensea_Frigo_120x80x12-oK": {
+  "dims": [
+   120.0,
+   80.0,
+   12.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 120x70 -> 120x80",
+   "odpływ (47.0, 25.1) -> (45.0, 0.0)",
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   45.0,
+   0.0
+  ]
+ },
+ "Schedpol_Magnetic_140x80x5,5-oN": {
+  "dims": [
+   140.0,
+   80.0,
+   5.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (-0.0, 27.8) -> (-57.2, 27.2)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -57.2,
+   27.2
+  ]
+ },
+ "Schedpol_Magnetic_90x90x5,5-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   5.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -32.2,
+   32.3
+  ]
+ },
+ "Schedpol_Magnetic_120x80x5,5-oN": {
+  "dims": [
+   120.0,
+   80.0,
+   5.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (-0.0, 27.8) -> (-47.2, 27.2)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -47.2,
+   27.2
+  ]
+ },
+ "Schedpol_Magnetic_100x90x6-oN": {
+  "dims": [
+   100.0,
+   90.0,
+   6.0
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (0.0, 32.8) -> (37.2, 32.2)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   37.2,
+   32.2
+  ]
+ },
+ "Schedpol_Magnetic_80x80x5,5-R55-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   5.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -27.2,
+   27.3
+  ]
+ },
+ "Schedpol_Magnetic_80x80x5,5-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   5.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -27.2,
+   27.3
+  ]
+ },
+ "Schedpol_Magnetic_100x80x5,5-oN": {
+  "dims": [
+   100.0,
+   80.0,
+   5.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (-0.0, 27.8) -> (-37.2, 27.2)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -37.2,
+   27.2
+  ]
+ },
+ "Schedpol_Magnetic_140x90x5,5-oN": {
+  "dims": [
+   140.0,
+   90.0,
+   5.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (0.0, 32.8) -> (57.2, 32.2)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   57.2,
+   32.2
+  ]
+ },
+ "Schedpol_Magnetic_120x90x5,5-oN": {
+  "dims": [
+   120.0,
+   90.0,
+   5.5
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (0.0, 32.8) -> (47.2, 32.2)",
+   "spód kompozytowy"
+  ],
+  "drain": [
+   47.2,
+   32.2
+  ]
+ },
+ "Schedpol_Magnetic_90x90x5,5-R55-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   5.5
+  ],
+  "modified": false,
+  "log": [
+   "spód kompozytowy"
+  ],
+  "drain": [
+   -32.2,
+   32.3
+  ]
+ },
+ "Schedpol_Sinergid_90x90x17-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   17.0
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (26.8, 26.8) -> (30.0, 30.0)",
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": [
+   30.0,
+   30.0
+  ]
+ },
+ "Schedpol_Sinergid_120x80x17-oN": {
+  "dims": [
+   120.0,
+   80.0,
+   17.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x90 -> 120x80",
+   "odpływ (35.7, 23.8) -> (45.0, 25.0)",
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": [
+   45.0,
+   25.0
+  ]
+ },
+ "Schedpol_Sinergid_120x90x17-oN": {
+  "dims": [
+   120.0,
+   90.0,
+   17.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x90 -> 120x90",
+   "odpływ (35.7, 26.8) -> (45.0, 30.0)",
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": [
+   45.0,
+   30.0
+  ]
+ },
+ "Schedpol_Sinergid_80x80x17-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   17.0
+  ],
+  "modified": true,
+  "log": [
+   "odpływ (21.8, 21.8) -> (25.0, 25.0)",
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": [
+   25.0,
+   25.0
+  ]
+ },
+ "Schedpol_Sinergid_100x80x17-oN": {
+  "dims": [
+   100.0,
+   80.0,
+   17.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x90 -> 100x80",
+   "odpływ (29.8, 23.8) -> (35.0, 25.0)",
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": [
+   35.0,
+   25.0
+  ]
+ },
+ "Schedpol_Sinergid_90x90x17-R55-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   17.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Sinergid_80x80x17-R55-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   17.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Sinergid_100x90x17-oN": {
+  "dims": [
+   100.0,
+   90.0,
+   17.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x90 -> 100x90",
+   "odpływ (29.8, 26.8) -> (35.0, 30.0)",
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": [
+   35.0,
+   30.0
+  ]
+ },
+ "Schedpol_Integral_90x90x12-oN": {
+  "dims": [
+   90.0,
+   90.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   -24.0,
+   24.0
+  ]
+ },
+ "Schedpol_Integral_100x80x12-oK": {
+  "dims": [
+   80.0,
+   100.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   -0.0,
+   17.0
+  ]
+ },
+ "Schedpol_Integral_100x90x12-oK": {
+  "dims": [
+   90.0,
+   100.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   0.0,
+   17.0
+  ]
+ },
+ "Schedpol_Integral_80x80x12-oN": {
+  "dims": [
+   80.0,
+   80.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   -19.0,
+   19.0
+  ]
+ },
+ "Schedpol_Integral_90x80x12-oK": {
+  "dims": [
+   80.0,
+   90.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   -0.0,
+   12.0
+  ]
+ },
+ "Schedpol_Integral_120x80x12-oK": {
+  "dims": [
+   80.0,
+   120.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   -0.0,
+   27.0
+  ]
+ },
+ "Schedpol_Integral_120x90x12-oK": {
+  "dims": [
+   90.0,
+   120.0,
+   12.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 6.0 cm)"
+  ],
+  "drain": [
+   -0.0,
+   22.0
+  ]
+ },
+ "Schedpol_Grawello_80x80x11,8": {
+  "dims": [
+   80.0,
+   80.0,
+   11.8
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 5.9 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Grawello_80,1x79,8x11,8-R55": {
+  "dims": [
+   80.1,
+   79.8,
+   11.8
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 5.9 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Grawello_120x90x11,8": {
+  "dims": [
+   120.0,
+   90.0,
+   11.8
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 5.9 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Grawello_99,9x80x11,8": {
+  "dims": [
+   100.0,
+   80.0,
+   11.8
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 5.9 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Grawello_90x90x11,8": {
+  "dims": [
+   90.0,
+   90.0,
+   11.8
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 5.9 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Grawello_90x89,8x11,8-R55": {
+  "dims": [
+   89.8,
+   90.0,
+   11.8
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 5.9 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Dante_90x89,9x28,3-R55": {
+  "dims": [
+   90.0,
+   90.0,
+   57.7
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Dante_80,1x80,1x28,3-R55": {
+  "dims": [
+   80.1,
+   80.1,
+   41.2
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Dante_90x90x28,3": {
+  "dims": [
+   90.0,
+   90.0,
+   41.3
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Dante_80,1x80,1x28,3": {
+  "dims": [
+   80.1,
+   80.1,
+   41.0
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Go-Baby_80,1x80,1x29,6-R55": {
+  "dims": [
+   80.1,
+   80.1,
+   40.6
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Go-Baby_90x90x29,5-R55": {
+  "dims": [
+   90.0,
+   90.0,
+   40.6
+  ],
+  "modified": false,
+  "log": [
+   "spód zintegrowany (nośnik 7.0 cm)"
+  ],
+  "drain": null
+ },
+ "Schedpol_Dafne_89,9x89,8x23-R55": {
+  "dims": [
+   89.9,
+   89.8,
+   35.0
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Dafne_80,1x80x23-R55": {
+  "dims": [
+   80.0,
+   80.1,
+   35.0
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Comfo_90,1x90,1x17": {
+  "dims": [
+   90.1,
+   90.1,
+   17.0
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Comfo_89,9x89,4x17-R55": {
+  "dims": [
+   89.4,
+   89.9,
+   17.0
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Comfo_80,1x80x17": {
+  "dims": [
+   80.0,
+   80.1,
+   17.0
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Comfo_80,1x80x17-R55": {
+  "dims": [
+   80.1,
+   80.0,
+   17.0
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Comfo_70x69,9x17": {
+  "dims": [
+   70.0,
+   69.9,
+   17.0
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Comfo_100x80x17": {
+  "dims": [
+   100.0,
+   80.0,
+   17.0
+  ],
+  "modified": true,
+  "log": [
+   "wymiar 90x90 -> 100x80"
+  ],
+  "drain": null
+ },
+ "Schedpol_Panel-Grawello_80,1x79,8x23,5-R55": {
+  "dims": [
+   79.8,
+   80.1,
+   23.5
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Panel-Grawello_89,6x89,2x24,2-R55": {
+  "dims": [
+   89.6,
+   89.2,
+   24.2
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Panel-Dante_91,3x91x37,3-R55": {
+  "dims": [
+   91.3,
+   91.0,
+   37.3
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Panel-Dante_81,3x81,3x37,3-R55": {
+  "dims": [
+   81.3,
+   81.3,
+   37.3
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Panel-Go-Baby_80,9x80,1x27,5-R55": {
+  "dims": [
+   80.9,
+   80.1,
+   27.5
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Panel-Go-Baby_90,5x90,4x27,5-R55": {
+  "dims": [
+   90.5,
+   90.4,
+   27.5
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Panel-Dafne_90,7x90,5x30,9-R55": {
+  "dims": [
+   90.5,
+   90.7,
+   30.9
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Panel-Dafne_80,8x79,9x30,9-R55": {
+  "dims": [
+   80.8,
+   79.9,
+   30.9
+  ],
+  "modified": false,
+  "log": [],
+  "drain": null
+ },
+ "Schedpol_Torres_140x70x41,9": {
+  "dims": [
+   70.0,
+   140.0,
+   41.9
+  ],
+  "modified": false,
+  "log": [],
+  "drain": [
+   -0.0,
+   38.5
+  ]
+ },
+ "Schedpol_Torres_150x70x41,9": {
+  "dims": [
+   70.0,
+   150.0,
+   41.9
+  ],
+  "modified": false,
+  "log": [],
+  "drain": [
+   0.0,
+   43.5
+  ]
+ },
+ "Schedpol_Torres_160x70x41,9": {
+  "dims": [
+   70.0,
+   160.0,
+   41.9
+  ],
+  "modified": false,
+  "log": [],
+  "drain": [
+   0.0,
+   48.5
+  ]
+ },
+ "Schedpol_Torres_170x70x41,9": {
+  "dims": [
+   70.0,
+   170.0,
+   41.9
+  ],
+  "modified": false,
+  "log": [],
+  "drain": [
+   0.0,
+   53.5
+  ]
+ }
+}

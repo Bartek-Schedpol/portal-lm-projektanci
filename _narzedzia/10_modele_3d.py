@@ -79,78 +79,39 @@ def sibling(objpath, ext):
     return None
 
 
-def run_blender_part():
-    import bpy, mathutils
-    args = sys.argv[sys.argv.index('--') + 1:]
-    jobs = json.load(open(args[0], encoding='utf-8'))
-    res = {}
-    for key, (obj, glb, metal) in jobs.items():
-        bpy.ops.wm.read_factory_settings(use_empty=True)
-        bpy.ops.wm.obj_import(filepath=obj)
-        objs = [o for o in bpy.context.scene.objects if o.type == 'MESH']
-        if not objs:
-            res[key] = {'err': 'brak siatki'}; continue
-        # rozdziel na luźne części (kratki leżące obok bywają w tym samym obiekcie co brodzik)
-        bpy.ops.object.select_all(action='SELECT')
-        bpy.context.view_layer.objects.active = objs[0]
-        if len(objs[0].data.vertices) < 400000:
-            bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.mesh.select_all(action='SELECT')
-            bpy.ops.mesh.separate(type='LOOSE'); bpy.ops.object.mode_set(mode='OBJECT')
-        objs = [o for o in bpy.context.scene.objects if o.type == 'MESH']
-        def bb(o):
-            ws = [o.matrix_world @ mathutils.Vector(v) for v in o.bound_box]
-            return mathutils.Vector([min(w[i] for w in ws) for i in range(3)]), mathutils.Vector([max(w[i] for w in ws) for i in range(3)])
-        # zostaw główną bryłę i to, co w jej obrysie (usuń kratki/akcesoria leżące obok)
-        big = max(objs, key=lambda o: (lambda a, b: sorted(b - a)[1] * sorted(b - a)[2])(*bb(o)))
-        bmn, bmx = bb(big)
-        for o in list(objs):
-            a, b = bb(o); c = (a + b) / 2
-            if any(c[i] < bmn[i] - 1 or c[i] > bmx[i] + 1 for i in range(3)):
-                bpy.data.objects.remove(o, do_unlink=True); objs.remove(o)
-        mn = mathutils.Vector((1e9,) * 3); mx = -mn
-        for o in objs:
-            a, b = bb(o); mn = mathutils.Vector(map(min, mn, a)); mx = mathutils.Vector(map(max, mx, b))
-        mat = bpy.data.materials.new('akryl'); mat.use_nodes = True
-        bsdf = mat.node_tree.nodes.get('Principled BSDF')
-        bsdf.inputs['Base Color'].default_value = (0.93, 0.93, 0.92, 1); bsdf.inputs['Roughness'].default_value = 0.45
-        met = bpy.data.materials.new('metal'); met.use_nodes = True
-        mb = met.node_tree.nodes.get('Principled BSDF')
-        mb.inputs['Base Color'].default_value = (0.62, 0.64, 0.66, 1); mb.inputs['Metallic'].default_value = 1.0; mb.inputs['Roughness'].default_value = 0.28
-        # główna bryła = akryl; drobne części wewnątrz (maskownica, pokrywa odpływu) = stal szczotkowana.
-        # Wyjątek: Magnetic — pokrywa odpływu w kolorze brodzika.
-        big2 = max(objs, key=lambda o: (lambda a, b: sorted(b - a)[1] * sorted(b - a)[2])(*bb(o)))
-        ba, bb2 = bb(big2); barea = sorted(bb2 - ba)[1] * sorted(bb2 - ba)[2]
-        for o in objs:
-            a, b = bb(o); area = sorted(b - a)[1] * sorted(b - a)[2]
-            o.data.materials.clear()
-            o.data.materials.append(met if (metal and o is not big2 and area < barea * 0.06) else mat)
-        c = (mn + mx) / 2
-        for o in objs:
-            o.location -= mathutils.Vector((c.x, c.y, mn.z))
-            o.scale = (0.01, 0.01, 0.01); o.location *= 0.01          # OBJ w cm -> glTF w metrach (AR 1:1)
-        bpy.ops.object.select_all(action='SELECT')
-        bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
-        import bmesh
-        for o in objs:
-            bm = bmesh.new(); bm.from_mesh(o.data)
-            uv = bm.loops.layers.uv.new('UVMap') if not bm.loops.layers.uv else bm.loops.layers.uv.active
-            rot = o.matrix_world.to_3x3()
-            for f in bm.faces:
-                n = rot @ f.normal; ax = max(range(3), key=lambda i: abs(n[i]))   # normalna w układzie świata (OBJ jest obrócony o 90°)
-                u, v = [i for i in range(3) if i != ax]
-                for l in f.loops:
-                    co = o.matrix_world @ l.vert.co
-                    l[uv].uv = (co[u] / 0.3, co[v] / 0.3)
-            bm.to_mesh(o.data); bm.free()
-        bpy.ops.export_scene.gltf(filepath=glb, export_format='GLB', export_draco_mesh_compression_enable=True, export_yup=True, export_apply=True)
-        res[key] = {'dims': [round(x, 1) for x in (mx - mn)], 'glb_kb': os.path.getsize(glb) // 1024}
-    json.dump(res, open(args[1], 'w', encoding='utf-8'), indent=1)
+# Położenie odpływu wg rysunków technicznych produktów LM (odczyt 20.11.2026, assets/img/rys):
+#   Frigo: prostokątne — środek krótszego boku, 15 cm od krawędzi; kwadratowe — narożnik 15 cm;
+#          półokrągłe i pięciokątne — narożnik naprzeciw ściętego/łukowego.
+#   Ipsilon: prostokątne — środek dłuższego boku, 14 cm od krawędzi (wyjątek 90×70: narożnik 15,2 cm);
+#          kwadratowe — narożnik 15,2; półokrągłe — narożnik przy łuku 15,6; pięciokątne — narożnik naprzeciw ścięcia.
+#   Magnetic: narożnik 12,8 cm (prostokątne w katalogu 2021 miały odpływ na środku dłuższego boku).
+#   Sinergid: narożnik 15 cm. Balans, Integral: prostokątne — środek krótszego boku 33 cm (90×110, 90×120: 38 cm), kwadratowe — narożnik 21 cm.
+def drain_rule(p):
+    fam, shp = p['fam'], p.get('shape')
+    rect = shp == 'prostokątny'
+    if fam == 'Frigo':
+        return ['short_mid', 15] if rect else (['corner_opp', 15] if shp in ('półokrągły', 'pięciokątny') else ['corner', 15])
+    if fam == 'Ipsilon':
+        if rect: return ['corner', 15.2] if sorted([float(p['a']), float(p['b'])]) == [70.0, 90.0] else ['long_mid', 14]
+        return {'półokrągły': ['corner_adj', 15.6], 'pięciokątny': ['corner_opp', 15]}.get(shp, ['corner', 15.2])
+    if fam == 'Magnetic':
+        return ['corner_opp', 12.8] if shp == 'półokrągły' else ['corner', 12.8]
+    if fam == 'Sinergid':
+        return ['corner_opp', 15] if shp == 'półokrągły' else ['corner', 15]
+    if fam in ('Balans', 'Integral'):        # rysunek LM: 330 mm (380 mm dla 900×1100 i 900×1200)
+        if not rect: return ['corner', 21]
+        return ['short_mid', 38] if sorted([float(p['a']), float(p['b'])]) in ([90.0, 110.0], [90.0, 120.0]) else ['short_mid', 33]
+    return None
+
+
+CONS = {'kompozytowy': 'kompozyt', 'zintegrowany': 'zintegr'}
+RULE_TAG = {'corner': 'N', 'corner_opp': 'N', 'corner_adj': 'N', 'short_mid': 'K', 'long_mid': 'D'}
 
 
 def main():
-    if os.path.isdir(OUT):
-        shutil.rmtree(OUT)
-    os.makedirs(OUT)
+    os.makedirs(OUT, exist_ok=True)
+    for f in os.listdir(OUT):                     # czyść zawartość (katalog bywa zablokowany przez inny proces)
+        os.remove(os.path.join(OUT, f))
     data = json.loads(open(os.path.join(ROOT, 'assets', 'data.js'), encoding='utf-8').read().split('=', 1)[1].split(';\n')[0])
     prods = data['products']
     cats = {}
@@ -158,8 +119,9 @@ def main():
         if folder not in cats: cats[folder] = catalog(folder)
         return cats[folder]
 
-    models, refs, miss, approx = {}, {}, [], {}   # models: klucz pliku -> {obj, ...}; refs: ref -> klucz
+    models, refs, miss, approx = {}, {}, [], {}
     for p in prods:
+        size = None
         if p['fam'] in SERIES and p.get('a') and p.get('b'):
             folders = SERIES[p['fam']]
             stone = 'kamień' in (p.get('c') or '') or 'kamien' in (p.get('c') or '')
@@ -174,82 +136,96 @@ def main():
             if p['fam'] not in ('Grawello', 'Dante', 'Go Baby', 'Dafne') and h:
                 cand = [m for m in cand if abs(m['dims'][2] - h) <= H_TOL]
             near = False
-            if not cand:                       # brak tego wymiaru -> najbliższy wymiar, ten sam kształt (decyzja użytkownika 19.11.2026)
+            if not cand:                       # brak wymiaru -> najbliższy wymiar, ten sam kształt, przeskalowany do wymiaru produktu
                 pool = [m for f in ([folder] + [x for x in folders if x != folder]) for m in cat(f) if m['dims'] and m['shape'] == shp]
                 if p['fam'] not in ('Grawello', 'Dante', 'Go Baby', 'Dafne') and h:
                     pool = [m for m in pool if abs(m['dims'][2] - h) <= H_TOL]
                 if not pool:
                     miss.append('%s %s %s %s×%s×%s' % (p['ref'], p['fam'], p.get('shape'), p['a'], p['b'], p.get('h'))); continue
-                cand = [min(pool, key=lambda m: ((m['dims'][0] - want[0]) ** 2 + (m['dims'][1] - want[1]) ** 2, folders.index(next(f for f in folders if m['obj'].startswith(os.path.join(SRC, f))))))]
+                # zamiennik o proporcjach boków jak najbliższych (skalowanie zachowa kształt rantu)
+                cand = [min(pool, key=lambda m: ((m['dims'][0] - want[0]) ** 2 + (m['dims'][1] - want[1]) ** 2 +
+                                                 400 * (m['dims'][0] / m['dims'][1] - want[0] / want[1]) ** 2,
+                                                 folders.index(next(f for f in folders if m['obj'].startswith(os.path.join(SRC, f))))))]
                 near = True
             m = sorted(cand, key=lambda m: abs(m['dims'][2] - h))[0]
             if near:
-                approx[p['ref']] = 1
+                approx[p['ref']] = m['dims']
+                size = want
+            rule = drain_rule(p) if p['cat'] == 'brodzik' else None
+            cons = CONS.get(p.get('tech')) if p['cat'] == 'brodzik' else None
         elif p['s'] in PANELS:
-            size = '90' if p['ref'] in ('42303401', '43217391', '44178281', '44516283') else '80'
-            m = next((m for m in cat(PANELS[p['s']]) if m['stem'].startswith(size)), None)
+            size_ = '90' if p['ref'] in ('42303401', '43217391', '44178281', '44516283') else '80'
+            m = next((m for m in cat(PANELS[p['s']]) if m['stem'].startswith(size_)), None)
             if not m:
                 miss.append(p['ref'] + ' ' + p['s']); continue
+            rule = cons = None
         else:
             continue
-        dims = m['dims']
+        dims = list(size) + [m['dims'][2]] if size else m['dims']
         tag = '-R55' if m['shape'] == 'półokrągły' else ('-5k' if m['shape'] == 'pięciokątny' else '')
+        if rule: tag += '-o' + RULE_TAG[rule[0]]
         key = '%s_%s_%gx%gx%g%s' % (p['brand'], (p['s'] if p['s'] in PANELS else p['fam']).replace(' ', '-'), dims[0], dims[1], dims[2], tag)
         key = key.replace('.', ',')
-        models.setdefault(key, {'obj': m['obj'], 'src': os.path.relpath(m['obj'], SRC).split(os.sep)[0].split('. ', 1)[1] + ' · ' + m['stem'], 'dims': dims, 'refs': []})
+        models.setdefault(key, {'obj': m['obj'], 'src': os.path.relpath(m['obj'], SRC).split(os.sep)[0].split('. ', 1)[1] + ' · ' + m['stem'],
+                                'dims': dims, 'refs': [], 'size': size, 'rule': rule, 'cons': cons})
         models[key]['refs'].append(p['ref'])
         refs[p['ref']] = key
 
     jobs = {}
     for key, m in models.items():
-        files = []
-        for ext in ('dwg', 'obj', '3ds'):
-            src = m['obj'] if ext == 'obj' else sibling(m['obj'], ext)
-            if src and ext == 'obj':                                  # OBJ to tekst — w ZIP ~6× mniejszy
-                import zipfile
-                zp = os.path.join(OUT, key + '.obj.zip')
-                with zipfile.ZipFile(zp, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-                    z.write(src, key + '.obj')
-                files.append({'ext': 'OBJ', 'f': key + '.obj.zip', 'kb': os.path.getsize(zp) // 1024, 'zip': 1})
-            elif src:
-                shutil.copy2(src, os.path.join(OUT, key + '.' + ext))
-                files.append({'ext': ext.upper(), 'f': key + '.' + ext, 'kb': os.path.getsize(src) // 1024})
-        files.append({'ext': 'GLB', 'f': key + '.glb', 'kb': 0, 'view': 1})
-        m['files'] = files
-        jobs[key] = (m['obj'], os.path.join(OUT, key + '.glb'), key.split('_')[1] != 'Magnetic')
+        jobs[key] = {'obj': m['obj'], 'glb': os.path.join(OUT, key + '.glb'), 'metal': key.split('_')[1] != 'Magnetic',
+                     'size': m['size'], 'rule': m['rule'], 'cons': m['cons'], 'objout': os.path.join(OUT, key + '.obj')}
     jf = os.path.join(OUT, '_jobs.json'); rf = os.path.join(OUT, '_pomiar.json')
     json.dump(jobs, open(jf, 'w', encoding='utf-8'))
-    subprocess.run([BLENDER, '-b', '--factory-startup', '--python', os.path.abspath(__file__), '--', jf, rf], check=True,
+    subprocess.run([BLENDER, '-b', '--factory-startup', '--python', os.path.join(HERE, '10b_blender_brodzik.py'), '--', jf, rf], check=True,
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    meas = json.load(open(rf, encoding='utf-8')); os.remove(jf); os.remove(rf)
+    meas = json.load(open(rf, encoding='utf-8')); os.remove(jf)
+    shutil.copy2(rf, os.path.join(HERE, 'modele3d_log.json')); os.remove(rf)
+    import zipfile
+    for key, m in models.items():
+        r = meas.get(key, {})
+        files = []
+        fixed = r.get('modified')
+        if fixed:                       # poprawiona bryła -> tylko poprawiony OBJ (DWG/3DS z katalogu miałyby stary odpływ/wymiar)
+            src = os.path.join(OUT, key + '.obj')
+            zp = os.path.join(OUT, key + '.obj.zip')
+            with zipfile.ZipFile(zp, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+                z.write(src, key + '.obj')
+            os.remove(src)
+            files.append({'ext': 'OBJ', 'f': key + '.obj.zip', 'kb': os.path.getsize(zp) // 1024, 'zip': 1})
+        else:
+            if os.path.exists(os.path.join(OUT, key + '.obj')): os.remove(os.path.join(OUT, key + '.obj'))
+            for ext in ('dwg', 'obj', '3ds'):
+                src = m['obj'] if ext == 'obj' else sibling(m['obj'], ext)
+                if src and ext == 'obj':
+                    zp = os.path.join(OUT, key + '.obj.zip')
+                    with zipfile.ZipFile(zp, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+                        z.write(src, key + '.obj')
+                    files.append({'ext': 'OBJ', 'f': key + '.obj.zip', 'kb': os.path.getsize(zp) // 1024, 'zip': 1})
+                elif src:
+                    shutil.copy2(src, os.path.join(OUT, key + '.' + ext))
+                    files.append({'ext': ext.upper(), 'f': key + '.' + ext, 'kb': os.path.getsize(src) // 1024})
+        if os.path.exists(os.path.join(OUT, key + '.glb')):
+            files.append({'ext': 'GLB', 'f': key + '.glb', 'kb': os.path.getsize(os.path.join(OUT, key + '.glb')) // 1024, 'view': 1})
+        m['files'] = files; m['fixed'] = fixed
     out = {}
     for ref, key in refs.items():
         m = models[key]
-        for f in m['files']:
-            if f['ext'] == 'GLB':
-                f['kb'] = meas.get(key, {}).get('glb_kb', 0)
         out[ref] = {'src': '2021 · ' + m['src'], 'dims': m['dims'], 'files': m['files']}
         if ref in approx:
-            out[ref]['approx'] = 1
-    js = ('/* Modele 3D przypisane do indeksów LM — generuje _narzedzia/10_modele_3d.py z paczki „008 Modele 3D” (katalog Schedpol 2021).\n'
-          '   Serie LM rozpoznane po bryle (nazwy katalogowe inne). Pliki w assets/cad/, wspólne dla wariantów kolorystycznych. */\n'
+            out[ref]['approx'] = 1; out[ref]['from'] = approx[ref]
+        if m.get('fixed'):
+            out[ref]['fix'] = 1
+    js = ('/* Modele 3D przypisane do indeksów LM — generuje _narzedzia/10_modele_3d.py (+10b_blender_brodzik.py) z paczki „008 Modele 3D”.\n'
+          '   Bryły z katalogu Schedpol 2021, poprawione: wymiar produktu, położenie odpływu wg rysunku technicznego, spód wg konstrukcji. */\n'
           'window.SP = window.SP || {};\nwindow.SP.cad = ' + json.dumps(out, ensure_ascii=False) + ';\n')
     open(os.path.join(ROOT, 'assets', 'modele3d.js'), 'w', encoding='utf-8').write(js)
-    by = {}
-    for ref, key in refs.items():
-        fam = next(p['fam'] for p in prods if p['ref'] == ref)
-        by[fam] = by.get(fam, 0) + 1
-    print('w tym modeli zastępczych (najbliższy wymiar):', len(approx))
-    print('indeksów z modelem:', len(out), ' unikalnych brył:', len(models), ' plików:', len(os.listdir(OUT)))
-    print('wg serii:', by)
-    print('bez modelu w paczce (%d):' % len(miss))
-    for x in miss:
-        print('  ', x)
+    errs = {k: v for k, v in meas.items() if 'err' in v}
+    print('indeksów z modelem:', len(out), ' unikalnych brył:', len(models), ' poprawionych:', sum(1 for m in models.values() if m.get('fixed')),
+          ' błędów:', len(errs))
+    for k, v in errs.items(): print('  BŁĄD', k, v['err'], v.get('tb', '')[-300:])
+    print('bez modelu w paczce (%d)' % len(miss))
 
 
 if __name__ == '__main__':
-    try:
-        import bpy  # noqa: F401
-        run_blender_part()
-    except ImportError:
-        main()
+    main()

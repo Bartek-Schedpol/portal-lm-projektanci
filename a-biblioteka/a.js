@@ -166,7 +166,7 @@
       try { nrm = await mv.createTexture('../assets/img/stone-normal.jpg'); det = await mv.createTexture('../assets/img/stone-detail.jpg'); } catch (e) { nrm = det = null; }
     }
     mv.model.materials.forEach(function (m) {
-      if (m.name === 'metal') return;
+      if (m.name !== 'akryl') return;   // kolor wariantu tylko dla bryły; maskownice, mata, nośnik EPS, spód skorupy bez zmian
       const pbr = m.pbrMetallicRoughness;
       pbr.setMetallicFactor(0);
       pbr.setRoughnessFactor(f.rough);
@@ -195,7 +195,7 @@
       const glb = (cad.files.filter(function (x) { return x.ext === 'GLB'; })[0] || {}).f;
       const CADD = { DWG: 'Model 3D DWG (AutoCAD)', OBJ: 'Model 3D OBJ w archiwum ZIP (SketchUp, Blender, 3ds Max)', '3DS': 'Model 3D 3DS (3ds Max, CAD Decor)' };
       cad.files.filter(function (x) { return x.ext !== 'GLB'; }).forEach(function (x) {
-        f.push({ ext: x.ext, name: x.f, desc: CADD[x.ext] + (cad.approx ? ' · MODEL ZASTĘPCZY: najbliższy dostępny wymiar ' + String(cad.dims[0]).replace('.', ',') + ' × ' + String(cad.dims[1]).replace('.', ',') + ' cm (ten sam kształt)' : ' · wymiary w cm'), mb: x.kb / 1024, href: CAD_BASE + x.f, glb: glb ? CAD_BASE + glb : '' });
+        f.push({ ext: x.ext, name: x.f, desc: CADD[x.ext] + ' · wymiary w cm' + (cad.approx && cad.from ? ' · bryła serii dopasowana do wymiaru produktu (wzorzec ' + String(cad.from[0]).replace('.', ',') + ' × ' + String(cad.from[1]).replace('.', ',') + ' cm)' : '') + (cad.fix ? ' · odpływ wg rysunku technicznego' : ''), mb: x.kb / 1024, href: CAD_BASE + x.f, glb: glb ? CAD_BASE + glb : '' });
       });
     } else if (p.cat !== 'akcesoria') f.push({ ext: 'DWG', name: base + '_rysunek.dwg', desc: 'Rysunek 2D DWG', mb: rnd(p.ref + 'e', 0.15, 0.6) });
     if (['brodzik', 'wanna', 'panel ścienny', 'odpływ liniowy'].indexOf(p.cat) !== -1) {
@@ -1011,7 +1011,7 @@
     const scenes = own.slice(0, Math.max(2, 9 - docs.length - ex.length)).map(function (k) { return { k: k, kind: 'scene', cap: cap }; });
     const cad3 = cadFor(p);
     const g3 = glbFor(p) ? [{ k: p.im, kind: '3d', glb: glbFor(p),
-      cap: cad3.approx ? 'Model 3D zastępczy — najbliższy dostępny wymiar ' + cad3.dims[0] + ' × ' + cad3.dims[1] + ' cm · przeciągnij, aby obrócić' : 'Model 3D · przeciągnij, aby obrócić' }] : [];
+      cap: cad3.approx && cad3.from ? 'Model 3D dopasowany do wymiaru produktu (bryła serii ' + cad3.from[0] + ' × ' + cad3.from[1] + ' cm) · przeciągnij, aby obrócić' : 'Model 3D · przeciągnij, aby obrócić' }] : [];
     return [{ k: p.im, kind: 'pack', cap: '' }].concat(g3, exPack, scenes, exPhoto, docs).filter(function (x) { return SP.img[x.k]; });
   }
   function stageInner(item, alt) {
