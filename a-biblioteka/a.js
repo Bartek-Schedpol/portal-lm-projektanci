@@ -231,6 +231,27 @@
   }
 
   /* Karta produktu → „Centrum plików cyfrowych”: trzy kolumny (modele 3D i CAD / dokumentacja / packshoty i prezentacje) */
+
+  /* Karta produktu: kafelki „Format wymiarowy” — wymiary tej serii w tym samym kolorze (zastępują dolną tabelę „Inne rozmiary”) */
+  function pdSizes(p) {
+    const seen = {}, opts = [];
+    SP.products.filter(function (x) {
+      return x.fam === p.fam && serieBase(x.s) === serieBase(p.s) && (x.c || '') === (p.c || '') && (x.ver || '') === (p.ver || '') && sizeKey(x);
+    }).sort(function (a, b) { return area(a) - area(b) || String(a.shape).localeCompare(String(b.shape)); }).forEach(function (x) {
+      const key = sizeKey(x) + '|' + (x.shape || '');
+      if (seen[key]) { if (x.ref === p.ref) opts[seen[key] - 1] = x; return; }
+      opts.push(x); seen[key] = opts.length;
+    });
+    if (opts.length < 2) return '';
+    const lab = function (x) {
+      return (x.b != null ? x.a + ' × ' + x.b + ' cm' : x.a + ' cm') + (x.shape === 'półokrągły' ? ' · półokr.' : x.shape === 'pięciokątny' ? ' · pięciok.' : '');
+    };
+    return '<div class="pds"><div class="pds-h"><span>' + ic('ruler', 15) + ' Format wymiarowy</span><b class="mono">' + esc(SP.dims(p).replace(/-/g, '–')) + '</b></div><div class="pds-sizes">' +
+      opts.map(function (x) {
+        const on = x.ref === p.ref;
+        return '<a class="pds-o' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="LM ' + esc(x.ref) + '">' + esc(lab(x)) + '</a>';
+      }).join('') + '</div></div>';
+  }
   function pfCols(p, all) {
     const groups = [
       { k: 'cad', t: 'Modele 3D i CAD', ic: 'cube', test: function (f) { return f.cad || ['DWG', 'OBJ', '3DS', 'GLB'].indexOf(f.ext) !== -1; } },
@@ -1213,6 +1234,7 @@
             const on = x.ref === p.ref;
             return '<a class="cvar' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="' + esc(cap(x.c)) + ' · LM ' + esc(x.ref) + '"><span class="cvar-img">' + pimg(x.im, '') + '</span><span class="cvar-n">' + dot(x.hx) + esc(cap(x.c)) + '</span><small class="mono">LM ' + esc(x.ref) + '</small>' + (on ? '<span class="cvar-tag">Oglądasz</span>' : '') + '</a>';
           }).join('') + '</div></div>' : ''}
+          ${pdSizes(p)}
           ${vvar.length ? '<div class="pd-colors"><div class="pd-colors-h">' + ic('layers', 16) + '<b>Dostępne wersje</b><span>' + (vvar.length + 1) + ' ' + plural(vvar.length + 1, 'wersja', 'wersje', 'wersji') + '</span></div><div class="pd-colors-l">' + [p].concat(vvar).map(function (x) {
             const on = x.ref === p.ref;
             return '<a class="cvar' + (on ? ' is-on' : '') + '" href="' + H('produkt', { ref: x.ref }) + '"' + (on ? ' aria-current="true"' : '') + ' title="' + esc(cap(x.ver)) + ' · LM ' + esc(x.ref) + '"><span class="cvar-img">' + pimg(x.im, '') + '</span><span class="cvar-n">' + esc(cap(x.ver)) + '</span><small class="mono">LM ' + esc(x.ref) + '</small>' + (on ? '<span class="cvar-tag">Oglądasz</span>' : '') + '</a>';
@@ -1258,22 +1280,7 @@
       </section>
 
 
-      ${sibs.length ? `<section class="pd-sec" aria-labelledby="sT">
-        <div class="sec-h"><div><h2 id="sT">Inne rozmiary w tej serii i kolorze</h2><p>${esc(p.s)}${p.c ? ' · ' + esc(p.c) : ''} — ${indeksy(sibs.length)}</p></div></div>
-        <div class="tbl-wrap"><table class="tbl">
-          <thead><tr><th>Wymiar</th><th>Kształt</th><th>Nr ref. LM</th><th>Gama LM</th><th><span class="sr">Otwórz</span></th></tr></thead>
-          <tbody>${sibs.map(function (x) {
-            const href = H('produkt', { ref: x.ref });
-            return `<tr data-href="${href}">
-              <td class="mono"><a href="${href}">${esc(variant(x))}</a></td>
-              <td>${x.shape ? esc(x.shape) : '<span class="muted">—</span>'}</td>
-              <td>${refChip(x)}</td>
-              <td class="mono">${x.g ? esc(x.g) : '<span class="muted">—</span>'}</td>
-              <td><div class="t-act"><a class="icon-btn" href="${href}" aria-label="Otwórz kartę produktu ${esc(x.ref)}">${ic('arrow-right', 16)}</a></div></td>
-            </tr>`;
-          }).join('')}</tbody>
-        </table></div>
-      </section>` : ''}
+
 
       ${zest.length ? `<section class="pd-sec" aria-labelledby="zT">
         <div class="sec-h"><div><h2 id="zT">Produkty możliwe do dobrania</h2><p>Produkty z oferty w Leroy Merlin, które można dobrać do tej serii w projekcie.</p></div></div>
