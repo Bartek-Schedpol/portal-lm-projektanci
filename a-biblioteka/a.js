@@ -553,10 +553,10 @@
   ];
   /* Start → współpraca z LM (dane od użytkownika, 19.11.2026) */
   const COOP = [
-    { l: 'Kompletność dostaw w 2025 r.', v: '99,53%' },
-    { l: 'Średni czas realizacji zamówień w 2025 r.', v: '6,31', u: 'dnia' },
-    { l: 'Minimum zakupowe', v: '1800 zł', u: 'netto' },
-    { l: 'Dropshipping od 1 produktu', v: '+65 zł', u: 'netto dopłaty' }
+    { l: 'Kompletność dostaw w 2025 r.', v: '99,53%', i: 'box-check' },
+    { l: 'Średni czas realizacji zamówień w 2025 r.', v: '6,31', u: 'dnia', i: 'clock' },
+    { l: 'Minimum zakupowe', v: '1800 zł', u: 'netto', i: 'cart' },
+    { l: 'Dropshipping od 1 produktu', v: '+65 zł', u: 'netto dopłaty', i: 'truck' }
   ];
   /* doradca techniczny — dane ze schedpol.pl/kontakt (sprawdzone 19.11.2026) */
   const TECH = { n: 'Maciej Naskręt', role: 'Doradca techniczny — klient indywidualny i inwestycje', tel: '502 356 267', mail: 'doradcatechniczny@schedpol.pl' };
@@ -621,7 +621,7 @@
         <div class="wrap home-hero-in">
           <div class="home-copy">
             <div class="hero-partner rv"><img class="lm-logo" src="../assets/znaki/leroy-merlin.svg" alt="Leroy Merlin" width="79" height="48"><span>Strefa architekta i projektanta</span></div>
-            <h1 class="home-title rv" id="heroT" style="--d:60ms">Projektuj łazienki z produktami Schedpol i Sensea dostępnymi w Leroy Merlin</h1>
+            <h1 class="home-title rv" id="heroT" style="--d:60ms">Projektuj łazienki z produktami Schedpol i Sensea</h1>
             <p class="hero-lead rv" style="--d:120ms">Karty produktów PDF, rysunki techniczne, packshoty, instrukcje montażu i modele 3D w bazie CAD Decor — dla ${total} indeksów z oferty Leroy Merlin.</p>
             <div class="bigsearch rv" id="bigBox" style="--d:180ms" role="search">
               ${ic('search', 22)}
@@ -637,7 +637,7 @@
           <div class="hcoop rv" style="--d:200ms" aria-labelledby="coopT">
             <div class="hcoop-h"><span class="home-k">30 lat współpracy z Leroy Merlin</span><h2 id="coopT">Razem od 1997 roku</h2></div>
             <dl class="hcoop-l">${COOP.map(function (c) {
-              return '<div class="hco' + (c.wide ? ' is-wide' : '') + '"><dt>' + esc(c.l) + '</dt><dd><b>' + esc(c.v) + '</b>' + (c.u ? '<span>' + esc(c.u) + '</span>' : '') + '</dd></div>';
+              return '<div class="hco' + (c.wide ? ' is-wide' : '') + '">' + (c.i ? '<span class="hco-ic" aria-hidden="true">' + ic(c.i, 24) + '</span>' : '') + '<dt>' + esc(c.l) + '</dt><dd><b>' + esc(c.v) + '</b>' + (c.u ? '<span>' + esc(c.u) + '</span>' : '') + '</dd></div>';
             }).join('')}</dl>
           </div>
 </div>

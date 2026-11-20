@@ -1298,3 +1298,20 @@ h1, h2, h3 { letter-spacing: -.02em; }
 /* ===== 20.11.2026 (4): naklejka NOWOŚĆ na aranżacjach w sekcji Nowości ===== */
 .hnew-tag { position: absolute; left: 16px; top: 16px; z-index: 2; padding: 6px 12px 5px; background: var(--brand); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; line-height: 1; border-radius: 4px; box-shadow: 0 6px 16px -8px rgba(60, 10, 10, .55); pointer-events: none; }
 .hnews-box .hnew-0 .hnew-tag { left: 24px; top: 24px; padding: 8px 16px 7px; font-size: 14px; }
+
+/* ===== 20.11.2026 (5): ikonki kategorii przy liczbach „Razem od 1997 roku” ===== */
+.hco { position: relative; }
+.hco dt { padding-right: 44px; }
+.hco-ic { position: absolute; right: 14px; top: 14px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand-tint); color: var(--brand); }
+.hco-ic svg { stroke-width: 1.6; }
+.hco dt { padding-right: 54px; }
+.hco-ic { width: 44px; height: 44px; border-radius: 12px; right: 14px; top: 14px; }
+/* panel „Razem od 1997 roku”: tło w zieleń (decyzja użytkownika 20.11.2026) */
+.hcoop { background: #F1F6EC; box-shadow: inset 0 0 0 1px #DCE8D2; }
+.hco-ic { background: #E4EFDA; }
+/* panel „Razem od 1997 roku”: akcenty w tej samej rodzinie zieleni co tło (bordo na zieleni gryzło się) */
+.hcoop { --coop: #3F6E26; --coop-ink: #2C5219; --coop-tint: #E3EED8; background: #F3F7EF; box-shadow: inset 0 0 0 1px #DDE8D3; }
+.hcoop .home-k { color: var(--coop); }
+.hcoop-h h2 { color: var(--coop-ink); }
+.hcoop .hco { box-shadow: inset 4px 0 0 var(--coop), 0 1px 2px rgba(40, 70, 20, .06); }
+.hcoop .hco-ic { background: var(--coop-tint); color: var(--coop); }
