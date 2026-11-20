@@ -1252,3 +1252,45 @@ h1, h2, h3 { letter-spacing: -.02em; }
 :root { --brand: #943330; --brand-ink: #7A2623; --brand-tint: #F6ECEB; }
 .home { --brand: #943330; --brand-ink: #7A2623; --brand-tint: #F6ECEB; }
 .hcoop { background: #FAF6F5; }
+
+
+/* ===== 20.11.2026 (3): Kategorie — aranżacje + kolaże + pasek dla projektanta ===== */
+.hcats-v2 .hcat.is-scene { background: #2a2a2a; }
+.hcats-v2 .hcat.is-scene::after { background: linear-gradient(180deg, rgba(12, 10, 10, 0) 38%, rgba(12, 10, 10, .78) 100%); }
+.hcats-v2 .hcat-txt > span { margin-top: 2px; }
+.cat-meta { display: flex !important; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px !important; opacity: 1 !important; font-size: 12px !important; }
+.cm-cols { display: inline-flex; align-items: center; gap: 0; }
+.cm-cols i { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #fff; margin-right: -5px; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.cm-cols em { font-style: normal; margin-left: 10px; font-weight: 600; }
+.cm-shp { display: inline-flex; gap: 6px; }
+.cm-shp svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.cm-cad { padding: 3px 8px; border: 1px solid rgba(255,255,255,.55); border-radius: 999px; font-weight: 600; letter-spacing: .04em; font-size: 11px; }
+/* kolaże */
+.hcats-v2 .hcat.is-col { background: #fff; border: 1px solid var(--line, #E6E3E1); }
+.hcats-v2 .hcat.is-col::after { display: none; }
+.hcats-v2 .hcat.is-col .hcat-txt { color: var(--ink); }
+.hcats-v2 .hcat.is-col .cm-cad { border-color: var(--line, #D9D5D2); }
+.hcats-v2 .hcat.is-col .hcat-go { background: var(--brand-tint); }
+.hcat-col { position: absolute; left: 20px; right: 20px; top: 18px; bottom: 92px; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 12px; }
+.hcat-col > span { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; }
+.hcat-col img { position: static !important; width: 100% !important; height: auto !important; max-height: 100%; min-height: 0; flex: 1 1 auto; object-fit: contain !important; z-index: 0 !important; transition: transform .9s var(--ease); }
+.hcat.is-col:hover .hcat-col img { transform: translateY(-3px) scale(1.03); }
+.hcat-col small { margin-top: 6px; font-size: 11px; color: var(--ink-3); letter-spacing: .02em; }
+.hcat-col.n3 { grid-auto-columns: 1fr; }
+.hcat-4 .hcat-col { right: 64px; }
+.hcat-txt .cat-meta span { margin-top: 0; font-size: 12px; opacity: 1; }
+.hcat-txt .cat-meta .cm-cols, .hcat-txt .cat-meta .cm-shp { display: inline-flex; }
+.hcat-txt .cat-meta .cm-cad { display: inline-block; font-size: 11px; }
+.cm-cols i { display: block; flex: none; }
+.cm-shp svg { display: block; flex: none; }
+.hcat-col { grid-template-rows: 100%; }
+.hcat-col > span { height: 100%; min-height: 0; }
+.hcat-col img { width: auto !important; max-width: 100%; max-height: calc(100% - 22px); }
+.hcat-6 .hcat-col { left: 34%; right: 72px; top: 22px; bottom: 22px; }
+.hcat-6 .hcat-txt { right: auto; max-width: 30%; }
+
+.hcats-v2 .hcat.is-scene img { transform: scale(var(--z, 1)); transform-origin: var(--o, 50% 50%); }
+.hcats-v2 .hcat.is-scene:hover img { transform: scale(calc(var(--z, 1) * 1.05)); }
+
+.hcats-v2 .hcat.is-scene img { transform-origin: 50% 50%; transform: scale(var(--z, 1)) translate(var(--tx, 0), var(--ty, 0)); }
+.hcats-v2 .hcat.is-scene:hover img { transform: scale(calc(var(--z, 1) * 1.04)) translate(var(--tx, 0), var(--ty, 0)); }

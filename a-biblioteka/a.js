@@ -566,6 +566,44 @@
     return '<svg class="bok-map" viewBox="' + m.vb + '" role="img" aria-label="Region ' + esc(BOK_AREA[k] || '') + '">' +
       Object.keys(m.r).map(function (r) { return '<path class="' + (r === k ? 'on' : '') + '" d="' + m.r[r] + '"/>'; }).join('') + '</svg>';
   }
+
+  /* Start → Kategorie (wariant hybrydowy 20.11.2026): aranżacja albo kolaż + pasek informacji dla projektanta */
+  const CAT_V = {   // z = przybliżenie, f = punkt produktu [x, y] w kaflu (0–1), który trafia na środek kadru
+    'brodzik': { img: 'integral-ws', z: 1.5, f: [0.6, 0.8] },
+    'wanna': { img: 'torres-b', pos: '50% 62%' },
+    'odpływ liniowy': { img: 'odplyw-black', pos: '50% 100%', z: 1.8, f: [0.66, 0.7] },
+    'panel ścienny': { img: 'wc-po', z: 1.8, f: [0.36, 0.52] },
+    'nośnik': { img: 'nosnik', z: 1.6, f: [0.42, 0.66] },
+    'obudowa': { img: 'obudowa-pol', pos: '50% 68%' },
+    'akcesoria': { noCols: 1, col: [['p-maskownica-zlota', 'maskownica'], ['pk-packshot-panel-do-brodzika-dante-2500x25-08d42a', 'panel do brodzika'], ['p-nogi', 'nogi do brodzika'], ['p-najazd', 'najazd']] }
+  };
+  const SHAPE_SVG = [
+    [/kwadr/, 'kwadratowy', '<rect x="3" y="3" width="14" height="14"/>'],
+    [/prostok/, 'prostokątny', '<rect x="1" y="5" width="18" height="10"/>'],
+    [/półokr|polokr|łuk|R55/i, 'półokrągły', '<path d="M3 3h14v14H3A14 14 0 0 1 3 3z" transform="matrix(-1 0 0 1 20 0)"/>'],
+    [/pięciok|pieciok/, 'pięciokątny', '<path d="M3 3h14v14H9L3 11z"/>']
+  ];
+  function catTile(c, i) {
+    const ps = SP.products.filter(function (p) { return p.cat === c.id; });
+    const v = CAT_V[c.id] || {};
+    const seen = {}, cols = [];
+    ps.forEach(function (p) { if (p.hx && !seen[p.hx]) { seen[p.hx] = 1; cols.push([p.hx, p.c || '']); } });
+    const shp = SHAPE_SVG.filter(function (s) { return ps.some(function (p) { return s[0].test(p.shape || ''); }); });
+    const nCad = ps.filter(function (p) { return cadFor(p); }).length;
+    const meta = [];
+    if (cols.length > 1 && !v.noCols) meta.push('<span class="cm-cols">' + cols.slice(0, 6).map(function (x) { return '<i style="background:' + esc(x[0]) + '" title="' + esc(x[1]) + '"></i>'; }).join('') + (cols.length > 6 ? '<em>+' + (cols.length - 6) + '</em>' : '') + '</span>');
+    if (shp.length > 1) meta.push('<span class="cm-shp">' + shp.map(function (s) { return '<svg viewBox="0 0 20 20" aria-label="' + s[1] + '"><title>' + s[1] + '</title>' + s[2] + '</svg>'; }).join('') + '</span>');
+    if (nCad) meta.push('<span class="cm-cad">DWG · 3D</span>');
+    const metaH = meta.length ? '<span class="cat-meta">' + meta.join('') + '</span>' : '';
+    const body = v.col
+      ? '<span class="hcat-col n' + v.col.length + '">' + v.col.map(function (x) { return '<span><img src="' + esc(SP.src(x[0])) + '" alt="" decoding="async"><small>' + esc(x[1]) + '</small></span>'; }).join('') + '</span>'
+      : '<img src="' + esc(SP.src(v.img || CAT_REP[c.id])) + '" alt="" decoding="async" style="object-position:' + (v.pos || '50% 50%') + (v.z ? (function () { const m = (1 - 1 / v.z) / 2, cl = function (d) { return Math.max(-m, Math.min(m, d)) * 100; }; return ';--z:' + v.z + ';--tx:' + cl(0.5 - v.f[0]).toFixed(1) + '%;--ty:' + cl(0.5 - v.f[1]).toFixed(1) + '%'; })() : '') + '">';
+    return `<a class="hcat ${v.col ? 'is-col' : 'is-scene'} hcat-${i} rv" style="--d:${i * 40}ms" href="${H('katalog', { cat: c.id })}">
+            ${body}
+            <span class="hcat-go">${ic('arrow-up-right', 18)}</span>
+            <span class="hcat-txt"><b>${esc(c.label)}</b><span>${indeksy(ps.length)}</span>${metaH}</span>
+          </a>`;
+  }
   function renderStart(params) {
     const total = SP.products.length;
     const nFiles = SP.series.reduce(function (a, s) { return a + sumFiles(s); }, 0);
@@ -625,14 +663,7 @@
       <section class="home-block" aria-labelledby="catT">
         <div class="home-h home-h-row"><div><span class="home-k">Oferta w Leroy Merlin</span><h2 id="catT">Kategorie</h2></div>
           <a class="link" href="${H('katalog')}">Cały katalog ${ic('arrow-right', 14)}</a></div>
-        <div class="hcats">${SP.cats.map(function (c, i) {
-          const n = SP.products.filter(function (p) { return p.cat === c.id; }).length;
-          return `<a class="hcat is-pack hcat-${i} rv" style="--d:${i * 40}ms" href="${H('katalog', { cat: c.id })}">
-            <img src="${esc(SP.src(CAT_REP[c.id]))}" alt="" decoding="async">
-            <span class="hcat-go">${ic('arrow-up-right', 18)}</span>
-            <span class="hcat-txt"><b>${esc(c.label)}</b><span>${indeksy(n)}</span></span>
-          </a>`;
-        }).join('')}</div>
+        <div class="hcats hcats-v2">${SP.cats.map(function (c, i) { return catTile(c, i); }).join('')}</div>
       </section>
 
       <section class="home-block panel hcad rv" id="sek-cad">
