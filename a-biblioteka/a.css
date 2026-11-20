@@ -1246,3 +1246,9 @@ h1, h2, h3 { letter-spacing: -.02em; }
   .st-stats { gap: 12px; }
   .st-stat b { font-size: 28px; }
 }
+
+
+/* ===== 20.11.2026 (2): kolor główny z powrotem bordowy (decyzja użytkownika); układ Start sprzed projektu Stitch ===== */
+:root { --brand: #943330; --brand-ink: #7A2623; --brand-tint: #F6ECEB; }
+.home { --brand: #943330; --brand-ink: #7A2623; --brand-tint: #F6ECEB; }
+.hcoop { background: #FAF6F5; }

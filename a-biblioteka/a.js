@@ -577,104 +577,34 @@
       { ic: 'clipboard', t: 'Instrukcje i karty gwarancyjne', d: 'Instrukcja montażu i karta gwarancyjna Stabilsafe przypisane do indeksu — do pobrania w PDF.', href: H('pliki', { typ: 'dokumenty' }) }
     ];
 
-    const nCad = SP.cad ? Object.keys(SP.cad).length : 0;
-    const nDocs2 = SP.docMap ? Object.keys(SP.docMap).filter(function (r) { return SP.docMap[r].length > 1; }).length : 0;
-    const STATS = [
-      { v: String(total), l: 'indeksów Schedpol i Sensea w Leroy Merlin' },
-      { v: String(nCad), l: 'indeksów z modelem 3D · DWG · OBJ · 3DS' },
-      { v: COOP[0].v, l: COOP[0].l },
-      { v: COOP[1].v + ' ' + COOP[1].u, l: COOP[1].l }
-    ];
-    const seen = {};
-    const res = SP.products.filter(function (p) {
-      if (!p.new || !cadFor(p) || seen[p.fam]) return false; seen[p.fam] = 1; return true;
-    }).concat(SP.products.filter(function (p) { if (seen[p.fam] || !cadFor(p)) return false; seen[p.fam] = 1; return true; })).slice(0, 3);
-    const tools = [
-      { ic: 'grid', t: 'Katalog z filtrami', d: 'Szukaj po nr. ref. LM, serii, wymiarze, kolorze i kształcie — ' + total + ' indeksów Schedpol i Sensea.', href: H('katalog') },
-      { ic: 'cube', t: 'Modele 3D i podgląd', d: 'DWG, OBJ i 3DS dla ' + nCad + ' indeksów oraz podgląd 3D w przeglądarce na karcie produktu.', href: H('katalog', { cat: 'brodzik' }) },
-      { ic: 'zip', t: 'Paczki plików serii', d: 'Packshoty, aranżacje, rysunki i karty produktów całej serii w jednym pliku ZIP.', href: H('pliki') },
-      { ic: 'clipboard', t: 'Instrukcje i karty gwarancyjne', d: 'Instrukcja montażu dla ' + nDocs2 + ' indeksów i karta gwarancyjna Stabilsafe — do podglądu i pobrania w PDF.', href: H('pliki', { typ: 'dokumenty' }) }
-    ];
-    const gwDoc2 = SP.docs && SP.docs['gw-stabilsafe'];
-
     app.innerHTML = `
-    <div class="home home-stitch">
-      <section class="st-hero" aria-labelledby="heroT">
-        <div class="wrap st-hero-in">
-          <span class="st-pill rv">${ic('user', 14)} Strefa architekta i projektanta · Leroy Merlin</span>
-          <h1 class="st-title rv" id="heroT" style="--d:60ms">Projektuj łazienki z produktami Schedpol i Sensea dostępnymi w Leroy Merlin</h1>
-          <p class="st-lead rv" style="--d:120ms">Karty produktów PDF, rysunki techniczne, modele 3D i instrukcje montażu dla ${total} indeksów z oferty Leroy Merlin — w jednym miejscu, z numerem referencyjnym LM.</p>
-          <div class="bigsearch st-search rv" id="bigBox" style="--d:180ms" role="search">
-            ${ic('search', 20)}
-            <input id="bigSearch" type="search" placeholder="Nr ref. LM, seria, wymiar np. Balans 90×90, Frigo, 92527622…" autocomplete="off" spellcheck="false" aria-label="Szukaj w bibliotece" aria-controls="bigList">
-            <button class="btn btn-primary no-ic" type="button" data-act="big-submit">Szukaj produktu ${ic('arrow-right', 16)}</button>
-            <div class="sugg" id="bigList"></div>
+    <div class="home">
+      <section class="home-hero" aria-labelledby="heroT">
+        <div class="wrap home-hero-in">
+          <div class="home-copy">
+            <div class="hero-partner rv"><img class="lm-logo" src="../assets/znaki/leroy-merlin.svg" alt="Leroy Merlin" width="79" height="48"><span>Strefa architekta i projektanta</span></div>
+            <h1 class="home-title rv" id="heroT" style="--d:60ms">Projektuj łazienki z produktami Schedpol i Sensea dostępnymi w Leroy Merlin</h1>
+            <p class="hero-lead rv" style="--d:120ms">Karty produktów PDF, rysunki techniczne, packshoty, instrukcje montażu i modele 3D w bazie CAD Decor — dla ${total} indeksów z oferty Leroy Merlin.</p>
+            <div class="bigsearch rv" id="bigBox" style="--d:180ms" role="search">
+              ${ic('search', 22)}
+              <input id="bigSearch" type="search" placeholder="Nr ref. LM, seria, wymiar, kolor…" autocomplete="off" spellcheck="false" aria-label="Szukaj w bibliotece" aria-controls="bigList">
+              <kbd>/</kbd>
+              <button class="btn btn-primary" type="button" data-act="big-submit">Szukaj <span class="btn-ic">${ic('arrow-right', 16)}</span></button>
+              <div class="sugg" id="bigList"></div>
+            </div>
+            <div class="hints rv" style="--d:240ms"><span>Popularne:</span>${HINTS.map(function (h) {
+              return '<button class="hint" type="button" data-act="hint" data-q="' + esc(h) + '">' + esc(h) + '</button>';
+            }).join('')}</div>
           </div>
-          <p class="st-pop rv" style="--d:220ms"><span>Popularne wyszukiwania:</span>${HINTS.map(function (h, i) {
-            return (i ? '<i>•</i>' : '') + '<button type="button" data-act="hint" data-q="' + esc(h) + '">' + esc(h) + '</button>';
-          }).join('')}</p>
-          <div class="st-stats">${STATS.map(function (x, i) {
-            return '<div class="st-stat rv" style="--d:' + (260 + i * 50) + 'ms"><b>' + esc(x.v) + '</b><span>' + esc(x.l) + '</span></div>';
-          }).join('')}</div>
-          <p class="st-coop rv">${ic('check', 14, 2)} <b>30 lat współpracy z Leroy Merlin</b> — razem od 1997 roku · minimum logistyczne ${esc(COOP[2].v)} ${esc(COOP[2].u)} · dropshipping od 1 produktu ${esc(COOP[3].v)} ${esc(COOP[3].u)}</p>
+          <div class="hcoop rv" style="--d:200ms" aria-labelledby="coopT">
+            <div class="hcoop-h"><span class="home-k">30 lat współpracy z Leroy Merlin</span><h2 id="coopT">Razem od 1997 roku</h2></div>
+            <dl class="hcoop-l">${COOP.map(function (c) {
+              return '<div class="hco' + (c.wide ? ' is-wide' : '') + '"><dt>' + esc(c.l) + '</dt><dd><b>' + esc(c.v) + '</b>' + (c.u ? '<span>' + esc(c.u) + '</span>' : '') + '</dd></div>';
+            }).join('')}</dl>
+          </div>
+</div>
         </div>
       </section>
-
-      <div class="wrap st-main">
-        <div class="st-left">
-          <section aria-labelledby="toolT">
-            <div class="st-h"><div><span class="st-k">Narzędzia pracy</span><h2 id="toolT">Szybkie akcje projektowe</h2></div></div>
-            <div class="st-tools">${tools.map(function (t, i) {
-              return `<a class="st-tool rv" style="--d:${i * 50}ms" href="${t.href}">
-                <span class="st-tool-ic">${ic(t.ic, 20)}</span><span class="st-tool-go">${ic('arrow-up-right', 18)}</span>
-                <b>${esc(t.t)}</b><p>${esc(t.d)}</p>
-              </a>`;
-            }).join('')}</div>
-          </section>
-
-          <section aria-labelledby="resT" class="st-res-sec">
-            <div class="st-h st-h-row"><div><span class="st-k">Baza zasobów</span><h2 id="resT">Modele 3D z oferty Leroy Merlin</h2></div>
-              <a class="st-more" href="${H('katalog', { cat: 'brodzik' })}">Zobacz wszystkie (${nCad}) ${ic('chevron-right', 14)}</a></div>
-            <div class="st-res">${res.map(function (p, i) {
-              const c = cadFor(p), dwg = c.files.filter(function (x) { return x.ext === 'DWG'; })[0];
-              const exts = c.files.filter(function (x) { return x.ext !== 'GLB'; }).map(function (x) { return x.ext; }).join(' / ');
-              return `<article class="st-card rv" style="--d:${i * 60}ms">
-                <a class="st-card-img" href="${H('produkt', { ref: p.ref })}">${pimg(p.im, '')}</a>
-                <span class="st-tag">${esc(exts)}</span>
-                <h3><a href="${H('produkt', { ref: p.ref })}">${esc(p.s)} ${esc(variant(p))}</a></h3>
-                <p>${esc(typeShort(p))} · ${esc(p.brand)}${p.c ? ' · ' + esc(p.c) : ''}. Nr ref. LM ${esc(p.ref)}.</p>
-                <div class="st-card-act">
-                  <a class="btn btn-sm st-btn-ghost" href="${H('produkt', { ref: p.ref })}">${ic('eye', 15)} Podgląd 3D</a>
-                  ${dwg ? '<a class="btn btn-sm btn-primary" href="' + esc(CAD_BASE + dwg.f) + '" download>' + ic('download', 15) + ' CAD</a>' : ''}
-                </div>
-              </article>`;
-            }).join('')}</div>
-          </section>
-        </div>
-
-        <aside class="st-side">
-          <div class="st-panel rv" id="sek-kontakt-side">
-            <span class="st-k st-k-ic">${ic('help', 15)} Wsparcie techniczne</span>
-            <h3>Doradca techniczny do Twojej dyspozycji</h3>
-            <p>Nietypowa zabudowa albo trudny detal? Doradca pomoże dobrać brodzik, nośnik i odpływ do projektu.</p>
-            <div class="st-person"><span class="st-av">MN</span><div><b>${esc(TECH.n)}</b><small>Doradca techniczny Schedpol</small></div></div>
-            <a class="st-row" href="tel:+48${esc(TECH.tel.replace(/\s/g, ''))}">${ic('phone', 17)} <span class="mono">+48 ${esc(TECH.tel)}</span></a>
-            <a class="st-row" href="mailto:${esc(TECH.mail)}">${ic('mail', 17)} <span>${esc(TECH.mail)}</span></a>
-            <a class="btn btn-primary btn-block no-ic st-cta" href="${H('start', { sek: 'kontakt', keep: 1 })}">Kontakt z BOK w Twoim regionie ${ic('arrow-right', 16)}</a>
-          </div>
-          <div class="st-panel rv">
-            <h3>Normy i dokumenty</h3>
-            <p>Parametry, które można sprawdzić w dokumentacji każdego indeksu.</p>
-            <ul class="st-check">
-              <li>${ic('check', 14, 2)} Brodziki badane wg PN-EN 14527</li>
-              <li>${ic('check', 14, 2)} Antypoślizgowość klasa A — DIN EN 16165:2023 (zał. A), wersje o strukturze kamienia</li>
-              <li>${ic('check', 14, 2)} Karta gwarancyjna Stabilsafe v15.25 z zakresem gwarancji</li>
-              <li>${ic('check', 14, 2)} Instrukcje montażu w PDF dla ${nDocs2} indeksów</li>
-            </ul>
-            ${gwDoc2 ? '<a class="st-more" href="' + H('pliki', { typ: 'dokumenty' }) + '">Instrukcje i karty ' + ic('chevron-right', 14) + '</a>' : ''}
-          </div>
-        </aside>
-      </div>
 
       <div class="wrap">
           <section class="home-block hnews-box" aria-labelledby="newsT">
@@ -746,6 +676,15 @@
             <a href="mailto:${esc(TECH.mail)}">${ic('mail', 15)} ${esc(TECH.mail)}</a></div></div>` : ''}</div>
       </section>
 
+      <section class="home-block" aria-labelledby="toolT">
+        <div class="home-h"><span class="home-k">Narzędzia pracy</span><h2 id="toolT">Szybkie akcje projektowe</h2></div>
+        <div class="tiles tiles-4">${tiles.map(function (t, i) {
+          return `<a class="tile rv" style="--d:${i * 50}ms" href="${t.href}">
+            <span class="tile-top"><span class="tile-ic">${ic(t.ic, 22)}</span><span class="tile-go">${ic('arrow-up-right', 18)}</span></span>
+            <b>${esc(t.t)}</b><p>${esc(t.d)}</p>
+          </a>`;
+        }).join('')}</div>
+      </section>
       </div>
     </div>`;
 
