@@ -138,3 +138,15 @@ img.is-mult { mix-blend-mode: multiply; }
 .pack .pk-brand img { width: auto; height: 3.6mm; max-width: none; object-fit: contain; mix-blend-mode: normal; }
 .pack .pk-brand img[src$="sensea.png"] { height: 4.4mm; }
 .draw { height: 70mm; }
+
+/* 20.11.2026: blok nr ref. w zieleni Leroy Merlin (#78BE20); etykiety pogrubione dla czytelności na zieleni */
+.refbox { background: #78BE20; }
+.rb-k { font-weight: 600; opacity: 1; }
+.rb-g { font-weight: 600; opacity: 1; }
+
+/* 20.11.2026: proporcje okien wg wzoru użytkownika (Karta-produktu_LM92527622v3.pdf) — wyższy packshot, węższy rysunek, szersza aranżacja */
+.pack { height: 82mm; }
+.pack img { height: 72mm; width: 94mm; }
+.draw { grid-template-columns: 1fr 75.5mm; gap: 8mm; height: 70mm; }
+.draw.is-solo { grid-template-columns: 1fr; }
+.low { min-height: 46.5mm; }

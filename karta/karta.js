@@ -184,9 +184,6 @@
           <h2>${feats.length ? 'Cechy serii ' + esc(p.fam) : 'O produkcie'}</h2>
           ${feats.length ? '<ol class="feats">' + feats.map(function (f, i) { return '<li><span>0' + (i + 1) + '</span>' + esc(f) + '</li>'; }).join('') + '</ol>'
             : '<p class="lead">' + esc(s.lead) + '</p>'}
-          ${zest.length ? '<p class="zest"><b>Uzupełnia:</b> ' + zest.map(function (z) {
-            return esc(z.name) + ' <span class="num">(' + z.refs.slice(0, 3).map(esc).join(', ') + (z.refs.length > 3 ? '…' : '') + ')</span>';
-          }).join(' · ') + '</p>' : ''}
         </div>
       </section>
 

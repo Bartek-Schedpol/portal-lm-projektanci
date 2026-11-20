@@ -1608,5 +1608,89 @@
    2500
   ],
   "tb": false
+ },
+ "p-frigo-gs-pr": {
+  "file": "p-frigo-gs-pr.webp",
+  "w": 760,
+  "h": 367,
+  "kind": "pack",
+  "alpha": true,
+  "src": "FRIGO - sensea\\FRIGO SZARY KAMIEŃ\\GOTOWE PACZKI - PLIKI 300 DPI\\FRIGO SZARY KAMIEŃ PROSTOKĄT\\1. PACKSHOT\\Packshot Frgio GS 2500x2500px 300dpi prostokąt PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-frigo-gs-pol": {
+  "file": "p-frigo-gs-pol.webp",
+  "w": 760,
+  "h": 353,
+  "kind": "pack",
+  "alpha": true,
+  "src": "FRIGO - sensea\\FRIGO SZARY KAMIEŃ\\GOTOWE PACZKI - PLIKI 300 DPI\\FRIGO SZARY KAMIEŃ PÓŁOKRĄGŁY\\1. PACKSHOT\\Packshot Frigo GS 2500x2500px 300dpi półokrągły PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-frigo-gs-5": {
+  "file": "p-frigo-gs-5.webp",
+  "w": 760,
+  "h": 750,
+  "kind": "pack",
+  "alpha": true,
+  "src": "FRIGO - sensea\\FRIGO SZARY KAMIEŃ\\GOTOWE PACZKI - PLIKI 300 DPI\\FRIGO SZARY KAMIEŃ PIĘCIOKĄT\\1. PACKSHOT\\Packshot Frigo GS 2500x2500px 300dpi pieciokąt PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-frigo-gs-kw": {
+  "file": "p-frigo-gs-kw.webp",
+  "w": 760,
+  "h": 424,
+  "kind": "pack",
+  "alpha": true,
+  "src": "FRIGO - sensea\\FRIGO SZARY KAMIEŃ\\GOTOWE PACZKI - PLIKI 300 DPI\\FRIGO SZARY KAMIEŃ KWADRAT\\1. PACKSHOT\\Packshot Frigo GS 2500x2500px 300dpi kwadrat PNG.png",
+  "base": "p",
+  "orig": [
+   2500,
+   2500
+  ],
+  "tb": true
+ },
+ "p-frigo-cs": {
+  "file": "p-frigo-cs.webp",
+  "w": 760,
+  "h": 352,
+  "kind": "pack",
+  "alpha": true,
+  "src": "FRIGO - sensea\\frigo\\FRIGO CEMENT\\Frigo polokragly (strukturalny cementowy) 2.png",
+  "base": "p",
+  "orig": [
+   2600,
+   2600
+  ],
+  "tb": true
+ },
+ "p-ipsilon-cs": {
+  "file": "p-ipsilon-cs.webp",
+  "w": 760,
+  "h": 310,
+  "kind": "pack",
+  "alpha": true,
+  "src": "IPSILON\\IPSILON CEMENT\\PÓŁOKRĄGŁY\\Ipsilon  Cementowy kamień (3).png",
+  "base": "p",
+  "orig": [
+   3600,
+   3600
+  ],
+  "tb": true
  }
 }
